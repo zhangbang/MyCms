@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\System\Database\Seeders\SystemAdminSeeder;
+use Modules\System\Database\Seeders\SystemConfigSeeder;
+use Modules\System\Database\Seeders\SystemMenuSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         //\App\Models\User::factory(10)->create();
+        $this->call(SystemAdminSeeder::class);
+        $this->call(SystemConfigSeeder::class);
+        $this->call(SystemMenuSeeder::class);
     }
 }
