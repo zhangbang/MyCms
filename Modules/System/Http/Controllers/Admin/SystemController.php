@@ -24,7 +24,7 @@ class SystemController extends MyController
                 'menuInfo' => $menuService->leftMenu()
             ]]);
         }
-        $systemConfig = $config->getConfig(['site_logo']);
+        $systemConfig = $config->getConfig(['site_logo','site_name']);
         return view('system::admin.index', compact('systemConfig'));
     }
 
