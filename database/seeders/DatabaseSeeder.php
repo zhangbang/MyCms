@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\System\Database\Seeders\SystemAdminSeeder;
 use Modules\System\Database\Seeders\SystemConfigSeeder;
 use Modules\System\Database\Seeders\SystemMenuSeeder;
+use Modules\System\Database\Seeders\SystemRoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SystemAdminSeeder::class);
         $this->call(SystemConfigSeeder::class);
         $this->call(SystemMenuSeeder::class);
+        $this->call(SystemRoleSeeder::class);
     }
 }

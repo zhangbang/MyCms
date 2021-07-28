@@ -21,31 +21,31 @@ class SystemConfigSeeder extends Seeder
         DB::table('my_system_config')->insert([
             [
                 'cfg_key' => 'site_name',
-                'cfg_val' => '',
+                'cfg_val' => 'MyCms',
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
             ],[
                 'cfg_key' => 'site_url',
-                'cfg_val' => '',
+                'cfg_val' => 'http://www.mycms.net.cn/',
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
             ], [
                 'cfg_key' => 'site_logo',
-                'cfg_val' => '',
+                'cfg_val' => '/mycms/common/images/logo-1.png',
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
             ], [
                 'cfg_key' => 'site_icp',
-                'cfg_val' => '',
+                'cfg_val' => '粤ICP备20010675号',
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
             ], [
                 'cfg_key' => 'site_copyright',
-                'cfg_val' => '',
+                'cfg_val' => 'Copyright © MyCms',
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,

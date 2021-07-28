@@ -37,7 +37,7 @@
             <p class="operation">
                 <a class="start" target="_blank" href=""> 起步 <i class="icon-play"></i></a>
                 <a class="github button-grya" target="_blank" href=""><i class="icon-github-big"></i>GitHub</a>
-                <a class="gitee button-grya" target="_blank" href=""><i class="icon-gitee"></i>Gitee</a>
+                <a class="gitee button-grya" target="_blank" href="https://gitee.com/qq386654667/mycms"><i class="icon-gitee"></i>Gitee</a>
             </p>
         </div>
         <!-- 框架特性-->

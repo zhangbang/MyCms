@@ -9,7 +9,7 @@
 
     <div class="layui-header header">
         <div class="layui-logo layuimini-logo">
-            <a href="/system/index"><img src="{{$systemConfig['site_logo']}}" alt="logo"></a>
+            <a href="/system/index"><img src="{{$systemConfig['site_logo']}}" alt="logo"><h1>{{$systemConfig['site_name']}}</h1></a>
         </div>
 
         <div class="layuimini-header-content">

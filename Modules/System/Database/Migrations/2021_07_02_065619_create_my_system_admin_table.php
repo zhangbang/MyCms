@@ -17,9 +17,9 @@ class CreateMySystemAdminTable extends Migration
             $table->id();
             $table->string('name', 30)->unique();
             $table->string('password');
-            $table->integer('login_num');
-            $table->tinyInteger('status');
-            $table->tinyInteger('role_id');
+            $table->integer('login_num')->default(0);
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('role_id')->default(0);
             $table->string('remark')->nullable();
             $table->timestamp('last_login_time')->nullable();
             $table->string('last_login_ip', 15)->nullable();

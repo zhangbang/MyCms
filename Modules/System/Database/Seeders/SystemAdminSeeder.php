@@ -19,6 +19,8 @@ class SystemAdminSeeder extends Seeder
         DB::table('my_system_admin')->insert([
             'name' => 'admin',
             'password' =>  Hash::make('admin'),
+            'role_id' =>  1,
+            'status' =>  1,
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);

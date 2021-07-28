@@ -16,7 +16,7 @@ class CreateMySystemRoleTable extends Migration
         Schema::create('my_system_role', function (Blueprint $table) {
             $table->id();
             $table->string('role_name', 50);
-            $table->string('role_desc');
+            $table->string('role_desc')->nullable();
             $table->text('role_node')->nullable();
             $table->timestamps();
 

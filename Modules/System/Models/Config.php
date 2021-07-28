@@ -33,7 +33,7 @@ class Config extends MyModel
      */
     public function getConfig($key = []): array
     {
-        $whereRaw = $key ? 'cfg_key in (' . join_data($key,',') . ')' : '';
+        $whereRaw = $key ? 'cfg_key in (' . join_data($key,',') . ')' : '1=1';
         $collect = $this->where('cfg_group', $this->group)->whereRaw($whereRaw)->get();
 
         $result = [];

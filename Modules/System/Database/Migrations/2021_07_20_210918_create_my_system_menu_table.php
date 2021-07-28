@@ -20,7 +20,7 @@ class CreateMySystemMenuTable extends Migration
             $table->string('icon',50);
             $table->string('url')->nullable();
             $table->string('target',20);
-            $table->smallInteger('sort');
+            $table->smallInteger('sort')->default(0);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
