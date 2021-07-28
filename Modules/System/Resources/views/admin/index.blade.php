@@ -35,9 +35,7 @@
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
                 </li>
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-                </li>
+
                 <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>

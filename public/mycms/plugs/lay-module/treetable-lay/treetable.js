@@ -104,6 +104,9 @@ layui.define(['layer', 'table'], function (exports) {
                     doneCallback(res, curr, count);
                 }
             };
+
+            param.defaultToolbar = ['filter'];
+
             // 渲染表格
             table.render(param);
         },

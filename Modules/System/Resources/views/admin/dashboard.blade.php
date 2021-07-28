@@ -273,48 +273,37 @@
                             </colgroup>
                             <tbody>
                             <tr>
-                                <td>框架名称</td>
+                                <td>系统名称</td>
                                 <td>
-                                    layuimini
+                                    MyCms
                                 </td>
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>v2.0.0</td>
+                                <td>v1.0.0</td>
                             </tr>
                             <tr>
                                 <td>主要特色</td>
-                                <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                                <td>模块化 / 响应式 / 易拓展</td>
                             </tr>
                             <tr>
                                 <td>演示地址</td>
                                 <td>
-                                    iframe版-v2：<a href="http://layuimini.99php.cn/iframe/v2/index.html" target="_blank">点击查看</a><br>
-                                    单页版-v2：<a href="http://layuimini.99php.cn/onepage/v2/index.html" target="_blank">点击查看</a><br>
+                                    <a href="http://mycms.net.cn/system/index" target="_blank">点击查看</a><br>
                                 </td>
                             </tr>
                             <tr>
                                 <td>下载地址</td>
                                 <td>
-                                    iframe版-v2：<a href="https://github.com/zhongshaofa/layuimini/tree/v2" target="_blank">github</a> / <a href="https://gitee.com/zhongshaofa/layuimini/tree/v2" target="_blank">gitee</a><br>
-                                    单页版-v2：<a href="https://github.com/zhongshaofa/layuimini/tree/v2-onepage" target="_blank">github</a> / <a href="https://gitee.com/zhongshaofa/layuimini/tree/v2-onepage" target="_blank">gitee</a><br>
+                                    <a href="https://gitee.com/qq386654667/mycms" target="_blank">gitee</a> <br>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Gitee</td>
                                 <td style="padding-bottom: 0;">
                                     <div class="layui-btn-container">
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank" style="margin-right: 15px"><img src="https://gitee.com/zhongshaofa/layuimini/badge/star.svg?theme=dark" alt="star"></a>
-                                        <a href="https://gitee.com/zhongshaofa/layuimini" target="_blank"><img src="https://gitee.com/zhongshaofa/layuimini/badge/fork.svg?theme=dark" alt="fork"></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Github</td>
-                                <td style="padding-bottom: 0;">
-                                    <div class="layui-btn-container">
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                                        <iframe src="https://ghbtns.com/github-btn.html?user=zhongshaofa&repo=layuimini&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+                                        <a href="https://gitee.com/qq386654667/mycms" target="_blank" style="margin-right: 15px"><img src="https://gitee.com/qq386654667/mycms/badge/star.svg?theme=dark" alt="star"></a>
+                                        <a href="https://gitee.com/qq386654667/mycms" target="_blank"><img src="https://gitee.com/qq386654667/mycms/badge/fork.svg?theme=dark" alt="fork"></a>
                                     </div>
                                 </td>
                             </tr>
