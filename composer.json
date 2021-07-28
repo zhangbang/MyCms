@@ -11,7 +11,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "nwidart/laravel-modules": "^8.2"
+        "laravel/ui": "^3.3",
+        "nwidart/laravel-modules": "^8.2",
+        "rachidlaasri/laravel-installer": "^4.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -27,7 +29,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Modules\\": "Modules/"
-        }
+        },
+        "files":[
+            "Modules/function.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

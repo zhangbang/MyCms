@@ -1,0 +1,73 @@
+<?php
+
+
+namespace Modules\System\Database\Seeders;
+
+
+use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class SystemMenuSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $createdTime = Carbon::now()->toDateTimeString();
+        DB::table('my_system_menu')->insert([
+            [
+                'pid' => 0,
+                'title' => '系统模块',
+                'icon' => 'fa fa-windows',
+                'url' => '',
+                'target' => '',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ],
+            [
+                'pid' => 1,
+                'title' => '系统配置',
+                'icon' => 'fa fa-cog',
+                'url' => '/system/config',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ],
+            [
+                'pid' => 1,
+                'title' => '管理员管理',
+                'icon' => 'fa fa-user',
+                'url' => '/system/admin',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ],
+            [
+                'pid' => 1,
+                'title' => '角色管理',
+                'icon' => 'fa fa-bitbucket-square',
+                'url' => '/system/role',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ],[
+                'pid' => 1,
+                'title' => '菜单管理',
+                'icon' => 'fa fa-bars',
+                'url' => '/system/menu',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ],
+        ]);
+    }
+}

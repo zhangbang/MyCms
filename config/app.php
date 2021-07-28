@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh-CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * My cms Service Providers...
+         */
         Nwidart\Modules\LaravelModulesServiceProvider::class,
+        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class,
     ],
 
     /*
