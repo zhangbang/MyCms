@@ -7,7 +7,7 @@
 [![Laravel Version](https://img.shields.io/badge/laravel-%3E=8.5-brightgreen.svg?maxAge=2592000)](https://github.com/laravel/laravel)
 [![Layui Version](https://img.shields.io/badge/layui-=2.5.5-brightgreen.svg?maxAge=2592000&color=critical)](https://github.com/sentsin/layui)
 [![Layuimini Version](https://img.shields.io/badge/layuimini-%3E=2.0.4.2-brightgreen.svg?maxAge=2592000&color=ff69b4)](https://github.com/zhongshaofa/layuimini)
-[![MyCms Doc](https://img.shields.io/badge/docs-passing-green.svg?maxAge=2592000)](http://MyCms.99php.cn/docs)
+[![MyCms Doc](https://img.shields.io/badge/docs-passing-green.svg?maxAge=2592000)](https://www.kancloud.cn/b386654667/mycms)
 [![MyCms License](https://img.shields.io/badge/license-Apache2.0-green?maxAge=2592000&color=blue)](https://gitee.com/qq386654667/mycms/blob/master/LICENSE)
 
 ## 项目介绍
