@@ -37,7 +37,9 @@ class MenuController extends MyController
         return view('system::admin.menu.create',compact('menus'));
     }
 
-
+    /**
+     * 保存菜单
+     */
     public function store(MenuStoreRequest $request,Menu $menu)
     {
         $data = $request->validated();
@@ -46,7 +48,9 @@ class MenuController extends MyController
         return $this->result($result);
     }
 
-
+    /**
+     * 编辑菜单页面
+     */
     public function edit(MenuService $menuService)
     {
         $id = $this->request('id','intval');
@@ -57,6 +61,9 @@ class MenuController extends MyController
         return view('system::admin.menu.edit', compact('menu','menus'));
     }
 
+    /**
+     * 更新菜单
+     */
     public function update(MenuUpdateRequest $request, Menu $menu)
     {
         $data = $request->validated();
@@ -65,6 +72,9 @@ class MenuController extends MyController
         return $this->result($result);
     }
 
+    /**
+     * 删除菜单
+     */
     public function destroy()
     {
         $result = Menu::destroy($this->request('id','intval'));

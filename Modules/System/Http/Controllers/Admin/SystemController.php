@@ -28,11 +28,17 @@ class SystemController extends MyController
         return view('system::admin.index', compact('systemConfig'));
     }
 
+    /**
+     * 后台欢迎页
+     */
     public function dashboard()
     {
         return view('system::admin.dashboard', ['diy_js_path' => 'admin/js/system.index.js', 'diy_action' => 'dashboard']);
     }
 
+    /**
+     * 后台上传图片接口
+     */
     public function images(Request $request)
     {
         if ($request->file('file')->isValid()) {

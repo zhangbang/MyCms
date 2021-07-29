@@ -90,6 +90,9 @@ class LoginController extends MyController
             : redirect()->intended($this->redirectPath());
     }
 
+    /**
+     * 退出登录
+     */
     public function logout(Request $request)
     {
         $this->guard()->logout();

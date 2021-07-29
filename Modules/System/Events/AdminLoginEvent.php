@@ -6,8 +6,10 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Modules\System\Models\Admin;
 
+/**
+ * 管理员登录事件
+ */
 class AdminLoginEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;

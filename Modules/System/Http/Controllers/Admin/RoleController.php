@@ -14,6 +14,9 @@ use Modules\System\Service\RoleService;
 class RoleController extends MyController
 {
 
+    /**
+     * 角色列表
+     */
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
@@ -27,11 +30,17 @@ class RoleController extends MyController
         return view('system::admin.role.index');
     }
 
+    /**
+     * 添加角色页面
+     */
     public function create()
     {
         return view('system::admin.role.create');
     }
 
+    /**
+     * 保存角色
+     */
     public function store(RoleStoreRequest $request, Role $role)
     {
         $data = $request->validated();
@@ -40,12 +49,18 @@ class RoleController extends MyController
         return $this->result($result);
     }
 
+    /**
+     * 编辑角色页面
+     */
     public function edit()
     {
         $role = Role::find($this->request('id','intval'));
         return view('system::admin.role.edit', compact('role'));
     }
 
+    /**
+     * 更新角色
+     */
     public function update(RoleUpdateRequest $request, Role $role)
     {
         $data = $request->validated();
@@ -54,12 +69,18 @@ class RoleController extends MyController
         return $this->result($result);
     }
 
+    /**
+     * 删除角色
+     */
     public function destroy()
     {
         $result = Role::destroy($this->request('id','intval'));
         return $this->result($result);
     }
 
+    /**
+     * 角色授权页面
+     */
     public function showAuth(RoleService $roleService, Request $request)
     {
 
@@ -73,6 +94,9 @@ class RoleController extends MyController
         return view('system::admin.role.auth', compact('role'));
     }
 
+    /**
+     * 角色授权
+     */
     public function auth()
     {
         $result = Role::where('id', $this->request('id','intval'))

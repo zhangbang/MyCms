@@ -22,9 +22,9 @@
             <!-- 导航-->
             <div class="navbar">
                 <a class="navbar-item active" href="/">首页</a>
-                <a class="navbar-item" href="/" target="_blank">文档</a>
+                <a class="navbar-item" href="https://www.kancloud.cn/b386654667/mycms" target="_blank">文档</a>
                 <a class="navbar-item" href="/system/login" target="_blank">演示</a>
-                <a class="navbar-item" href="/" target="_blank">QQ群</a>
+                <a class="navbar-item" href="https://qm.qq.com/cgi-bin/qm/qr?k=y3Q3pCWJdIRtCzdLMGdqMv3Jx04bib8D&jump_from=webapi" target="_blank">QQ群</a>
             </div>
         </div>
     </header>
@@ -35,8 +35,7 @@
                 <img src="/mycms/common/images/logo-2.png" height="300px">
             </p>
             <p class="operation">
-                <a class="start" target="_blank" href=""> 起步 <i class="icon-play"></i></a>
-                <a class="github button-grya" target="_blank" href=""><i class="icon-github-big"></i>GitHub</a>
+                <a class="start" target="_blank" href="https://www.kancloud.cn/b386654667/mycms"> 起步 <i class="icon-play"></i></a>
                 <a class="gitee button-grya" target="_blank" href="https://gitee.com/qq386654667/mycms"><i class="icon-gitee"></i>Gitee</a>
             </p>
         </div>
