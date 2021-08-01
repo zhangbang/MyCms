@@ -18,8 +18,13 @@ class GuestAdmin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->guard('admin')->check()) {
-            return redirect()->route("system.home");
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json(['msg' => '无需重复登录.'], 401);
+            } else {
+                return redirect()->route("system.index");
+            }
         }
+
         return $next($request);
     }
 }

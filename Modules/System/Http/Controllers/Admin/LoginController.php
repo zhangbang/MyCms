@@ -83,11 +83,14 @@ class LoginController extends MyController
             return $response;
         }
 
+        if ($this->guard()->user()->status === 0) {
+            $this->logout($request);
+            return $this->jsonErr(['msg' => '账号已停用.']);
+        }
+
         event(new AdminLoginEvent($this->guard()->user()->id));
 
-        return $request->wantsJson()
-            ? $this->jsonSuc(['msg' => '登录成功.'])
-            : redirect()->intended($this->redirectPath());
+        return $this->jsonSuc(['msg' => '登录成功.']);
     }
 
     /**

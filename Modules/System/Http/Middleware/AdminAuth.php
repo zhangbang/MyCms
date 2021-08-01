@@ -18,13 +18,13 @@ class AdminAuth
     {
         if (auth()->guard('admin')->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
+                return response()->json(['msg' => '请登录后操作.'], 401);
             } else {
                 return redirect()->route("system.login");
             }
         } else {
             if (auth()->guard('admin')->user()->permission() === false) {
-                //return response()->view('system::admin.common.error', ['msg' => '权限不足.']);
+                return response()->view('system::admin.common.error', ['msg' => '权限不足.']);
             }
         }
 
