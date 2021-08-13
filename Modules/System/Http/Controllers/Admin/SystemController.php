@@ -25,7 +25,7 @@ class SystemController extends MyController
             ]]);
         }
         $systemConfig = $config->getConfig(['site_logo','site_name']);
-        return view('system::admin.index', compact('systemConfig'));
+        return $this->view('admin.index', compact('systemConfig'));
     }
 
     /**
@@ -33,7 +33,7 @@ class SystemController extends MyController
      */
     public function dashboard()
     {
-        return view('system::admin.dashboard', ['diy_js_path' => 'admin/js/system.index.js', 'diy_action' => 'dashboard']);
+        return $this->view('admin.dashboard', ['diy_js_path' => 'admin/js/system.index.js', 'diy_action' => 'dashboard']);
     }
 
     /**

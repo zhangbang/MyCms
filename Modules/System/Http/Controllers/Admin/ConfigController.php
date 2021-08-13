@@ -19,7 +19,7 @@ class ConfigController extends MyController
     public function index(Config $config)
     {
         $systemConfig = $config->getConfig();
-        return view('system::admin.config.config', compact('systemConfig'));
+        return $this->view('admin.config.config', compact('systemConfig'));
     }
 
     /**

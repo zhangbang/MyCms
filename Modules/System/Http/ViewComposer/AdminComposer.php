@@ -33,6 +33,10 @@ class AdminComposer
             return "admin/js/{$module}.{$group}.js";
         }
 
+        if (file_exists(base_path("public/mycms/addons/{$group}/js/{$group}.js"))) {
+            return "addons/{$group}/js/{$group}.js";
+        }
+
         return '';
 
     }

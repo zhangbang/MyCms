@@ -3,7 +3,6 @@
 namespace Modules\System\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -68,7 +67,7 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ], ['views', $this->moduleNameLower . '-module-views']);
+        ], ['views', 'module-' . $this->moduleNameLower . '-views']);
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }

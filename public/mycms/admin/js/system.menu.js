@@ -14,7 +14,7 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa"], function ($, ea) {
         modify_url: '/system/menu/modify',
     };
 
-    var Controller = {
+    return {
         index: function () {
 
             var renderTable = function () {
@@ -172,5 +172,4 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa"], function ($, ea) {
             });
         },
     };
-    return Controller;
 });

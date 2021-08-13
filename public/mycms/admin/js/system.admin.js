@@ -12,7 +12,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         password_url: '/system/admin/password',
     };
 
-    var Controller = {
+    return {
 
         index: function () {
 
@@ -25,7 +25,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'role.role_name', minWidth: 80, title: '角色权限'},
                     {field: 'login_num', minWidth: 80, title: '登录次数'},
                     {field: 'remark', minWidth: 80, title: '备注信息'},
-                    {field: 'status', title: '状态', width: 85, search: 'select', selectList: {0: '禁用', 1: '启用'}, templet: ea.table.switch},
+                    {
+                        field: 'status',
+                        title: '状态',
+                        width: 85,
+                        search: 'select',
+                        selectList: {0: '禁用', 1: '启用'},
+                        templet: ea.table.switch
+                    },
                     {field: 'last_login_time', minWidth: 80, title: '最后登录时间'},
                     {field: 'last_login_ip', minWidth: 80, title: '最后登录IP'},
                     {field: 'created_at', minWidth: 120, title: '创建时间'},
@@ -61,5 +68,4 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         }
     };
-    return Controller;
 });

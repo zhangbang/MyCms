@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      *
@@ -26,20 +26,40 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->moduleViews();
+        $this->addonViews();
+    }
+
+    protected function addonViews()
+    {
+        if (env('APP_DEBUG')) {
+            collect(
+                Storage::disk('root')->directories('app/Addons')
+            )->each(
+                function ($directory, $key) {
+                    $this->loadViewsFrom(
+                        base_path("{$directory}/Resources/Views/"),
+                        strtolower(explode('/', $directory)[2])
+                    );
+                }
+            );
+
+        }
     }
 
     protected function moduleViews()
     {
-        collect(
-            Storage::disk('root')->directories('Modules')
-        )->each(
-            function ($directory, $key){
-                $this->loadViewsFrom(
-                    base_path("{$directory}/Resources/views/"),
-                    strtolower(explode('/',$directory)[1])
-                );
-            }
-        );
+        if (env('APP_DEBUG')) {
+            collect(
+                Storage::disk('root')->directories('Modules')
+            )->each(
+                function ($directory, $key) {
+                    $this->loadViewsFrom(
+                        base_path("{$directory}/Resources/views/"),
+                        strtolower(explode('/', $directory)[1])
+                    );
+                }
+            );
+        }
 
     }
 

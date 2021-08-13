@@ -25,7 +25,7 @@ class MenuController extends MyController
             return $this->jsonSuc($menus);
         }
 
-        return view('system::admin.menu.index');
+        return $this->view('admin.menu.index');
     }
 
     /**
@@ -34,7 +34,7 @@ class MenuController extends MyController
     public function create(MenuService $menuService)
     {
         $menus = $menuService->menuTree();
-        return view('system::admin.menu.create',compact('menus'));
+        return $this->view('admin.menu.create',compact('menus'));
     }
 
     /**
@@ -58,7 +58,7 @@ class MenuController extends MyController
 
         $menus = $menuService->menuTree();
 
-        return view('system::admin.menu.edit', compact('menu','menus'));
+        return $this->view('admin.menu.edit', compact('menu','menus'));
     }
 
     /**

@@ -41,4 +41,9 @@ trait ResponseHelpers
     {
         return $result ? $this->jsonSuc() : $this->jsonErr();
     }
+
+    public function contentToArray(string $content)
+    {
+        return json_decode($content,true);
+    }
 }

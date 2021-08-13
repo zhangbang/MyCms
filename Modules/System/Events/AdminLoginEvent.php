@@ -2,34 +2,37 @@
 
 namespace Modules\System\Events;
 
+use App\Helpers\ResponseHelpers;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * 管理员登录事件
  */
 class AdminLoginEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels, ResponseHelpers;
 
-    protected $id;
+    protected $name;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(int $id)
+    public function __construct(Request $request, Response $response)
     {
-        $this->id = $id;
+        $this->name = $this->contentToArray($response->getContent())['name'];
     }
 
 
-    public function getId(): int
+    public function getName(): string
     {
-        return $this->id;
+        return $this->name;
     }
 
 

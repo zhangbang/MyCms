@@ -48,6 +48,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 return admin.request.ajax('get', option, ok, no, ex);
             },
             ajax: function (type, option, ok, no, ex) {
+
                 type = type || 'get';
                 option.url = option.url || '';
                 option.data = option.data || {};
@@ -70,7 +71,6 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 if (option.prefix == true) {
                     option.url = admin.url(option.url);
                 }
-
                 var index = admin.msg.loading('加载中');
                 $.ajax({
                     url: option.url,
@@ -1095,13 +1095,13 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     url = admin.url(url);
                 }
                 tableId = tableId || init.table_render_id;
+
                 admin.msg.confirm(title, function () {
                     admin.request.post({
                         url: url,
                         data: postData,
                     }, function (res) {
                         admin.msg.success(res.msg, function () {
-                            console.info(callback)
                             callback ? eval(callback) : table.reload(tableId);
                         });
                     })

@@ -27,7 +27,7 @@ class RoleController extends MyController
             return $this->jsonSuc($roles);
         }
 
-        return view('system::admin.role.index');
+        return $this->view('admin.role.index');
     }
 
     /**
@@ -35,7 +35,7 @@ class RoleController extends MyController
      */
     public function create()
     {
-        return view('system::admin.role.create');
+        return $this->view('admin.role.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class RoleController extends MyController
     public function edit()
     {
         $role = Role::find($this->request('id','intval'));
-        return view('system::admin.role.edit', compact('role'));
+        return $this->view('admin.role.edit', compact('role'));
     }
 
     /**
@@ -91,7 +91,7 @@ class RoleController extends MyController
             return $this->jsonSuc(['data' => $nodes]);
         }
 
-        return view('system::admin.role.auth', compact('role'));
+        return $this->view('admin.role.auth', compact('role'));
     }
 
     /**

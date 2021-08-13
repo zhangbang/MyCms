@@ -6,7 +6,6 @@ namespace Modules\System\Http\Controllers\Admin;
 use App\Http\Controllers\MyController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Modules\System\Events\AdminLoginEvent;
 
 class LoginController extends MyController
 {
@@ -39,7 +38,7 @@ class LoginController extends MyController
      */
     public function showLoginForm()
     {
-        return view('system::admin.login');
+        return $this->view('admin.login');
     }
 
 
@@ -88,9 +87,7 @@ class LoginController extends MyController
             return $this->jsonErr(['msg' => '账号已停用.']);
         }
 
-        event(new AdminLoginEvent($this->guard()->user()->id));
-
-        return $this->jsonSuc(['msg' => '登录成功.']);
+        return $this->jsonSuc(['msg' => '登录成功.', 'name' => $this->guard()->user()->name]);
     }
 
     /**

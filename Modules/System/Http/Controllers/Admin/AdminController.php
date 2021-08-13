@@ -28,7 +28,7 @@ class AdminController extends MyController
             return $this->jsonSuc($admins);
         }
 
-        return view('system::admin.admin.index');
+        return $this->view('admin.admin.index');
     }
 
     /**
@@ -49,7 +49,7 @@ class AdminController extends MyController
     public function create()
     {
         $roles = Role::get();
-        return view('system::admin.admin.create',compact('roles'));
+        return $this->view('admin.admin.create',compact('roles'));
     }
 
     /**
@@ -74,7 +74,7 @@ class AdminController extends MyController
 
         $roles = Role::get();
 
-        return view('system::admin.admin.edit', compact('admin','roles'));
+        return $this->view('admin.admin.edit', compact('admin','roles'));
     }
 
     /**
@@ -94,7 +94,7 @@ class AdminController extends MyController
     public function password()
     {
         $admin = Admin::find($this->request('id','intval'));
-        return view('system::admin.admin.password', compact('admin'));
+        return $this->view('admin.admin.password', compact('admin'));
     }
 
     /**

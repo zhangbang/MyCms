@@ -48,7 +48,10 @@ Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Control
         Route::post('menu/edit', 'MenuController@update');
         Route::post('menu/destroy', 'MenuController@destroy');
 
-
+        Route::get('addon', 'AddonController@index')->name('system.addon');
+        Route::get('addon/install', 'AddonController@install');
+        Route::get('addon/uninstall', 'AddonController@uninstall');
+        Route::get('addon/init', 'AddonController@init');
     });
 
     Route::get('login', 'LoginController@showLoginForm')->name('system.login');

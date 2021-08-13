@@ -307,6 +307,10 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>服务器</td>
+                                <td>阿里云服务器9元起<a target="_blank" href="https://www.aliyun.com/minisite/goods?taskCode=yds2021-07zy&recordId=811068&userCode=zk44pwi7">马上购买</a> </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

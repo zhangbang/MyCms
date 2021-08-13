@@ -67,6 +67,15 @@ class SystemMenuSeeder extends Seeder
                 'sort' => 0,
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
+            ],[
+                'pid' => 1,
+                'title' => '插件管理',
+                'icon' => 'fa fa-plus-square',
+                'url' => '/system/addon',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
             ],
         ]);
     }

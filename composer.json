@@ -28,10 +28,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "Modules/"
+            "Modules\\": "Modules/",
+            "Expand\\": "Expand/",
+            "Addons\\": "Addons/"
         },
         "files":[
-            "Modules/function.php"
+            "bootstrap/function.php"
         ]
     },
     "autoload-dev": {

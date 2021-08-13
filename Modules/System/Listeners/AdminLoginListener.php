@@ -27,8 +27,7 @@ class AdminLoginListener
      */
     public function handle(AdminLoginEvent $event)
     {
-        $id = $event->getId();
-        Admin::where('id', $id)->update([
+        Admin::where('name', $event->getName())->update([
             'login_num' => DB::raw('login_num + 1'),
             'last_login_time' => Carbon::now()->toDateTimeString(),
             'last_login_ip' => request()->getClientIp()

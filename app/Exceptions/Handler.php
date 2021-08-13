@@ -42,14 +42,16 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Throwable $e
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $e
      * @return \Illuminate\Http\JsonResponse
      */
     public function render($request, Throwable $e)
     {
         if ($request->ajax() || $request->wantsJson()) {
-            return response()->json(['msg' => $e->getMessage()], 500);
+            $e = $this->prepareException($this->mapException($e));
+            $code = $this->isHttpException($e) ? $e->getStatusCode() : 500;
+            return response()->json(['msg' => $e->getMessage(), 'code' => $code], $code);
         }
 
         return parent::render($request, $e);

@@ -181,6 +181,8 @@ return [
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        Expand\Addon\Providers\AddonServiceProvider::class,
+        Expand\Addon\Providers\AddonEventServiceProvider::class
     ],
 
     /*

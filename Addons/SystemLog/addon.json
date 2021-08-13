@@ -1,0 +1,11 @@
+{
+    "name": "操作记录",
+    "ident": "SystemLog",
+    "description": "后台操作记录",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\SystemLog\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/system_log"
+}
