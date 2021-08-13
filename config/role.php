@@ -34,6 +34,7 @@ return [
     'system/addon' => '插件列表',
     'system/addon/install' => '插件安装',
     'system/addon/uninstall' => '插件卸载',
+    'system/addon/init' => '插件启用',
 
     'addon' => '插件模块',
     'addon.system_log' => '系统日志',
