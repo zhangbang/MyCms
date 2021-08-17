@@ -1,0 +1,11 @@
+{
+    "name": "$STUDLY_NAME$",
+    "ident": "$STUDLY_NAME$",
+    "description": "$STUDLY_NAME$",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\$STUDLY_NAME$\\Providers\\ServiceProvider"
+    ],
+    "home": ""
+}

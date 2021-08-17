@@ -7,7 +7,6 @@ namespace Expand\Addon\Providers;
 use Expand\Addon\Activator\AddonActivatorInterface;
 use Expand\Addon\Repository\AddonFileRepository;
 use Expand\Addon\Repository\AddonRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Exceptions\InvalidActivatorClass;
 use Nwidart\Modules\ModulesServiceProvider;
@@ -32,6 +31,7 @@ class AddonServiceProvider extends ModulesServiceProvider
         $this->registerServices();
         $this->registerProviders();
         $this->registerBehavior();
+        $this->registerAddonProviders();
 
     }
 
@@ -80,5 +80,13 @@ class AddonServiceProvider extends ModulesServiceProvider
         });
 
         $this->app->alias(AddonRepositoryInterface::class, 'addons');
+    }
+
+    /**
+     * Register Addon providers.
+     */
+    protected function registerAddonProviders()
+    {
+        $this->app->register(AddonGeneratorProvider::class);
     }
 }
