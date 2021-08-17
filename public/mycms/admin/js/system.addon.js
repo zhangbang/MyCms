@@ -14,6 +14,7 @@ define(["jquery", "easy-admin", "miniTab"], function ($, ea, miniTab) {
 
             ea.table.render({
                 init: init,
+                toolbar:['refresh'],
                 cols: [[
                     {field: 'ident', minWidth: 80, title: '标识'},
                     {field: 'name', minWidth: 80, title: '名称'},
