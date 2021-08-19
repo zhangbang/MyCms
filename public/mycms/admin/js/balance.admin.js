@@ -14,7 +14,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 toolbar:['refresh'],
                 cols: [[
                     {type: "checkbox"},
-                    {field: 'id', width: 80, title: '流水号'},
+                    {field: 'id', width: 80, title: '序号'},
                     {field: 'user_id', minWidth: 80, title: '用户ID'},
                     {field: 'user.name', minWidth: 80, title: '用户名'},
                     {field: 'before', minWidth: 80, title: '变动前'},
