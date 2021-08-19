@@ -13,6 +13,7 @@
             <label class="layui-form-label required">上级菜单</label>
             <div class="layui-input-block">
                 <select name="pid">
+                    <option value="0">顶级菜单</option>
                     @foreach($menus as $vo)
                     <option value="{{$vo['id']}}" @if($vo['id']==$menu->pid) selected @endif >{{$vo['title']}}</option>
                     @endforeach

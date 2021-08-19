@@ -38,9 +38,14 @@ trait RequestHelpers
     }
 
 
-    protected function intval($value)
+    protected function intval($value): int
     {
         return intval($value);
+    }
+
+    protected function floatval($value): float
+    {
+        return floatval($value);
     }
 
 }

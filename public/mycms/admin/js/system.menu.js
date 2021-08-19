@@ -50,7 +50,7 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa"], function ($, ea) {
                                 }
                             }
                         },
-                        {field: 'sort', width: 80, title: '排序', edit: 'text'},
+                        {field: 'sort', width: 80, title: '排序'},
                         {
                             width: 200,
                             title: '操作',
