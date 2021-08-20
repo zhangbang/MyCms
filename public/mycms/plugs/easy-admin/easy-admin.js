@@ -1424,7 +1424,10 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                             $(this).attr("name"),
                             {
                                 height: $(this).height(),
-                                filebrowserImageUploadUrl: admin.url('ajax/uploadEditor'),
+                                filebrowserImageUploadUrl: admin.url('/system/upload'),
+                                fileTools_requestHeaders : {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
                             });
                     });
                 }

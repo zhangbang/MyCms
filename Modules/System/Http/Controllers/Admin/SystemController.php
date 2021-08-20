@@ -41,9 +41,21 @@ class SystemController extends MyController
      */
     public function images(Request $request)
     {
-        if ($request->file('file')->isValid()) {
+        if ($request->file('file')) {
             $path = $request->file('file')->store('public/uploads/' . date('Ym/d'), 'root');
             return $this->jsonSuc(['msg' => '上传成功', 'data' => str_replace('public/', '/', $path)]);
+        }
+
+        if ($request->file('upload')) {
+            $path = $request->file('upload')->store('public/uploads/' . date('Ym/d'), 'root');
+            return $this->jsonSuc([
+                'error' => [
+                    'message' => '上传成功'
+                ],
+                'url' => str_replace('public/', '/', $path),
+                'uploaded' => 1,
+
+            ]);
         }
 
         return $this->jsonErr(['msg' => '上传失败']);

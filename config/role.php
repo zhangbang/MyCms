@@ -58,4 +58,21 @@ return [
     'user/admin/destroy' => '用户删除',
     'user/admin/balance' => '余额明细',
     'user/admin/point' => '积分明细',
+
+
+    'article' => 'CMS模块',
+    'article.admin' => '文章管理',
+    'article/admin' => '文章列表',
+    'article/admin/create' => '新建文章',
+    'article/admin/edit' => '编辑文章',
+    'article/admin/destroy' => '删除文章',
+    'article/admin/category' => '文章分类',
+    'article/admin/category/create' => '创建分类',
+    'article/admin/category/edit' => '编辑分类',
+    'article/admin/category/destroy' => '删除分类',
+
+    'article/admin/tag' => '文章标签',
+    'article/admin/tag/create' => '创建标签',
+    'article/admin/tag/edit' => '编辑标签',
+    'article/admin/tag/destroy' => '删除标签',
 ];

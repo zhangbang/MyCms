@@ -14,10 +14,10 @@ class BalanceController extends MyController
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
-            $admins = UserBalance::with(['user:id,name'])->orderBy('id', 'desc')
+            $balance = UserBalance::with(['user:id,name'])->orderBy('id', 'desc')
                 ->paginate($this->request('limit', 'intval'))->toArray();
 
-            return $this->jsonSuc($admins);
+            return $this->jsonSuc($balance);
         }
         return $this->view('admin.balance.index');
     }

@@ -59,10 +59,3 @@ Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Control
     Route::get('logout', 'LoginController@logout');
 
 });
-
-
-Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Controllers\Web'], function () {
-
-
-
-});

@@ -34,7 +34,7 @@ Route::group([
         Route::get('/account', 'UserController@account')->name('user.admin.account');
         Route::post('/account', 'UserController@setAccount');
 
-        Route::get('/balance', 'BalanceController@index')->name('balance.admin');
-        Route::get('/point', 'PointController@index')->name('point.admin');
+        Route::get('/balance', 'BalanceController@index')->name('user.balance');
+        Route::get('/point', 'PointController@index')->name('user.point');
     });
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMyUserFieldTable extends Migration
+class CreateMyUserMetaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateMyUserFieldTable extends Migration
      */
     public function up()
     {
-        Schema::create('my_user_field', function (Blueprint $table) {
+        Schema::create('my_user_meta', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->index();
+            $table->integer('user_id');
+            $table->string('meta_key');
+            $table->text('meta_value');
+            $table->index(['user_id','meta_key']);
             $table->engine = 'InnoDB';
         });
     }
@@ -27,6 +30,6 @@ class CreateMyUserFieldTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('my_user_field');
+        Schema::dropIfExists('my_user_meta');
     }
 }

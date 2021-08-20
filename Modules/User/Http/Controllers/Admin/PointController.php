@@ -14,10 +14,10 @@ class PointController extends MyController
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
-            $admins = UserPoint::with(['user:id,name'])->orderBy('id', 'desc')
+            $point = UserPoint::with(['user:id,name'])->orderBy('id', 'desc')
                 ->paginate($this->request('limit', 'intval'))->toArray();
 
-            return $this->jsonSuc($admins);
+            return $this->jsonSuc($point);
         }
         return $this->view('admin.balance.index');
     }
