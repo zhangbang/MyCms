@@ -13,9 +13,28 @@ if (!function_exists('join_data')) {
     }
 }
 
+/*
+ * 插件地址
+ */
 if (!function_exists('addon_path')) {
     function addon_path($name, $path = ''): string
     {
         return base_path('Addons/' . $name . $path);
+    }
+}
+
+/*
+ * 获取系统配置
+ */
+if (!function_exists('system_config')) {
+    function system_config($cfgKey)
+    {
+
+        $config = (new \Modules\System\Models\Config())->getConfig(
+            is_string($cfgKey) ? [$cfgKey] : $cfgKey
+        );
+
+        return is_string($cfgKey) ? $config[$cfgKey] : $config;
+
     }
 }

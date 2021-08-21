@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House</title>
+    <!-- ======== META TAGS ======== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="description" content="House. Responsive Template.">
+    <meta name="keywords" content="my, tags">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ======== / META TAGS ======== -->
+    <!-- ======== STYLESHEETS ======== -->
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/lightbox.min.css" type="text/css">
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/cms/theme/default/assets/css/style.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Alike" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <noscript>
+
+    </noscript>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="http://house.studio-themes.com/assets/css/ie.css">
+    <![endif]-->
+    <!-- ======== / STYLESHEETS ======== -->
+    <!-- ======== STANDARD SCRIPTS ======== -->
+    <script src="/cms/theme/default/assets/js/jquery.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/cms/theme/default/assets/js/html5shiv.js"></script>
+    <script src="/cms/theme/default/assets/js/respond.js"></script>
+    <![endif]-->
+    <!-- ======== / STANDARD SCRIPTS ======== -->
+</head>
+<body>
+
+<div id="preloader"></div>

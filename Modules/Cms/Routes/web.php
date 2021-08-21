@@ -12,11 +12,9 @@
 */
 
 Route::group([
-
     'middleware' => 'admin.auth',
     'namespace' => '\Modules\Cms\Http\Controllers\Admin'
 ], function () {
-
     Route::group(['prefix' => 'article/admin'],function (){
         Route::get('/category', 'ArticleCategoryController@index')->name('article.category');
         Route::get('/category/edit', 'ArticleCategoryController@edit')->name('article.category.edit');
@@ -41,4 +39,14 @@ Route::group([
         Route::post('/tag/create', 'ArticleTagController@store');
         Route::post('/tag/destroy', 'ArticleTagController@destroy');
     });
+});
+
+Route::group([
+    'namespace' => '\Modules\Cms\Http\Controllers\Web'
+], function () {
+    Route::get('/category', 'CmsController@category');
+    Route::get('/category/{id}', 'CmsController@category')->name('cms.category')->where('id','[0-9]+');
+    Route::get('/single', 'CmsController@single');
+    Route::get('/single/{id}', 'CmsController@single')->name('cms.single')->where('id','[0-9]+');
+    Route::get('/tag/{id}', 'CmsController@tag')->name('cms.tag')->where('id','[0-9]+');
 });

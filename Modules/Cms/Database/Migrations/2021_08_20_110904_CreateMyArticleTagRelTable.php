@@ -15,8 +15,9 @@ class CreateMyArticleTagRelTable extends Migration
     {
         Schema::create('my_article_tag_rel', function (Blueprint $table) {
             $table->id();
-            $table->integer('article_id')->index();
+            $table->integer('article_id');
             $table->integer('tag_id');
+            $table->index(['article_id','tag_id']);
             $table->engine = 'InnoDB';
         });
     }

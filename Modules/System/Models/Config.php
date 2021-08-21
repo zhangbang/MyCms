@@ -40,6 +40,7 @@ class Config extends MyModel
         $collect->map(function ($item, $key) use (&$result) {
             $result[$item->cfg_key] = $item->cfg_val;
         });
+
         return $result;
     }
 }

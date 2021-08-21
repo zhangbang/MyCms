@@ -33,7 +33,8 @@
             "Addons\\": "Addons/"
         },
         "files":[
-            "bootstrap/function.php"
+            "bootstrap/function.php",
+            "Modules/Cms/Helper/functions.php"
         ]
     },
     "autoload-dev": {

@@ -22,6 +22,7 @@ class ConfigRequest extends MyRequest
             'site_icp' => ['max:255'],
             'site_copyright' => ['max:255'],
             'site_logo' => ['max:255'],
+            'site_home_theme' => ['max:255'],
         ];
     }
 
@@ -38,6 +39,7 @@ class ConfigRequest extends MyRequest
 
             'site_icp.max' => '站点网址长度错误',
             'site_copyright.max' => '站点网址长度错误',
+            'site_home_theme.max' => '首页模板设置错误',
         ];
     }
 

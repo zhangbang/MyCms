@@ -22,7 +22,6 @@ class ArticleRequest extends MyRequest
             'description' => ['max:255'],
             'img' => ['max:255'],
             'author' => ['max:255'],
-            'view' => ['integer'],
         ];
     }
 
@@ -35,7 +34,6 @@ class ArticleRequest extends MyRequest
             'description.max' => '描述长度错误',
             'author.max' => '作者格式错误',
             'img.max' => '缩略图链接长度错误',
-            'view.integer' => '请输入正确的浏览数',
             'content.required' => '请输入内容',
         ];
     }

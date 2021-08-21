@@ -44,6 +44,16 @@
                             </div>
                         </div>
 
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">首页模板</label>
+                            <div class="layui-input-block">
+                                <select name="site_home_theme">
+                                    <option value="default" @if($systemConfig['site_home_theme'] == 'default') selected @endif>默认首页</option>
+                                    <option value="cms" @if($systemConfig['site_home_theme'] == 'cms') selected @endif>CMS首页</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">版权信息</label>
                             <div class="layui-input-block">

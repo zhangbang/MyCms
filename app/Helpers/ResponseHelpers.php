@@ -39,7 +39,7 @@ trait ResponseHelpers
 
     public function result($result): JsonResponse
     {
-        return $result ? $this->jsonSuc() : $this->jsonErr();
+        return $result !== false ? $this->jsonSuc() : $this->jsonErr();
     }
 
     public function contentToArray(string $content)

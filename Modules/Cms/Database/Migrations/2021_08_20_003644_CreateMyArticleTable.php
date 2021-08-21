@@ -21,7 +21,6 @@ class CreateMyArticleTable extends Migration
             $table->string('img')->nullable();
             $table->string('author')->nullable();
             $table->text('content');
-            $table->integer('view')->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

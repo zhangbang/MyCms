@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $theme = (new \Modules\System\Models\Config())->getConfig(['site_home_theme'])['site_home_theme'];
+    switch ($theme) {
+        case 'cms':
+            return App::call('Modules\Cms\Http\Controllers\Web\CmsController@index', []);
+            break;
+        default:
+            return view('welcome');
+            break;
+    }
 });

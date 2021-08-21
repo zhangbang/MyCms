@@ -49,13 +49,6 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">浏览量</label>
-            <div class="layui-input-block">
-                <input type="text" name="view" class="layui-input" placeholder="请输入浏览量" value="0">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
                 <textarea name="description" class="layui-textarea" placeholder="请输入描述"></textarea>
