@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div id="foot-left" class="col-lg-6 col-sm-6">
-                <img src="{!! system_config('site_logo') !!}" alt="">
+                <img src="{!! system_config('site_logo') !!}" height="105px" alt="">
                 <p>© 2021 MyCms. All Rights Reserved.</p>
             </div>
             <div id="foot-right" class="col-lg-6 col-sm-6">

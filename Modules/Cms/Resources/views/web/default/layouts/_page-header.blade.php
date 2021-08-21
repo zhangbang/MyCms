@@ -4,7 +4,7 @@
             <div class="col-md-12 clearfix">
                 <div id="logo-2">
                     <a href="/">
-                        <img src="{!! system_config('site_logo') !!}" class="standard-logo" alt="">
+                        <img src="{!! system_config('site_logo') !!}" height="230px" class="standard-logo" alt="">
                     </a>
                 </div>
                 <div id="mobile-button">
