@@ -49,6 +49,12 @@ class SystemConfigSeeder extends Seeder
                 'cfg_group' => 'system',
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
+            ], [
+                'cfg_key' => 'site_home_theme',
+                'cfg_val' => 'default',
+                'cfg_group' => 'system',
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
             ]
         ]);
     }

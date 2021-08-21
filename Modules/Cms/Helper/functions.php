@@ -18,7 +18,6 @@ if (!function_exists('cms_categories')) {
     function cms_categories()
     {
         return (new \Modules\Cms\Service\ArticleCategoryService())->childTree();
-
     }
 }
 

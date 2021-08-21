@@ -40,6 +40,8 @@ class ArticleCategoryService
 
             return $result;
         }
+
+        return [];
     }
 
     public function childIds($categories = [], $pid = 0)
