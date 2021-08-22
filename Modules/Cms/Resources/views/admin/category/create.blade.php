@@ -24,7 +24,7 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">描述</label>
+            <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
                 <textarea name="description" class="layui-textarea" placeholder="请输入描述"></textarea>
                 <tip>填写描述。</tip>
