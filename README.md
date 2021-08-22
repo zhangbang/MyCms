@@ -22,7 +22,9 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 
 * 文档地址：[https://www.kancloud.cn/b386654667/mycms](https://www.kancloud.cn/b386654667/mycms)
 
-* 演示地址：[https://mycms.net.cn/system/login](https://mycms.net.cn/system/login)（账号：admin，密码：admin）
+* 演示地址：[http://demo.mycms.net.cn/](http://demo.mycms.net.cn/)
+  
+* 演示后台：[http://demo.mycms.net.cn/system/login](http://demo.mycms.net.cn/system/login)（账号：admin，密码：admin）
 
 ## 代码仓库
 
