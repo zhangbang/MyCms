@@ -25,6 +25,8 @@ class ArticleCategoryService
 
             return $result;
         }
+
+        return [];
     }
 
     public function childTree($categories = [], $pid = 0)
@@ -61,6 +63,8 @@ class ArticleCategoryService
 
             return $result;
         }
+
+        return [];
     }
 
 }
