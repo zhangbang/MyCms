@@ -16,7 +16,7 @@ class CreateMyArticleTagTable extends Migration
         Schema::create('my_article_tag', function (Blueprint $table) {
             $table->id();
             $table->string('tag_name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

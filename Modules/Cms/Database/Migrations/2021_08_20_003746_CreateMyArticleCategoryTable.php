@@ -17,7 +17,7 @@ class CreateMyArticleCategoryTable extends Migration
             $table->id();
             $table->integer('pid');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
