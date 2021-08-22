@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>House</title>
+    <title>{{cms_the_title()}}</title>
     <!-- ======== META TAGS ======== -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <meta name="description" content="House. Responsive Template.">
-    <meta name="keywords" content="my, tags">
+    <meta name="description" content="{{cms_the_description()}}">
+    <meta name="keywords" content="{{cms_the_keyword()}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ======== / META TAGS ======== -->
     <!-- ======== STYLESHEETS ======== -->

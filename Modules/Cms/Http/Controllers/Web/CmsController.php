@@ -17,6 +17,8 @@ class CmsController extends MyController
 
     public function index()
     {
+        is_home((new \Modules\System\Models\Config())->getConfig());
+
         return $this->theme('index');
     }
 
@@ -28,6 +30,8 @@ class CmsController extends MyController
             abort(404);
         }
 
+        is_category($category);
+
         return $this->theme('category', compact('category'));
     }
 
@@ -38,6 +42,8 @@ class CmsController extends MyController
         if (empty($article)) {
             abort(404);
         }
+
+        is_single($article);
 
         return $this->theme('single', compact('article'));
     }
