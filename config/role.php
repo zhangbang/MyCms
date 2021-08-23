@@ -75,4 +75,17 @@ return [
     'article/admin/tag/create' => '创建标签',
     'article/admin/tag/edit' => '编辑标签',
     'article/admin/tag/destroy' => '删除标签',
+
+
+    'shop' => '商城模块',
+    'shop.admin' => '商城后台',
+    'shop/admin/category' => '商品分类',
+    'shop/admin/category/create' => '创建分类',
+    'shop/admin/category/edit' => '编辑分类',
+    'shop/admin/category/destroy' => '删除分类',
+
+    'shop/admin/goods' => '商品列表',
+    'shop/admin/goods/create' => '创建商品',
+    'shop/admin/goods/edit' => '编辑商品',
+    'shop/admin/goods/destroy' => '删除商品',
 ];

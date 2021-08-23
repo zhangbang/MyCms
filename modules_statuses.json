@@ -1,5 +1,6 @@
 {
     "System": true,
     "User": true,
-    "Cms": true
+    "Cms": true,
+    "Shop": true
 }

@@ -280,7 +280,7 @@
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>v1.0.0</td>
+                                <td>v1.0.5</td>
                             </tr>
                             <tr>
                                 <td>主要特色</td>
@@ -289,7 +289,7 @@
                             <tr>
                                 <td>演示地址</td>
                                 <td>
-                                    <a href="http://mycms.net.cn/system/index" target="_blank">点击查看</a><br>
+                                    <a href="https://demo.mycms.net.cn/system/index" target="_blank">点击查看</a><br>
                                 </td>
                             </tr>
                             <tr>
