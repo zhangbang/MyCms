@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ======== / META TAGS ======== -->
     <!-- ======== STYLESHEETS ======== -->
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/lightbox.min.css" type="text/css">
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" href="/cms/theme/default/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/lightbox.min.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/style.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Alike" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <noscript>
@@ -26,10 +26,10 @@
     <![endif]-->
     <!-- ======== / STYLESHEETS ======== -->
     <!-- ======== STANDARD SCRIPTS ======== -->
-    <script src="/cms/theme/default/assets/js/jquery.js"></script>
+    <script src="/mycms/cms/theme/default/assets/js/jquery.js"></script>
     <!--[if lt IE 9]>
-    <script src="/cms/theme/default/assets/js/html5shiv.js"></script>
-    <script src="/cms/theme/default/assets/js/respond.js"></script>
+    <script src="/mycms/cms/theme/default/assets/js/html5shiv.js"></script>
+    <script src="/mycms/cms/theme/default/assets/js/respond.js"></script>
     <![endif]-->
     <!-- ======== / STANDARD SCRIPTS ======== -->
 </head>

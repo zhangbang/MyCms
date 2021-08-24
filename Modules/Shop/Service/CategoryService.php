@@ -27,4 +27,22 @@ class CategoryService
 
         return [];
     }
+
+
+    public function childTree($categories = [], $pid = 0)
+    {
+        $categories = $categories ?: GoodsCategory::toTree();
+
+        if (isset($categories[$pid]) && is_array($categories[$pid])) {
+
+            collect($categories[$pid])->each(function ($item) use (&$result, $pid, $categories) {
+                $item['child'] = $this->childTree($categories, $item['id']);
+                $result[] = $item;
+            });
+
+            return $result;
+        }
+
+        return [];
+    }
 }

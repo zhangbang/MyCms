@@ -1,0 +1,11 @@
+{
+    "name": "百度资源提交",
+    "ident": "LinkSubmit",
+    "description": "LinkSubmit",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\LinkSubmit\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/link_submit"
+}

@@ -2,6 +2,7 @@
 
 
 namespace App\Helpers;
+
 use Illuminate\Http\JsonResponse;
 
 trait ResponseHelpers
@@ -37,13 +38,13 @@ trait ResponseHelpers
         return new JsonResponse($option, $option['code']);
     }
 
-    public function result($result): JsonResponse
+    public function result($result, $data = []): JsonResponse
     {
-        return $result !== false ? $this->jsonSuc() : $this->jsonErr();
+        return $result !== false ? $this->jsonSuc($data) : $this->jsonErr($data);
     }
 
     public function contentToArray(string $content)
     {
-        return json_decode($content,true);
+        return json_decode($content, true);
     }
 }

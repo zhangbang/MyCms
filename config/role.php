@@ -47,6 +47,10 @@ return [
     'addon/system_log' => '日志列表',
     'addon/system_log/show' => '日志详情',
 
+    'addon.link_submit' => '百度资源提交',
+    'addon/link_submit' => '提交列表',
+    'addon/link_submit/config' => '提交配置',
+
     'user' => '用户模块',
     'user.admin' => '用户管理',
     'user/admin' => '用户列表',

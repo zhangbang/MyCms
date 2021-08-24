@@ -12,6 +12,32 @@ if (!function_exists('cms_home_path')) {
 }
 
 /*
+ * 获取CMS文章地址
+ */
+if (!function_exists('cms_single_path')) {
+    function cms_single_path($id): string
+    {
+        $value = route('cms.single', $id);
+
+        return cms_hook_call('cms_hook_single_path', $value);
+
+    }
+}
+
+/*
+ * 获取CMS分类地址
+ */
+if (!function_exists('cms_category_path')) {
+    function cms_category_path($id): string
+    {
+        $value = route('cms.category', $id);
+
+        return cms_hook_call('cms_hook_category_path', $value);
+
+    }
+}
+
+/*
  * 获取CMS分类
  */
 if (!function_exists('cms_categories')) {

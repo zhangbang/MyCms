@@ -30,7 +30,7 @@ class ConfigRequest extends MyRequest
     {
         return [
             'site_name.required' => '站点名称不能为空',
-            'site_name.max' => '点名称长度错误',
+            'site_name.max' => '站点名称长度错误',
 
             'site_url.required' => '站点网址不能为空',
             'site_url.max' => '站点网址长度错误',

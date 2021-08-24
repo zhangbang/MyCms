@@ -38,5 +38,5 @@ Route::group([
 Route::group([
     'namespace' => '\Modules\Shop\Http\Controllers\Web'
 ], function () {
-
+    Route::get('/shop', 'ShopController@index');
 });

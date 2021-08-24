@@ -49,19 +49,19 @@ class ArticleController extends MyController
             $tagRel->insertRel($article->id, $tagIds);
         }
 
-        return $this->result($result);
+        return $this->result($result, ['id' => $article->id, 'url' => cms_single_path($article->id)]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function edit(ArticleCategoryService $service,ArticleService $articleService)
+    public function edit(ArticleCategoryService $service, ArticleService $articleService)
     {
         $id = $this->request('id', 'intval');
         $categories = $service->categoryTree();
         $article = Article::find($id);
         $tags = $articleService->tagsText($id);
-        return $this->view('admin.article.edit', compact('categories', 'article','tags'));
+        return $this->view('admin.article.edit', compact('categories', 'article', 'tags'));
     }
 
 
@@ -94,7 +94,7 @@ class ArticleController extends MyController
      */
     public function destroy()
     {
-        $result = Article::destroy($this->request('id','intval'));
+        $result = Article::destroy($this->request('id', 'intval'));
         return $this->result($result);
     }
 }
