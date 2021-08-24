@@ -13,7 +13,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
             ea.table.render({
                 init: init,
-                toolbar:['refresh'],
+                toolbar:['refresh','config'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: '流水号'},
                     {field: 'admin_name', minWidth: 80, title: '管理员名称'},
