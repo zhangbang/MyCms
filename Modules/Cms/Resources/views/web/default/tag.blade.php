@@ -34,9 +34,11 @@
                             </footer>
                         </article>
                     @endforeach
+                    @if(!is_array($articles))
                     <nav id="post-nav">
                         {{ $articles->links() }}
                     </nav>
+                    @endif
                 </div>
                 <div class="col-lg-4 col-sm-4 column space">
                     @include("cms::web.default.layouts._page-sidebar")

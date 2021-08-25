@@ -150,6 +150,10 @@ class AddonService
                 }
 
             } else {
+                Storage::disk("root")->deleteDirectory(
+                    "resources/views/addons/" . strtolower(Str::snake($item['ident']))
+                );
+
                 Storage::disk("root")->delete(
                     "bootstrap/cache/" . strtolower(Str::snake($item['ident'])) . "_addon.php"
                 );

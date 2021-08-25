@@ -1,0 +1,11 @@
+{
+    "name": "Seo",
+    "ident": "Seo",
+    "description": "Seo",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\Seo\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/seo/config"
+}

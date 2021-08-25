@@ -6,8 +6,13 @@
 if (!function_exists('cms_home_path')) {
     function cms_home_path(): string
     {
-        return '/';
 
+        $config = (new \Modules\System\Models\Config())->getConfig();
+        if ($config['site_home_theme'] == 'cms') {
+            return '/';
+        }
+
+        return route('cms.index');
     }
 }
 
@@ -137,19 +142,25 @@ if (!function_exists('cms_tag_articles')) {
 if (!function_exists('cms_the_title')) {
     function cms_the_title()
     {
+        $value = '';
+
         if (is_single()) {
-            return session('single')->title;
+            $value = session('single')->title;
         }
 
         if (is_category()) {
-            return session('category')->name;
+            $value = session('category')->name;
+        }
+
+        if (is_tag()) {
+            $value = session('tag')->name;
         }
 
         if (is_home()) {
-            return session('home')['site_name'];
+            $value = session('home')['site_name'];
         }
 
-        return cms_hook_call('cms_hook_the_title', (new \Modules\System\Models\Config())->getConfig(['site_name'])['site_name']);
+        return cms_hook_call('cms_hook_the_title', $value);
     }
 }
 
@@ -159,42 +170,56 @@ if (!function_exists('cms_the_title')) {
 if (!function_exists('cms_the_keyword')) {
     function cms_the_keyword()
     {
+
+        $value = '';
+
         if (is_single()) {
-            return session('single')->title;
+            $value = session('single')->title;
         }
 
         if (is_category()) {
-            return session('category')->name;
+            $value = session('category')->name;
+        }
+
+        if (is_tag()) {
+            $value = session('tag')->name;
         }
 
         if (is_home()) {
-            return session('home')['site_name'];
+            $value = session('home')['site_name'];
         }
 
-        return cms_hook_call('cms_hook_the_keyword', (new \Modules\System\Models\Config())->getConfig(['site_name'])['site_name']);
+        return cms_hook_call('cms_hook_the_keyword', $value);
     }
 }
 
 
 /*
- * 获取页面关键词
+ * 获取页面描述
  */
 if (!function_exists('cms_the_description')) {
     function cms_the_description()
     {
+
+        $value = '';
+
         if (is_single()) {
-            return session('single')->description;
+            $value = session('single')->description;
         }
 
         if (is_category()) {
-            return session('category')->description;
+            $value = session('category')->description;
+        }
+
+        if (is_tag()) {
+            $value = session('tag')->description;
         }
 
         if (is_home()) {
-            return session('home')['site_name'];
+            $value = session('home')['site_name'];
         }
 
-        return cms_hook_call('cms_hook_the_description', (new \Modules\System\Models\Config())->getConfig(['site_name'])['site_name']);
+        return cms_hook_call('cms_hook_the_description', $value);
     }
 }
 
@@ -233,6 +258,22 @@ if (!function_exists('is_category')) {
     }
 }
 
+/*
+ * 标签页
+ */
+if (!function_exists('is_tag')) {
+    function is_tag($tag = false): bool
+    {
+        if ($tag === false) {
+            return session('the_page') === 'tag';
+        }
+
+        session(['tag' => $tag]);
+        session(['the_page' => 'tag']);
+
+        return false;
+    }
+}
 
 /*
  * 首页

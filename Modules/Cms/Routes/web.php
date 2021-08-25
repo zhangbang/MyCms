@@ -44,7 +44,7 @@ Route::group([
 Route::group([
     'namespace' => '\Modules\Cms\Http\Controllers\Web'
 ], function () {
-    Route::get('/cms', 'CmsController@index');
+    Route::get('/cms', 'CmsController@index')->name('cms.index');
     Route::get('/category/{id}', 'CmsController@category')->name('cms.category')->where('id','[0-9]+');
     Route::get('/single/{id}', 'CmsController@single')->name('cms.single')->where('id','[0-9]+');
     Route::get('/tag/{id}', 'CmsController@tag')->name('cms.tag')->where('id','[0-9]+');

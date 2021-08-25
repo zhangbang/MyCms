@@ -57,6 +57,8 @@ class CmsController extends MyController
             abort(404);
         }
 
+        is_tag($tag);
+
         return $this->theme('tag', compact('tag'));
     }
 }
