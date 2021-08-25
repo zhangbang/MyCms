@@ -16,15 +16,40 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 
 技术交流QQ群：[887522124](https://qm.qq.com/cgi-bin/qm/qr?k=y3Q3pCWJdIRtCzdLMGdqMv3Jx04bib8D&jump_from=webapi) `加群请备注来源：如gitee、github、官网等`。
 
+
 ## 站点地址
 
 * 官方网站：[https://mycms.net.cn/](https://mycms.net.cn/)
 
 * 文档地址：[https://www.kancloud.cn/b386654667/mycms](https://www.kancloud.cn/b386654667/mycms)
 
-* 演示地址：[http://demo.mycms.net.cn/](http://demo.mycms.net.cn/)
+* 临时演示地址：[https://demo.shuxueyingyong.com/](https://demo.shuxueyingyong.com/)
   
-* 演示后台：[http://demo.mycms.net.cn/system/login](http://demo.mycms.net.cn/system/login)（账号：admin，密码：admin）
+* 临时演示后台：[https://demo.shuxueyingyong.com/system/login](https://demo.shuxueyingyong.com/system/login)（账号：admin，密码：admin）
+
+## [模块插件清单]
+
+- 免费模块or插件：和框架一样无任何使用限制，可以商业使用
+- 授权模块or插件：可用于个人或企业自营网站或应用或为客户定制开发， 禁止二次转售插件源码，一经授权，后续所有由官方开发的模块和插件(不含第三方)均可永久免费下载和更新，不限制域名！
+
+|  名称 | 简介  |类型　　|状态　　|价格　　|
+|---|---|---|---|---|
+|内容管理|基础内容管理模块|模块|完成|免费|
+|会员模块|会员基础模块|模块|后台完成|免费|
+|商城模块|商城基本管理|模块|后台完成|免费|
+|系统记录|后台操作记录|插件|完成|免费|
+|百度推送|百度资源推送，加速页面收录|插件|完成|免费|
+|SEO设置|自定义设置标题，关键词，描述|插件|完成|免费|
+|友情链接|友情链接|插件|开发中|免费|
+|广告管理|广告管理|插件|开发中|免费|
+|URL美化|美化URL|插件|开发中|授权|
+|阿里云OSS|附件上传到阿里云OSS|插件|开发中|授权|
+|七牛云|附件上传到七牛云|插件|开发中|授权|
+|评论插件|用户评论|插件|开发中|授权|
+|支付宝|支付宝支付|插件|开发中|授权|
+|微信支付|微信支付|插件|开发中|授权|
+|付费阅读|付费阅读|插件|开发中|授权|
+|阅读分析|阅读分析|插件|开发中|授权|
 
 ## 代码仓库
 
