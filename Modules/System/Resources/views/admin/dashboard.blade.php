@@ -174,7 +174,7 @@
             <div class="layui-col-md4">
 
                 <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
+                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>赞助商</div>
                     <div class="layui-card-body layui-text">
                         <p><a href="https://www.aliyun.com/minisite/goods?userCode=zk44pwi7" target="_blank"><img src="/mycms/admin/images/aliyun.jpg" style="width: 390px"></a></p>
                     </div>
