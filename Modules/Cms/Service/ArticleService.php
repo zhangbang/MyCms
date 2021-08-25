@@ -47,4 +47,10 @@ class ArticleService
             ->paginate($limit);
     }
 
+    public function ids()
+    {
+        return Article::select(['id'])->get()->toArray();
+    }
+
+
 }

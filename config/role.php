@@ -51,6 +51,9 @@ return [
     'addon/link_submit' => '提交列表',
     'addon/link_submit/config' => '提交配置',
 
+    'addon.sitemap' => '网站地图',
+    'addon/sitemap' => '生成地图',
+
     'user' => '用户模块',
     'user.admin' => '用户管理',
     'user/admin' => '用户列表',

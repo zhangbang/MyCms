@@ -1,0 +1,11 @@
+{
+    "name": "网站地图",
+    "ident": "SiteMap",
+    "description": "SiteMap",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\SiteMap\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/sitemap"
+}
