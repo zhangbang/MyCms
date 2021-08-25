@@ -299,7 +299,7 @@ if (!function_exists('cms_hook_call')) {
     function cms_hook_call($name, $value)
     {
         if (function_exists($name)) {
-            return call_user_func($name) ?? $value;
+            return call_user_func($name) ?: $value;
         }
 
         return $value;
