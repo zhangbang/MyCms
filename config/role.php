@@ -54,6 +54,9 @@ return [
     'addon.sitemap' => '网站地图',
     'addon/sitemap' => '生成地图',
 
+    'addon.seo' => 'SEO插件',
+    'addon/seo/config' => 'SEO配置',
+
     'user' => '用户模块',
     'user.admin' => '用户管理',
     'user/admin' => '用户列表',
