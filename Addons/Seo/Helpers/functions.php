@@ -8,21 +8,24 @@ if (!function_exists('cms_hook_the_title')) {
     {
         $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
 
-        if (is_single()) {
+        if (is_single() && isset($config['seo_single_title'])) {
             return cms_single_seo_rule($config['seo_single_title']);
         }
 
-        if (is_category()) {
+        if (is_category() && isset($config['seo_category_title'])) {
             return cms_single_seo_rule($config['seo_category_title']);
         }
 
-        if (is_tag()) {
+        if (is_tag() && isset($config['seo_tag_title'])) {
             return cms_tag_seo_rule($config['seo_tag_title']);
         }
 
-        if (is_home()) {
+        if (is_home() && isset($config['seo_site_title'])) {
             return $config['seo_site_title'];
         }
+
+        return false;
+
     }
 }
 
@@ -35,21 +38,23 @@ if (!function_exists('cms_hook_the_keyword')) {
 
         $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
 
-        if (is_single()) {
+        if (is_single() && isset($config['seo_single_keyword'])) {
             return cms_single_seo_rule($config['seo_single_keyword']);
         }
 
-        if (is_category()) {
+        if (is_category() && isset($config['seo_category_keyword'])) {
             return cms_single_seo_rule($config['seo_category_keyword']);
         }
 
-        if (is_tag()) {
+        if (is_tag() && isset($config['seo_tag_keyword'])) {
             return cms_tag_seo_rule($config['seo_tag_keyword']);
         }
 
-        if (is_home()) {
+        if (is_home() && isset($config['seo_site_keyword'])) {
             return $config['seo_site_keyword'];
         }
+
+        return false;
 
     }
 }
@@ -64,21 +69,23 @@ if (!function_exists('cms_hook_the_description')) {
 
         $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
 
-        if (is_single()) {
+        if (is_single() && isset($config['seo_single_description'])) {
             return cms_single_seo_rule($config['seo_single_description']);
         }
 
-        if (is_category()) {
+        if (is_category() && isset($config['seo_category_description'])) {
             return cms_category_seo_rule($config['seo_category_description']);
         }
 
-        if (is_tag()) {
+        if (is_tag() && isset($config['seo_tag_description'])) {
             return cms_tag_seo_rule($config['seo_tag_description']);
         }
 
-        if (is_home()) {
+        if (is_home() && isset($config['seo_site_description'])) {
             return $config['seo_site_description'];
         }
+
+        return false;
 
     }
 }
@@ -91,7 +98,7 @@ if (!function_exists('cms_single_seo_rule')) {
             [
                 session('single')->title,
                 session('single')->description,
-                join(',', array_column(cms_article_tags(session('single')->id),'tag_name'))
+                join(',', array_column(cms_article_tags(session('single')->id), 'tag_name'))
             ],
             $value
         );
