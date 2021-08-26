@@ -47,7 +47,7 @@
     <div id="featured">
         @foreach(cms_img_articles() as $article)
         <div>
-            <a href="{{route('cms.single',$article->id)}}"><img src="{{$article->img}}" alt=""></a>
+            <a href="{{cms_single_path($article->id)}}"><img src="{{$article->img}}" alt=""></a>
             <span>{{$article->title}}</span>
         </div>
         @endforeach

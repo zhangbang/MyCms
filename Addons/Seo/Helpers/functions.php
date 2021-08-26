@@ -94,11 +94,12 @@ if (!function_exists('cms_single_seo_rule')) {
     function cms_single_seo_rule($value)
     {
         return str_replace(
-            ['{name}', '{description}', '{tags}'],
+            ['{name}', '{description}', '{tags}', '{category}'],
             [
                 session('single')->title,
                 session('single')->description,
-                join(',', array_column(cms_article_tags(session('single')->id), 'tag_name'))
+                join(',', array_column(cms_article_tags(session('single')->id), 'tag_name')),
+                session('single')->category->name,
             ],
             $value
         );

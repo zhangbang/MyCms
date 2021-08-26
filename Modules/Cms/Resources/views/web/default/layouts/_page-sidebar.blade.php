@@ -17,7 +17,7 @@
         <h4>Latest Posts</h4>
         <ul>
             @foreach(cms_new_articles() as $article)
-            <li><a href="{{route('cms.single',$article->id)}}">{{$article->title}}</a></li>
+            <li><a href="{{cms_single_path($article->id)}}">{{$article->title}}</a></li>
             @endforeach
         </ul>
     </div>
@@ -25,7 +25,7 @@
         <h4>Categories</h4>
         <ul>
             @foreach(cms_categories() as $category)
-            <li><a href="{{route('cms.category',$category->id)}}">{{$category->name}}</a></li>
+            <li><a href="{{cms_category_path($category->id)}}">{{$category->name}}</a></li>
             @endforeach
         </ul>
     </div>

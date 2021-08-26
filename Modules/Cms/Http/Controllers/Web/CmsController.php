@@ -37,7 +37,7 @@ class CmsController extends MyController
 
     public function single($id)
     {
-        $article = Article::find($id);
+        $article = Article::with("category:id,name")->find($id);
 
         if (empty($article)) {
             abort(404);

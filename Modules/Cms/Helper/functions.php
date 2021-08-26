@@ -24,7 +24,7 @@ if (!function_exists('cms_single_path')) {
     {
         $value = route('cms.single', $id);
 
-        return cms_hook_call('cms_hook_single_path', $value);
+        return cms_hook_call('cms_hook_single_path', $value, $id);
 
     }
 }
@@ -37,7 +37,7 @@ if (!function_exists('cms_category_path')) {
     {
         $value = route('cms.category', $id);
 
-        return cms_hook_call('cms_hook_category_path', $value);
+        return cms_hook_call('cms_hook_category_path', $value, $id);
 
     }
 }
@@ -296,10 +296,10 @@ if (!function_exists('is_home')) {
  * 调用插件自定义函数
  */
 if (!function_exists('cms_hook_call')) {
-    function cms_hook_call($name, $value)
+    function cms_hook_call($name, $value, $param = null)
     {
         if (function_exists($name)) {
-            return call_user_func($name) ?: $value;
+            return ($param === null ? call_user_func($name) : call_user_func($name, $param)) ?: $value;
         }
 
         return $value;
