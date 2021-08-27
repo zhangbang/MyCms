@@ -23,7 +23,7 @@
                         <footer>
                             <div>
                                 @foreach(cms_article_tags($article->id) as $tag)
-                                    <a href="{{route('cms.tag',$tag['id'])}}">{{$tag['tag_name']}}</a>
+                                    <a href="{{cms_tag_path($tag['id'])}}">{{$tag['tag_name']}}</a>
                                 @endforeach
                             </div>
                             <hr>

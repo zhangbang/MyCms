@@ -43,6 +43,19 @@ if (!function_exists('cms_category_path')) {
 }
 
 /*
+ * 获取CMS Tag地址
+ */
+if (!function_exists('cms_tag_path')) {
+    function cms_tag_path($id): string
+    {
+        $value = route('cms.tag', $id);
+
+        return cms_hook_call('cms_hook_tag_path', $value, $id);
+
+    }
+}
+
+/*
  * 获取CMS分类
  */
 if (!function_exists('cms_categories')) {

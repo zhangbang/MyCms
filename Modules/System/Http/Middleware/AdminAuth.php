@@ -24,7 +24,11 @@ class AdminAuth
             }
         } else {
             if (auth()->guard('admin')->user()->permission() === false) {
-                return response()->view('system::admin.common.error', ['msg' => '权限不足.'], 403);
+                if ($request->ajax() || $request->wantsJson()) {
+                    return response()->json(['msg' => '权限不足.'], 403);
+                } else {
+                    return response()->view('system::admin.common.error', ['msg' => '权限不足.'], 403);
+                }
             }
         }
 

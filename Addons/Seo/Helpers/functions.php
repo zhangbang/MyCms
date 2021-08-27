@@ -13,7 +13,7 @@ if (!function_exists('cms_hook_the_title')) {
         }
 
         if (is_category() && isset($config['seo_category_title'])) {
-            return cms_single_seo_rule($config['seo_category_title']);
+            return cms_category_seo_rule($config['seo_category_title']);
         }
 
         if (is_tag() && isset($config['seo_tag_title'])) {
@@ -43,7 +43,7 @@ if (!function_exists('cms_hook_the_keyword')) {
         }
 
         if (is_category() && isset($config['seo_category_keyword'])) {
-            return cms_single_seo_rule($config['seo_category_keyword']);
+            return cms_category_seo_rule($config['seo_category_keyword']);
         }
 
         if (is_tag() && isset($config['seo_tag_keyword'])) {

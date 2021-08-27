@@ -32,7 +32,7 @@
     <div class="widget tagcloud">
         <h4>Tags</h4>
         @foreach(cms_tags() as $tag)
-        <a href="{{route('cms.tag',$tag->id)}}">{{$tag->tag_name}}</a>
+        <a href="{{cms_tag_path($tag->id)}}">{{$tag->tag_name}}</a>
         @endforeach
     </div>
 </aside>
