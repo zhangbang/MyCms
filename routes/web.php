@@ -21,9 +21,8 @@ Route::get('/', function () {
             case 'cms':
                 return App::call('Modules\Cms\Http\Controllers\Web\CmsController@index', []);
                 break;
-            default:
-                return view('welcome');
-                break;
         }
     }
+
+    return view('welcome');
 });
