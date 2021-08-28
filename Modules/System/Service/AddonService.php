@@ -130,7 +130,7 @@ class AddonService
      */
     public function makeCache()
     {
-        $statuses = $rules = [];
+        $statuses = $rules = $roles = [];
 
         foreach ($this->all() as $item) {
 
@@ -149,6 +149,11 @@ class AddonService
                     }
                 }
 
+                if (file_exists($path = addon_path($item['ident'], '/Config/role.php'))) {
+                    $array = include_once $path;
+                    $roles = array_merge($roles ?? [], $array);
+                }
+
             } else {
                 Storage::disk("root")->deleteDirectory(
                     "resources/views/addons/" . strtolower(Str::snake($item['ident']))
@@ -163,6 +168,11 @@ class AddonService
                 );
             }
         }
+
+        Storage::disk("root")->put(
+            'bootstrap/cache/role.php',
+            "<?php return " . var_export($roles, true) . "; ?>"
+        );
 
         Storage::disk("root")->put('addons_statuses.json', json_encode($statuses));
 

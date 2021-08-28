@@ -35,7 +35,7 @@ class RoleService
 
             $nodes = is_string(array_values($nodes)[0]) ? array_values(array_unique($nodes)) : $nodes;
 
-            $node = array_map(function ($item, $key) use ($rootId, $parentKey, $roleNodes) {
+            return array_map(function ($item, $key) use ($rootId, $parentKey, $roleNodes) {
 
                 return [
                     'title' => $this->nodeTitle($item, $parentKey, $key),
@@ -47,15 +47,13 @@ class RoleService
                     'checked' => is_string($item) && in_array($item, $roleNodes)
                 ];
             }, $nodes, array_keys($nodes));
-
-            return $node;
         }
 
     }
 
     protected function nodeTitle($item, $parentKey, $key)
     {
-        $config = config('role');
+        $config = array_merge(config('role'), (config('role_ext') ?? []));
 
         if (is_string($item)) {
             $title = $config[$item] ?? $item;

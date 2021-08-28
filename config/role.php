@@ -43,25 +43,6 @@ return [
     'system/addon/init' => '插件启用',
 
     'addon' => '插件模块',
-    'addon.system_log' => '系统日志',
-    'addon/system_log' => '日志列表',
-    'addon/system_log/show' => '日志详情',
-
-    'addon.link_submit' => '百度资源提交',
-    'addon/link_submit' => '提交列表',
-    'addon/link_submit/config' => '提交配置',
-
-    'addon.sitemap' => '网站地图',
-    'addon/sitemap' => '生成地图',
-
-    'addon.friend_link' => '友情链接',
-    'addon/friend_link' => '链接列表',
-    'addon/friend_link/create' => '创建链接',
-    'addon/friend_link/edit' => '编辑链接',
-    'addon/friend_link/destroy' => '删除链接',
-
-    'addon.seo' => 'SEO插件',
-    'addon/seo/config' => 'SEO配置',
 
     'user' => '用户模块',
     'user.admin' => '用户管理',

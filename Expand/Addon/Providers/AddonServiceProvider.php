@@ -32,7 +32,21 @@ class AddonServiceProvider extends ModulesServiceProvider
         $this->registerProviders();
         $this->registerBehavior();
         $this->registerAddonProviders();
+        $this->registerRole();
+    }
 
+    /**
+     * 注册行为
+     */
+    protected function registerRole()
+    {
+        $path = Str::replaceLast('config.php', 'role.php', $this->app->getCachedConfigPath());
+
+        if (file_exists($path)) {
+            $this->mergeConfigFrom(
+                $path, 'role_ext'
+            );
+        }
     }
 
     /**
