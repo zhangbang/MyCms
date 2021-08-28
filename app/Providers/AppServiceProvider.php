@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->moduleViews();
         $this->addonViews();
+
+        if(env('IS_HTTPS')){
+            URL::forceScheme('https');
+        }
     }
 
     protected function addonViews()

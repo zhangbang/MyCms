@@ -21,11 +21,11 @@
                     <li><a href="{{cms_home_path()}}">Home</a></li>
 
                     @foreach(cms_categories() as $category)
-                        <li><a href="{{route('cms.category',$category->id)}}">{{$category->name}}</a>
+                        <li><a href="{{cms_category_path($category->id)}}">{{$category->name}}</a>
                             @if($category['child'])
                                 <ul class="sub-menu">
                                     @foreach($category['child'] as $child)
-                                    <li><a href="{{route('cms.category',$child->id)}}">{{$child->name}}</a></li>
+                                    <li><a href="{{cms_category_path($category->id)}}">{{$child->name}}</a></li>
                                     @endforeach
                                 </ul>
                             @endif
