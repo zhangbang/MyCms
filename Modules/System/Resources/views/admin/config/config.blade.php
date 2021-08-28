@@ -48,8 +48,8 @@
                             <label class="layui-form-label">首页模板</label>
                             <div class="layui-input-block">
                                 <select name="site_home_theme">
-                                    <option value="default" @if($systemConfig['site_home_theme'] == 'default') selected @endif>默认首页</option>
-                                    <option value="cms" @if($systemConfig['site_home_theme'] == 'cms') selected @endif>CMS首页</option>
+                                    <option value="default" @if(isset($systemConfig['site_home_theme']) && $systemConfig['site_home_theme'] == 'default') selected @endif>默认首页</option>
+                                    <option value="cms" @if(isset($systemConfig['site_home_theme']) && $systemConfig['site_home_theme'] == 'cms') selected @endif>CMS首页</option>
                                 </select>
                             </div>
                         </div>
