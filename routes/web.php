@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $theme = (new \Modules\System\Models\Config())->getConfig(['site_home_theme'])['site_home_theme'];
-    switch ($theme) {
-        case 'cms':
-            return App::call('Modules\Cms\Http\Controllers\Web\CmsController@index', []);
-            break;
-        default:
-            return view('welcome');
-            break;
+    $theme = (new \Modules\System\Models\Config())->getConfig(['site_home_theme']);
+    if (isset($theme['site_home_theme'])) {
+        switch ($theme['site_home_theme']) {
+            case 'cms':
+                return App::call('Modules\Cms\Http\Controllers\Web\CmsController@index', []);
+                break;
+            default:
+                return view('welcome');
+                break;
+        }
     }
 });
