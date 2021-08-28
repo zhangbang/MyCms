@@ -40,7 +40,7 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 |系统记录|后台操作记录|插件|<font color="green">完成</font>|免费|
 |百度推送|百度资源推送，加速页面收录|插件|<font color="green">完成</font>|免费|
 |SEO设置|自定义设置标题，关键词，描述|插件|<font color="green">完成</font>|免费|
-|友情链接|友情链接|插件|开发中|免费|
+|友情链接|友情链接|插件|完成|免费|
 |广告管理|广告管理|插件|待开发|免费|
 |URL美化|美化URL|插件|<font color="green">完成</font>|授权|
 |阿里云OSS|附件上传到阿里云OSS|插件|待开发|授权|

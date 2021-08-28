@@ -154,6 +154,10 @@ class AddonService
                     "resources/views/addons/" . strtolower(Str::snake($item['ident']))
                 );
 
+                Storage::disk("root")->deleteDirectory(
+                    "public/mycms/addons/" . strtolower(Str::snake($item['ident']))
+                );
+
                 Storage::disk("root")->delete(
                     "bootstrap/cache/" . strtolower(Str::snake($item['ident'])) . "_addon.php"
                 );
