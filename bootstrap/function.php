@@ -38,3 +38,13 @@ if (!function_exists('system_config')) {
 
     }
 }
+
+/*
+ * 获取当前域名
+ */
+if (!function_exists('system_http_domain')) {
+    function system_http_domain(): string
+    {
+        return (env('IS_HTTPS') ? 'https://' : 'http://') . request()->server('HTTP_HOST');
+    }
+}
