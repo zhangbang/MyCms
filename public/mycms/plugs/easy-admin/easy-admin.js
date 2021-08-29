@@ -207,6 +207,19 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 options.limits = options.limits || [10, 15, 20, 25, 50, 100];
                 options.cols = options.cols || [];
                 options.defaultToolbar = ['filter'];
+                options.parseData = function(res){
+                    for (var i in options.cols[0]) {
+                        if (options.cols[0][i]['field']) {
+                            var field = options.cols[0][i]['field'];
+                            for (var ii in res.data) {
+                                if (typeof(res.data[ii][field]) == 'string') {
+                                    console.info(res.data[ii][field]);
+                                    res.data[ii][field] = res.data[ii][field].replace(/<[^>]+>/g,"");
+                                }
+                            }
+                        }
+                    }
+                }
                 /*options.defaultToolbar = (options.defaultToolbar === undefined && !options.search) ? ['filter', 'print', 'exports'] : ['filter', 'print', 'exports', {
                     title: '搜索',
                     layEvent: 'TABLE_SEARCH',
