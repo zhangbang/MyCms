@@ -306,6 +306,16 @@ if (!function_exists('is_home')) {
 }
 
 /*
+ * 获取友情链接
+ */
+if (!function_exists('friend_link')) {
+    function friend_link()
+    {
+        return cms_hook_call('hook_friend_link', []);
+    }
+}
+
+/*
  * 调用插件自定义函数
  */
 if (!function_exists('cms_hook_call')) {

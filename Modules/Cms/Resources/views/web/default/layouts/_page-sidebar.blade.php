@@ -5,12 +5,14 @@
         <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。</p>
     </div>
     <div class="widget">
-        <h4>Find me on</h4>
+        <h4>Advantage</h4>
         <p>
-            <a href="#" class="social-1"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="social-1"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="social-1"><i class="fa fa-google-plus"></i></a>
-            <a href="#" class="social-1"><i class="fa fa-linkedin"></i></a>
+            1.内置权限管理 & 使用Laravel中间件实现更智能的RBAC权限管理，自动读取更新，无需手动插入节点，告别手工插入时代<br/>
+            2.模块化开发 & 万丈高楼平地起，打下扎实的基础，采用Laravel-module实现模块化，降低耦合度，分工更明确，为做大做强创造无限可能<br/>
+            3.JS整合封装 & 后台采用Layuimini进行开发，对表格、表单进行封装，统一样式，统一交互，开发更快捷，使用更舒服<br/>
+            4.响应式开发 & 后台页面基于Layui开发，手机、平板、PC均已自动适配，无需担心兼容性问题，专注业务逻辑代码开发<br/>
+            5.更快的PHP7 & 系统基于PHP7.3+进行开发，相比PHP5有倍级的性能提升，更完善的类型声明，PHP是世界上最好的开发语言。<br/>
+            6.高拓展性 & 基于Laravel8进行后台程序开发，让您从杂乱的代码解脱出来，高质量的文档，丰富的拓展包，开发更高效，代码更优雅<br/>
         </p>
     </div>
     <div class="widget">

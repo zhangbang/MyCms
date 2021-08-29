@@ -5,8 +5,8 @@
 
 use Addons\FriendLink\Models\FriendLink;
 
-if (!function_exists('friend_link')) {
-    function friend_link()
+if (!function_exists('hook_friend_link')) {
+    function hook_friend_link()
     {
         return FriendLink::orderBy('sort', 'asc')->get();
     }
