@@ -211,12 +211,14 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     for (var i in options.cols[0]) {
                         if (options.cols[0][i]['field']) {
                             var field = options.cols[0][i]['field'];
-                            for (var ii in res.data) {
-                                if (typeof(res.data[ii][field]) == 'string') {
-                                    console.info(res.data[ii][field]);
-                                    res.data[ii][field] = res.data[ii][field].replace(/<[^>]+>/g,"");
+                            if (field !== 'operation') {
+                                for (var ii in res.data) {
+                                    if (typeof(res.data[ii][field]) == 'string') {
+                                        res.data[ii][field] = res.data[ii][field].replace(/<[^>]+>/g,"");
+                                    }
                                 }
                             }
+
                         }
                     }
                 }
