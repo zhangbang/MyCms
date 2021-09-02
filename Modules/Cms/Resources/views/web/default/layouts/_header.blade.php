@@ -8,6 +8,7 @@
     <meta name="description" content="{{cms_the_description()}}">
     <meta name="keywords" content="{{cms_the_keyword()}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- ======== / META TAGS ======== -->
     <!-- ======== STYLESHEETS ======== -->
     <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/reset.css" type="text/css">

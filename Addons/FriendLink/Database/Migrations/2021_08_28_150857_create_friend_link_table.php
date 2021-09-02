@@ -20,6 +20,8 @@ class CreateFriendLinkTable extends Migration
             $table->string('target');
             $table->integer('sort');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

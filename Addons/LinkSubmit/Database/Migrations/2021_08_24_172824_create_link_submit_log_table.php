@@ -19,6 +19,8 @@ class CreateLinkSubmitLogTable extends Migration
             $table->string('url');
             $table->string('respond');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

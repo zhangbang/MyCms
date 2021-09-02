@@ -24,7 +24,7 @@ if (!function_exists('cms_hook_the_title')) {
             return $config['seo_site_title'];
         }
 
-        return false;
+        return session('page_title') ?? false;
 
     }
 }
@@ -54,7 +54,7 @@ if (!function_exists('cms_hook_the_keyword')) {
             return $config['seo_site_keyword'];
         }
 
-        return false;
+        return session('page_keyword') ?? false;
 
     }
 }
@@ -85,7 +85,7 @@ if (!function_exists('cms_hook_the_description')) {
             return $config['seo_site_description'];
         }
 
-        return false;
+        return session('page_description') ?? false;
 
     }
 }
