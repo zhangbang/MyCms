@@ -44,6 +44,17 @@ class RouteBehavior
             "*:{$statusCode}"
         ];
 
+        $name = $request->route()->getName();
+
+        if ($name) {
+
+            $name = str_replace(".", "_", $name);
+
+            $rules[] = "name:{$name}:{$method}:{$statusCode}";
+            $rules[] = "name:{$name}:{$statusCode}";
+
+        }
+
         foreach ($middlewares as $middleware) {
             $middleware = str_replace(".", "_", $middleware);
             $rules[] = "md:{$middleware}:{$method}:{$statusCode}";
