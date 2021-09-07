@@ -73,7 +73,9 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 
 * Layuimini：[https://github.com/zhongshaofa/layuimini](https://github.com/zhongshaofa/layuimini)
 
-
+## 1元课程
+![lagou-mysql](https://www.mycms.net.cn/lagou/mysql.png)
+![lagou-restful](https://www.mycms.net.cn/lagou/restful.png)
 
 ## 免责声明
 
