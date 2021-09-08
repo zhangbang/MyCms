@@ -14,7 +14,7 @@
                             <label class="layui-form-label ">站点标题</label>
                             <div class="layui-input-block">
                                 <input type="text" name="seo_site_title" class="layui-input" placeholder="填写站点标题" value="{{$seoConfig['seo_site_title'] ?? ''}}">
-                                <tip>填写站点标题</tip>
+                                <tip>填写站点标题，<em style="color: red">{page}</em>:为 " - 第X页"</tip>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                             <label class="layui-form-label ">分类标题</label>
                             <div class="layui-input-block">
                                 <input type="text" name="seo_category_title" class="layui-input" placeholder="填写分类标题" value="{{$seoConfig['seo_category_title'] ?? ''}}">
-                                <tip>填写分类标题.<em style="color: red">{name}</em>:为分类名，<em style="color: red">{description}</em>为分类描述</tip>
+                                <tip>填写分类标题.<em style="color: red">{name}</em>:为分类名，<em style="color: red">{description}</em>为分类描述，<em style="color: red">{page}</em>:为 " - 第X页"</tip>
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                             <label class="layui-form-label ">标签标题</label>
                             <div class="layui-input-block">
                                 <input type="text" name="seo_tag_title" class="layui-input" placeholder="填写标签标题" value="{{$seoConfig['seo_tag_title'] ?? ''}}">
-                                <tip>填写标签标题.<em style="color: red">{name}</em>:为标签名称，<em style="color: red">{description}</em>为标签描述</tip>
+                                <tip>填写标签标题.<em style="color: red">{name}</em>:为标签名称，<em style="color: red">{description}</em>为标签描述，<em style="color: red">{page}</em>:为 " - 第X页"</tip>
                             </div>
                         </div>
 

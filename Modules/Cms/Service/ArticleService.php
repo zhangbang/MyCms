@@ -38,13 +38,16 @@ class ArticleService
         $whereRaw = $hasImg ? 'img is not null' : '1=1';
 
         if ($categoryId) {
-            $whereRaw .= " and category_id in(".join(",",$categoryId).")";
+            $whereRaw .= " and category_id in(" . join(",", $categoryId) . ")";
         }
+
+        $page = request()->route()->parameter('page');
+
 
         return Article::with('category:id,name')
             ->orderBy('id', 'desc')
             ->whereRaw($whereRaw)
-            ->paginate($limit);
+            ->paginate($limit, '*', 'page', $page);
     }
 
     public function ids()

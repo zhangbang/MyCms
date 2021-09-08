@@ -27,6 +27,7 @@ return [
             'routes/web' => 'Routes/web.php',
             'routes/api' => 'Routes/api.php',
             'scaffold/config' => 'Config/config.php',
+            'composer' => 'composer.json',
         ],
         'replacements' => [
             'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
@@ -53,6 +54,14 @@ return [
         'enabled' => false,
         'key' => 'laravel-modules',
         'lifetime' => 60,
+    ],
+
+    'composer' => [
+        'vendor' => 'nwidart',
+        'author' => [
+            'name' => 'Nicolas Widart',
+            'email' => 'n.widart@gmail.com',
+        ],
     ],
 
     'activators' => [

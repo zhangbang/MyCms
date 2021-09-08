@@ -15,7 +15,7 @@ Route::group([
     'middleware' => 'admin.auth',
     'namespace' => '\Modules\Cms\Http\Controllers\Admin'
 ], function () {
-    Route::group(['prefix' => 'article/admin'],function (){
+    Route::group(['prefix' => 'article/admin'], function () {
         Route::get('/category', 'ArticleCategoryController@index')->name('article.category');
         Route::get('/category/edit', 'ArticleCategoryController@edit')->name('article.category.edit');
         Route::post('/category/edit', 'ArticleCategoryController@update');
@@ -45,7 +45,10 @@ Route::group([
     'namespace' => '\Modules\Cms\Http\Controllers\Web'
 ], function () {
     Route::get('/cms', 'CmsController@index')->name('cms.index');
-    Route::get('/category/{id}', 'CmsController@category')->name('cms.category')->where('id','[0-9]+');
-    Route::get('/single/{id}', 'CmsController@single')->name('cms.single')->where('id','[0-9]+');
-    Route::get('/tag/{id}', 'CmsController@tag')->name('cms.tag')->where('id','[0-9]+');
+    Route::get('/category/{id}', 'CmsController@category')->name('cms.category')->where('id', '[0-9]+');
+    Route::get('/category/{id}/page/{page}', 'CmsController@category')->where(['id' => '[0-9]+', 'page' => '[0-9]+']);
+    Route::get('/single/{id}', 'CmsController@single')->name('cms.single')->where('id', '[0-9]+');
+    Route::get('/tag/{id}', 'CmsController@tag')->name('cms.tag')->where('id', '[0-9]+');
+    Route::get('/tag/{id}/page/{page}', 'CmsController@tag')->where(['id' => '[0-9]+', 'page' => '[0-9]+']);
+    Route::get('/page/{page}', 'CmsController@index')->where(['page' => '[0-9]+']);
 });

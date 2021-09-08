@@ -35,9 +35,7 @@
                         </article>
                     @endforeach
                     @if(!is_array($articles))
-                    <nav id="post-nav">
-                        {{ $articles->links() }}
-                    </nav>
+                        {{ $articles->links('cms::web.default.page') }}
                     @endif
                 </div>
                 <div class="col-lg-4 col-sm-4 column space">

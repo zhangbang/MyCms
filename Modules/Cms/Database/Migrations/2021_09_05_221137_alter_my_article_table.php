@@ -14,7 +14,7 @@ class AlterMyArticleTable extends Migration
     public function up()
     {
         Schema::table('my_article', function (Blueprint $table) {
-            $table->integer('view')->after('content');
+            $table->integer('view')->after('content')->default(0);
         });
     }
 

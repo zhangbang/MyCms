@@ -157,6 +157,8 @@ if (!function_exists('cms_the_title')) {
     {
         $value = '';
 
+        $page = request()->route()->parameter('page');
+
         if (is_single()) {
             $value = session('single')->title;
         }
@@ -172,6 +174,8 @@ if (!function_exists('cms_the_title')) {
         if (is_home()) {
             $value = session('home')['site_name'];
         }
+
+        $value .= $page && $page > 1 ? " - 第{$page}页" : '';
 
         return cms_hook_call('cms_hook_the_title', $value);
     }
@@ -326,5 +330,25 @@ if (!function_exists('cms_hook_call')) {
         }
 
         return $value;
+    }
+}
+
+
+/*
+ * 分页
+ */
+if (!function_exists('cms_page_url')) {
+    function cms_page_url($page, $option = [])
+    {
+        $path = preg_replace("/page\/[0-9]+/", "", request()->path());
+        $url = "/" . trim($path, "/");
+
+        foreach ($option as $key => $value) {
+            $url .= "{$key}/$value/";
+        }
+
+        $url .= strlen($url) == 1 ? "page/{$page}" : "/page/{$page}";
+
+        return cms_hook_call('cms_hook_page_url', $url);
     }
 }

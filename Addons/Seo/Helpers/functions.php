@@ -21,7 +21,8 @@ if (!function_exists('cms_hook_the_title')) {
         }
 
         if (is_home() && isset($config['seo_site_title'])) {
-            return $config['seo_site_title'];
+            $page = request()->route()->parameter('page');
+            return str_replace('{page}', ($page && $page > 1 ? " - 第{$page}页" : ""), $config['seo_site_title']);
         }
 
         return session('page_title') ?? false;
@@ -110,9 +111,12 @@ if (!function_exists('cms_single_seo_rule')) {
 if (!function_exists('cms_category_seo_rule')) {
     function cms_category_seo_rule($value)
     {
+
+        $page = request()->route()->parameter('page');
+
         return str_replace(
-            ['{name}', '{description}'],
-            [session('category')->name, session('category')->description],
+            ['{name}', '{description}', '{page}'],
+            [session('category')->name, session('category')->description, $page && $page > 1 ? " - 第{$page}页" : '' ],
             $value
         );
     }
@@ -122,9 +126,11 @@ if (!function_exists('cms_category_seo_rule')) {
 if (!function_exists('cms_tag_seo_rule')) {
     function cms_tag_seo_rule($value)
     {
+        $page = request()->route()->parameter('page');
+
         return str_replace(
-            ['{name}', '{description}'],
-            [session('tag')->tag_name, session('tag')->description],
+            ['{name}', '{description}', '{page}'],
+            [session('tag')->tag_name, session('tag')->description, $page && $page > 1 ? " - 第{$page}页" : ''],
             $value
         );
     }
