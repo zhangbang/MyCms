@@ -6,7 +6,7 @@
         </a>
     @endif
 
-    @if (($paginator->currentPage() + 1) < $paginator->lastPage())
+    @if ($paginator->currentPage() < $paginator->lastPage())
     <a href="{{cms_page_url($paginator->currentPage() + 1)}}">下一页 »</a>
     @endif
 </nav>
