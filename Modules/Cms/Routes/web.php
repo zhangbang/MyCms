@@ -51,4 +51,6 @@ Route::group([
     Route::get('/tag/{id}', 'CmsController@tag')->name('cms.tag')->where('id', '[0-9]+');
     Route::get('/tag/{id}/page/{page}', 'CmsController@tag')->where(['id' => '[0-9]+', 'page' => '[0-9]+']);
     Route::get('/page/{page}', 'CmsController@index')->where(['page' => '[0-9]+']);
+    Route::get('/search/{keyword}', 'CmsController@search')->name('cms.search');
+    Route::get('/search/{keyword}/page/{page}', 'CmsController@search')->where(['page' => '[0-9]+']);
 });

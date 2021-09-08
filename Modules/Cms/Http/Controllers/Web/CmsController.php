@@ -61,4 +61,18 @@ class CmsController extends MyController
 
         return $this->theme('tag', compact('tag'));
     }
+
+    public function search($keyword)
+    {
+        $keyword = $this->filter($keyword, '');
+        $page = request()->route()->parameter('page');
+
+        $articles = Article::with("category:id,name")
+            ->where('title', 'like', '%' . $keyword . '%')
+            ->paginate(10,'*','page',$page);
+
+        is_search($keyword);
+
+        return $this->theme('search', compact('articles', 'keyword'));
+    }
 }

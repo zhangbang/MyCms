@@ -109,6 +109,33 @@
                             </div>
                         </div>
 
+
+
+                        <div class="hr-line"></div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ">搜索标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_search_title" class="layui-input" placeholder="填写搜索标题" value="{{$seoConfig['seo_search_title'] ?? ''}}">
+                                <tip>填写搜索标题.<em style="color: red">{keyword}</em>:为关键词，<em style="color: red">{page}</em>:为 " - 第X页"</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">搜索关键词</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_search_keyword" class="layui-input"  placeholder="请输入搜索关键词" value="{{$seoConfig['seo_search_keyword'] ?? ''}}">
+                                <tip>请输入标签关键词</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">搜索描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="seo_search_description" class="layui-textarea">{{$seoConfig['seo_search_description'] ?? ''}}</textarea>
+                            </div>
+                        </div>
+
                         <div class="hr-line"></div>
                         <div class="layui-form-item text-center">
                             <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>

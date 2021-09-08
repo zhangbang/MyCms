@@ -1,6 +1,13 @@
 <aside id="sidebar">
 
     <div class="widget">
+        <div class="search-form clearfix">
+            <input type="text" name="keyword" id="keyword" placeholder="Search...">
+            <button type="button" onclick="location.href = '/search/' + $('#keyword').val();"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="widget">
         <h4>About</h4>
         <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。</p>
     </div>
@@ -19,7 +26,7 @@
         <h4>Latest Posts</h4>
         <ul>
             @foreach(cms_new_articles() as $article)
-            <li><a href="{{cms_single_path($article->id)}}">{{$article->title}}</a></li>
+                <li><a href="{{cms_single_path($article->id)}}">{{$article->title}}</a></li>
             @endforeach
         </ul>
     </div>
@@ -27,14 +34,14 @@
         <h4>Categories</h4>
         <ul>
             @foreach(cms_categories() as $category)
-            <li><a href="{{cms_category_path($category->id)}}">{{$category->name}}</a></li>
+                <li><a href="{{cms_category_path($category->id)}}">{{$category->name}}</a></li>
             @endforeach
         </ul>
     </div>
     <div class="widget tagcloud">
         <h4>Tags</h4>
         @foreach(cms_tags() as $tag)
-        <a href="{{cms_tag_path($tag->id)}}">{{$tag->tag_name}}</a>
+            <a href="{{cms_tag_path($tag->id)}}">{{$tag->tag_name}}</a>
         @endforeach
     </div>
 </aside>

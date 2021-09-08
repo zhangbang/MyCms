@@ -175,6 +175,10 @@ if (!function_exists('cms_the_title')) {
             $value = session('home')['site_name'];
         }
 
+        if (is_search()) {
+            $value = session('search') . ":搜索结果";
+        }
+
         $value .= $page && $page > 1 ? " - 第{$page}页" : '';
 
         return cms_hook_call('cms_hook_the_title', $value);
@@ -206,6 +210,10 @@ if (!function_exists('cms_the_keyword')) {
             $value = session('home')['site_name'];
         }
 
+        if (is_search()) {
+            $value = session('search');
+        }
+
         return cms_hook_call('cms_hook_the_keyword', $value);
     }
 }
@@ -234,6 +242,10 @@ if (!function_exists('cms_the_description')) {
 
         if (is_home()) {
             $value = session('home')['site_name'];
+        }
+
+        if (is_search()) {
+            $value = session('search') . ":搜索结果";
         }
 
         return cms_hook_call('cms_hook_the_description', $value);
@@ -304,6 +316,23 @@ if (!function_exists('is_home')) {
 
         session(['home' => $home]);
         session(['the_page' => 'home']);
+
+        return false;
+    }
+}
+
+/*
+ * 搜索页
+ */
+if (!function_exists('is_search')) {
+    function is_search($keyword = false): bool
+    {
+        if ($keyword === false) {
+            return session('the_page') === 'search';
+        }
+
+        session(['search' => $keyword]);
+        session(['the_page' => 'search']);
 
         return false;
     }

@@ -20,6 +20,10 @@ if (!function_exists('cms_hook_the_title')) {
             return cms_tag_seo_rule($config['seo_tag_title']);
         }
 
+        if (is_search() && isset($config['seo_search_title'])) {
+            return cms_search_seo_rule($config['seo_search_title']);
+        }
+
         if (is_home() && isset($config['seo_site_title'])) {
             $page = request()->route()->parameter('page');
             return str_replace('{page}', ($page && $page > 1 ? " - 第{$page}页" : ""), $config['seo_site_title']);
@@ -51,6 +55,10 @@ if (!function_exists('cms_hook_the_keyword')) {
             return cms_tag_seo_rule($config['seo_tag_keyword']);
         }
 
+        if (is_search() && isset($config['seo_search_keyword'])) {
+            return cms_search_seo_rule($config['seo_search_keyword']);
+        }
+
         if (is_home() && isset($config['seo_site_keyword'])) {
             return $config['seo_site_keyword'];
         }
@@ -80,6 +88,10 @@ if (!function_exists('cms_hook_the_description')) {
 
         if (is_tag() && isset($config['seo_tag_description'])) {
             return cms_tag_seo_rule($config['seo_tag_description']);
+        }
+
+        if (is_search() && isset($config['seo_search_description'])) {
+            return cms_search_seo_rule($config['seo_search_description']);
         }
 
         if (is_home() && isset($config['seo_site_description'])) {
@@ -131,6 +143,20 @@ if (!function_exists('cms_tag_seo_rule')) {
         return str_replace(
             ['{name}', '{description}', '{page}'],
             [session('tag')->tag_name, session('tag')->description, $page && $page > 1 ? " - 第{$page}页" : ''],
+            $value
+        );
+    }
+}
+
+
+if (!function_exists('cms_search_seo_rule')) {
+    function cms_search_seo_rule($value)
+    {
+        $page = request()->route()->parameter('page');
+
+        return str_replace(
+            ['{keyword}', '{page}'],
+            [session('search'), $page && $page > 1 ? " - 第{$page}页" : ''],
             $value
         );
     }

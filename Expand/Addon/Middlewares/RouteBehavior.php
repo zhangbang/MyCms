@@ -34,6 +34,11 @@ class RouteBehavior
 
         $method = $request->method();
         $path = $request->path();
+
+        if (!$request->route() !== null) {
+            return false;
+        }
+
         $middlewares = $request->route()->middleware();
         $statusCode = $response->getStatusCode();
 
