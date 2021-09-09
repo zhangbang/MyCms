@@ -6,8 +6,11 @@ namespace Modules\System\Http\Controllers\Admin;
 
 use App\Http\Controllers\MyController;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use Modules\System\Http\Requests\ConfigRequest;
 use Modules\System\Models\Config;
+use Modules\System\Service\AddonService;
 
 class ConfigController extends MyController
 {
@@ -24,7 +27,7 @@ class ConfigController extends MyController
     /**
      * 保存系统配置
      */
-    public function store(ConfigRequest $request, Config $config): JsonResponse
+    public function store(ConfigRequest $request, Config $config, AddonService $service): JsonResponse
     {
         $data = $request->validated();
 
@@ -47,6 +50,18 @@ class ConfigController extends MyController
         $result = $config->batchUpdate([
             'cfg_val' => ['cfg_key' => $data]
         ], "cfg_group = 'system'");
+
+        if ($result !== false) {
+
+            $service->makeCache();
+
+            foreach ($service->all() as $item) {
+                Artisan::call(
+                    'vendor:publish --tag=addon_' . strtolower(Str::snake($item['ident']))
+                );
+            }
+
+        }
 
         return $this->result($result);
     }
