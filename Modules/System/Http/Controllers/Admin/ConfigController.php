@@ -51,7 +51,7 @@ class ConfigController extends MyController
             'cfg_val' => ['cfg_key' => $data]
         ], "cfg_group = 'system'");
 
-        if ($result !== false) {
+        if ($result !== false && $this->request('update_cache') == 1) {
 
             $service->makeCache();
 
