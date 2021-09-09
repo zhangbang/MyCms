@@ -68,6 +68,7 @@ class CmsController extends MyController
         $page = request()->route()->parameter('page');
 
         $articles = Article::with("category:id,name")
+            ->orderBy('id','desc')
             ->where('title', 'like', '%' . $keyword . '%')
             ->paginate(10,'*','page',$page);
 
