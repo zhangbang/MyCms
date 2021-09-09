@@ -7,6 +7,7 @@ namespace Modules\System\Http\Controllers\Admin;
 use App\Http\Controllers\MyController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\System\Http\Requests\ConfigRequest;
 use Modules\System\Models\Config;
@@ -56,6 +57,11 @@ class ConfigController extends MyController
             $service->makeCache();
 
             foreach ($service->all() as $item) {
+
+                Storage::disk("root")->deleteDirectory(
+                    "resources/views/addons/" . strtolower(Str::snake($item['ident']))
+                );
+
                 Artisan::call(
                     'vendor:publish --tag=addon_' . strtolower(Str::snake($item['ident']))
                 );
