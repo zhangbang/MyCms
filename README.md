@@ -23,9 +23,9 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 
 * 文档地址：[https://www.kancloud.cn/b386654667/mycms](https://www.kancloud.cn/b386654667/mycms)
 
-* 临时演示地址：[https://demo.shuxueyingyong.com/](https://demo.shuxueyingyong.com/)
+* 演示地址：[https://demo.mycms.net.cn/](https://demo.mycms.net.cn/)
   
-* 临时演示后台：[https://demo.shuxueyingyong.com/system/login](https://demo.shuxueyingyong.com/system/login)（账号：admin，密码：admin）
+* 演示后台：[https://demo.mycms.net.cn/system/login](https://demo.mycms.net.cn/system/login)（账号：admin，密码：admin）
 
 ## [模块插件清单]
 
@@ -72,10 +72,6 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 * Laravel：[https://github.com/top-think/framework](https://github.com/laravel/laravel)
 
 * Layuimini：[https://github.com/zhongshaofa/layuimini](https://github.com/zhongshaofa/layuimini)
-
-## 1元课程
-![lagou-mysql](https://www.mycms.net.cn/lagou/mysql.png)
-![lagou-restful](https://www.mycms.net.cn/lagou/restful.png)
 
 ## 免责声明
 

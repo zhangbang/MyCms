@@ -17,7 +17,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 cols: [[
                     {type: "checkbox"},
                     {field: 'id', width: 80, title: '序号'},
-                    {field: 'goods_name', minWidth: 80, title: '名称'},
+                    {field: 'goods_name', minWidth: 80, title: '名称', search: true},
                     {field: 'category.name', minWidth: 80, title: '分类'},
                     {field: 'shop_price', minWidth: 80, title: '价格'},
                     {field: 'market_price', minWidth: 80, title: '市场价'},

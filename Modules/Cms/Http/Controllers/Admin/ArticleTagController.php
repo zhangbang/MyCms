@@ -14,10 +14,20 @@ class ArticleTagController extends MyController
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
-            $category = ArticleTag::orderBy('id', 'desc')
+
+            $where = [];
+            if ($json = $request->input('filter')) {
+                $filters = json_decode($json, true);
+                foreach ($filters as $name => $filter) {
+                    $where[] = [$name, $name == 'tag_name' ? 'like' : '=', $name == 'tag_name' ? "%{$filter}%" : $filter];
+                }
+            }
+
+            $tags = ArticleTag::orderBy('id', 'desc')
+                ->where($where)
                 ->paginate($this->request('limit', 'intval'))->toArray();
 
-            return $this->jsonSuc($category);
+            return $this->jsonSuc($tags);
         }
         return $this->view('admin.tag.index');
     }

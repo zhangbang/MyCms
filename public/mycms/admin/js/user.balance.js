@@ -11,6 +11,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
             ea.table.render({
                 init: init,
+                search:false,
                 toolbar:['refresh'],
                 cols: [[
                     {type: "checkbox"},

@@ -16,10 +16,20 @@ class GoodsController extends MyController
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
-            $category = Goods::with('category:id,name')->orderBy('id', 'desc')
+
+            $where = [];
+            if ($json = $request->input('filter')) {
+                $filters = json_decode($json, true);
+                foreach ($filters as $name => $filter) {
+                    $where[] = [$name, $name == 'goods_name' ? 'like' : '=', $name == 'goods_name' ? "%{$filter}%" : $filter];
+                }
+            }
+
+            $goods = Goods::with('category:id,name')->orderBy('id', 'desc')
+                ->where($where)
                 ->paginate($this->request('limit', 'intval'))->toArray();
 
-            return $this->jsonSuc($category);
+            return $this->jsonSuc($goods);
         }
         return $this->view('admin.goods.index');
     }

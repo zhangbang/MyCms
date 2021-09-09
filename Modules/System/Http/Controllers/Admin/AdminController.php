@@ -22,8 +22,18 @@ class AdminController extends MyController
     {
 
         if ($request->ajax() && $request->wantsJson()) {
+
+            $where = [];
+            if ($json = $request->input('filter')) {
+                $filters = json_decode($json, true);
+                foreach ($filters as $name => $filter) {
+                    $where[] = [$name, '=', $filter];
+                }
+            }
+
             $admins = Admin::with(['role:id,role_name'])->orderBy('id', 'desc')
-                ->paginate($this->request('limit','intval'))->toArray();
+                ->where($where)
+                ->paginate($this->request('limit', 'intval'))->toArray();
 
             return $this->jsonSuc($admins);
         }
@@ -36,7 +46,7 @@ class AdminController extends MyController
      */
     public function modify()
     {
-        $admin = Admin::find($this->request('id','intval'));
+        $admin = Admin::find($this->request('id', 'intval'));
         $admin->{$this->request('field')} = $this->request('value');
         $result = $admin->save();
 
@@ -49,7 +59,7 @@ class AdminController extends MyController
     public function create()
     {
         $roles = Role::get();
-        return $this->view('admin.admin.create',compact('roles'));
+        return $this->view('admin.admin.create', compact('roles'));
     }
 
     /**
@@ -70,11 +80,11 @@ class AdminController extends MyController
      */
     public function edit()
     {
-        $admin = Admin::find($this->request('id','intval'));
+        $admin = Admin::find($this->request('id', 'intval'));
 
         $roles = Role::get();
 
-        return $this->view('admin.admin.edit', compact('admin','roles'));
+        return $this->view('admin.admin.edit', compact('admin', 'roles'));
     }
 
     /**
@@ -93,7 +103,7 @@ class AdminController extends MyController
      */
     public function password()
     {
-        $admin = Admin::find($this->request('id','intval'));
+        $admin = Admin::find($this->request('id', 'intval'));
         return $this->view('admin.admin.password', compact('admin'));
     }
 
@@ -114,7 +124,7 @@ class AdminController extends MyController
      */
     public function destroy()
     {
-        $result = Admin::destroy($this->request('id','intval'));
+        $result = Admin::destroy($this->request('id', 'intval'));
         return $this->result($result);
     }
 

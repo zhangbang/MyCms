@@ -21,7 +21,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 cols: [[
                     {type: "checkbox"},
                     {field: 'id', width: 80, title: 'ID'},
-                    {field: 'name', minWidth: 80, title: '登录账户'},
+                    {field: 'name', minWidth: 80, title: '登录账户', search: true},
                     {field: 'role.role_name', minWidth: 80, title: '角色权限'},
                     {field: 'login_num', minWidth: 80, title: '登录次数'},
                     {field: 'remark', minWidth: 80, title: '备注信息'},
@@ -29,7 +29,6 @@ define(["jquery", "easy-admin"], function ($, ea) {
                         field: 'status',
                         title: '状态',
                         width: 85,
-                        search: 'select',
                         selectList: {0: '禁用', 1: '启用'},
                         templet: ea.table.switch
                     },

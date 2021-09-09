@@ -21,7 +21,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 cols: [[
                     {type: "checkbox"},
                     {field: 'id', width: 80, title: 'ID'},
-                    {field: 'name', minWidth: 80, title: '用户名'},
+                    {field: 'name', minWidth: 80, title: '用户名', search: true},
                     {field: 'mobile', minWidth: 80, title: '手机号'},
                     {field: 'balance', minWidth: 80, title: '余额'},
                     {field: 'point', minWidth: 80, title: '积分'},

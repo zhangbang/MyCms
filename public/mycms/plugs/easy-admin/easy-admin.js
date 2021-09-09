@@ -201,12 +201,12 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 options.layFilter = options.id + '_LayFilter';
                 options.url = options.url || admin.url(options.init.index_url);
                 options.page = admin.parame(options.page, true);
-                //options.search = admin.parame(options.search, true);
+                options.search = admin.parame(options.search, true);
                 options.skin = options.skin || 'line';
                 options.limit = options.limit || 15;
                 options.limits = options.limits || [10, 15, 20, 25, 50, 100];
                 options.cols = options.cols || [];
-                options.defaultToolbar = ['filter'];
+                //options.defaultToolbar = ['filter'];
                 options.parseData = function(res){
                     for (var i in options.cols[0]) {
                         if (options.cols[0][i]['field']) {
@@ -222,7 +222,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         }
                     }
                 }
-                /*options.defaultToolbar = (options.defaultToolbar === undefined && !options.search) ? ['filter', 'print', 'exports'] : ['filter', 'print', 'exports', {
+                options.defaultToolbar = (options.defaultToolbar === undefined && !options.search) ? ['filter'] : ['filter', {
                     title: '搜索',
                     layEvent: 'TABLE_SEARCH',
                     icon: 'layui-icon-search',
@@ -237,7 +237,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         icon: 'layui-icon-search',
                         extend: 'data-table-id="' + options.id + '"'
                     }];
-                }*/
+                }
 
                 // 判断元素对象是否有嵌套的
                 options.cols = admin.table.formatCols(options.cols, options.init);
@@ -324,7 +324,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     d.fieldAlias = admin.parame(d.fieldAlias, d.field);
                     d.title = d.title || d.field || '';
                     d.selectList = d.selectList || {};
-                    d.search = admin.parame(d.search, true);
+                    d.search = admin.parame(d.search, false);
                     d.searchTip = d.searchTip || '请输入' + d.title || '';
                     d.searchValue = d.searchValue || '';
                     d.searchOp = d.searchOp || '%*%';

@@ -14,6 +14,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
             ea.table.render({
                 init: init,
+                search: false,
                 cols: [[
                     {type: "checkbox"},
                     {field: 'id', width: 80, title: '序号'},
