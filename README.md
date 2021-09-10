@@ -43,6 +43,7 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 |友情链接|友情链接|插件|完成|免费|
 |网站地图|生成网站XML地图|插件|完成|免费|
 |URL美化|美化URL|插件|<font color="green">完成</font>|授权|
+|阿里云OSS|阿里云OSS|插件|<font color="green">完成</font>|授权|
 |Sql转换|Sql转Laravel数据库迁移|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/sql_convert_migrate.html)|
 |在线制作海报|拖拽在线制作海报|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/poster.html)|
 
