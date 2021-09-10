@@ -11,9 +11,9 @@ use Modules\System\Models\Config;
 class SeoController extends MyController
 {
 
-    public function config(Config $config)
+    public function config()
     {
-        $seoConfig = $config->group('seo')->getConfig();
+        $seoConfig = system_config([], 'seo');
         return $this->view('admin.config', compact('seoConfig'));
     }
 

@@ -52,6 +52,13 @@ class SystemServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );
+
+        if (file_exists(base_path('bootstrap/cache/system_config.php'))) {
+            $this->mergeConfigFrom(
+                base_path('bootstrap/cache/system_config.php'), 'system_config'
+            );
+        }
+
     }
 
     /**

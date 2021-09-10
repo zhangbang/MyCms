@@ -6,7 +6,7 @@
 if (!function_exists('cms_hook_the_title')) {
     function cms_hook_the_title()
     {
-        $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
+        $config = system_config([], 'seo');;
 
         if (is_single() && isset($config['seo_single_title'])) {
             return cms_single_seo_rule($config['seo_single_title']);
@@ -41,7 +41,7 @@ if (!function_exists('cms_hook_the_keyword')) {
     function cms_hook_the_keyword()
     {
 
-        $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
+        $config = system_config([], 'seo');;
 
         if (is_single() && isset($config['seo_single_keyword'])) {
             return cms_single_seo_rule($config['seo_single_keyword']);
@@ -76,7 +76,7 @@ if (!function_exists('cms_hook_the_description')) {
     function cms_hook_the_description()
     {
 
-        $config = (new \Modules\System\Models\Config())->group('seo')->getConfig();
+        $config = system_config([], 'seo');;
 
         if (is_single() && isset($config['seo_single_description'])) {
             return cms_single_seo_rule($config['seo_single_description']);

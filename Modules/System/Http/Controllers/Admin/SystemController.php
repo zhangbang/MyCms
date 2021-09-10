@@ -24,7 +24,7 @@ class SystemController extends MyController
                 'menuInfo' => $menuService->leftMenu()
             ]]);
         }
-        $systemConfig = $config->getConfig(['site_logo','site_name']);
+        $systemConfig = system_config();
         return $this->view('admin.index', compact('systemConfig'));
     }
 
@@ -42,17 +42,17 @@ class SystemController extends MyController
     public function images(Request $request)
     {
         if ($request->file('file')) {
-            $path = $request->file('file')->store('public/uploads/' . date('Ym/d'), 'root');
-            return $this->jsonSuc(['msg' => '上传成功', 'data' => str_replace('public/', '/', $path)]);
+            $path = $request->file('file')->store('public/uploads/' . date('Ym/d'), system_config('site_upload_disk'));
+            return $this->jsonSuc(['msg' => '上传成功', 'data' => system_image_url($path)]);
         }
 
         if ($request->file('upload')) {
-            $path = $request->file('upload')->store('public/uploads/' . date('Ym/d'), 'root');
+            $path = $request->file('upload')->store('public/uploads/' . date('Ym/d'), system_config('site_upload_disk'));
             return $this->jsonSuc([
                 'error' => [
                     'message' => '上传成功'
                 ],
-                'url' => str_replace('public/', '/', $path),
+                'url' => system_image_url($path),
                 'uploaded' => 1,
 
             ]);

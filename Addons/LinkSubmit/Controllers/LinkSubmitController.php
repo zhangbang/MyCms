@@ -27,9 +27,9 @@ class LinkSubmitController extends MyController
         return $this->view('admin.index');
     }
 
-    public function config(Config $config)
+    public function config()
     {
-        $systemConfig = $config->group($this->lowerName)->getConfig();
+        $systemConfig = system_config([], $this->lowerName);
         return $this->view('admin.config', compact('systemConfig'));
     }
 

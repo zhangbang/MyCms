@@ -19,9 +19,9 @@ class ConfigController extends MyController
     /**
      * 系统配置页面
      */
-    public function index(Config $config)
+    public function index()
     {
-        $systemConfig = $config->getConfig();
+        $systemConfig = system_config();
         return $this->view('admin.config.config', compact('systemConfig'));
     }
 
@@ -67,7 +67,11 @@ class ConfigController extends MyController
                 );
             }
 
+            update_system_config_cache();
+
         }
+
+
 
         return $this->result($result);
     }

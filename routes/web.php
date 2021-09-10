@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $theme = (new \Modules\System\Models\Config())->getConfig(['site_home_theme']);
+    $theme = system_config();
     if (isset($theme['site_home_theme'])) {
         switch ($theme['site_home_theme']) {
             case 'cms':

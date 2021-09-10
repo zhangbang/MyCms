@@ -17,7 +17,7 @@ class CmsController extends MyController
 
     public function index()
     {
-        is_home((new \Modules\System\Models\Config())->getConfig());
+        is_home(system_config());
 
         return $this->theme('index');
     }

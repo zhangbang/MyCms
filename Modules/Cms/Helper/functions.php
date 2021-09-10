@@ -7,7 +7,7 @@ if (!function_exists('cms_home_path')) {
     function cms_home_path(): string
     {
 
-        $config = (new \Modules\System\Models\Config())->getConfig();
+        $config = system_config();
         if ($config['site_home_theme'] == 'cms') {
             return '/';
         }

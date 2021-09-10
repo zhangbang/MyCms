@@ -22,7 +22,7 @@ class LinkSubmitListener
     public function handle(LinkSubmitEvent $event)
     {
 
-        $config = (new Config())->group('link_submit')->getConfig(['link_submit_url', 'link_submit_token']);
+        $config = system_config([], 'link_submit');
         $api = "http://data.zz.baidu.com/urls?site={$config['link_submit_url']}&token={$config['link_submit_token']}";
         $values = $event->getValues();
 
