@@ -37,7 +37,7 @@ if (!function_exists('system_config')) {
             );
         }
 
-        return is_string($cfgKey) ? $config[$cfgKey] : $config;
+        return is_string($cfgKey) && is_array($config) ? $config[$cfgKey] : $config;
 
     }
 }
