@@ -9,7 +9,7 @@
 
     <div class="widget">
         <h4>About</h4>
-        <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。</p>
+        <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。源码下载：https://gitee.com/qq386654667/mycms，技术交流QQ群：887522124 加群请备注来源：如gitee、github、官网等</p>
     </div>
     <div class="widget">
         <h4>Advantage</h4>
