@@ -130,3 +130,13 @@ if (!function_exists('system_image_url')) {
         return str_replace('public/', '/', $path);
     }
 }
+
+/*
+ * 获取资源链接
+ */
+if (!function_exists('system_resource_url')) {
+    function system_resource_url($path): string
+    {
+        return system_image_url($path);
+    }
+}

@@ -53,22 +53,8 @@ class ConfigController extends MyController
         ], "cfg_group = 'system'");
 
         if ($result !== false && $this->request('update_cache') == 1) {
-
             $service->makeCache();
-
-            foreach ($service->all() as $item) {
-
-                Storage::disk("root")->deleteDirectory(
-                    "resources/views/addons/" . strtolower(Str::snake($item['ident']))
-                );
-
-                Artisan::call(
-                    'vendor:publish --tag=addon_' . strtolower(Str::snake($item['ident']))
-                );
-            }
-
             update_system_config_cache();
-
         }
 
 

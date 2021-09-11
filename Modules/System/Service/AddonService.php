@@ -134,6 +134,18 @@ class AddonService
 
         foreach ($this->all() as $item) {
 
+            Storage::disk("root")->deleteDirectory(
+                "resources/views/addons/" . strtolower(Str::snake($item['ident']))
+            );
+
+            Storage::disk("root")->deleteDirectory(
+                "public/mycms/addons/" . strtolower(Str::snake($item['ident']))
+            );
+
+            Storage::disk("root")->delete(
+                "bootstrap/cache/" . strtolower(Str::snake($item['ident'])) . "_addon.php"
+            );
+
             if ($item['installed']) {
 
                 $statuses[$item['ident']] = true;
@@ -154,18 +166,10 @@ class AddonService
                     $roles = array_merge($roles ?? [], $array);
                 }
 
-            } else {
-                Storage::disk("root")->deleteDirectory(
-                    "resources/views/addons/" . strtolower(Str::snake($item['ident']))
+                Artisan::call(
+                    'vendor:publish --tag=addon_' . strtolower(Str::snake($item['ident']))
                 );
 
-                Storage::disk("root")->deleteDirectory(
-                    "public/mycms/addons/" . strtolower(Str::snake($item['ident']))
-                );
-
-                Storage::disk("root")->delete(
-                    "bootstrap/cache/" . strtolower(Str::snake($item['ident'])) . "_addon.php"
-                );
             }
         }
 

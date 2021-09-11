@@ -7,9 +7,6 @@ namespace Addons\LinkSubmit\Listeners;
 use Addons\LinkSubmit\Events\LinkSubmitEvent;
 use Addons\LinkSubmit\Models\LinkSubmit;
 use GuzzleHttp\Client;
-use Illuminate\Http\JsonResponse;
-use Modules\System\Models\Config;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class LinkSubmitListener
 {
