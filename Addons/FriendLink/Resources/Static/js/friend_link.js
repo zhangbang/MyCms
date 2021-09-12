@@ -7,6 +7,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         add_url: '/addon/friend_link/create',
         edit_url: '/addon/friend_link/edit',
         delete_url: '/addon/friend_link/destroy',
+        config_url: '/addon/friend_link/config',
     };
 
     return {
@@ -15,6 +16,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
             ea.table.render({
                 init: init,
+                toolbar: ['refresh', 'add', 'delete', 'config'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: '序号'},
                     {field: 'name', minWidth: 80, title: '名称'},
@@ -39,6 +41,8 @@ define(["jquery", "easy-admin"], function ($, ea) {
         create: function () {
             ea.listen();
         }, edit: function () {
+            ea.listen();
+        },config: function () {
             ea.listen();
         },
 

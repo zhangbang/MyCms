@@ -2,6 +2,8 @@
 /*
  * 将数组拼接成字符串
  */
+
+
 if (!function_exists('join_data')) {
     function join_data($array, $separator = ''): string
     {
@@ -92,9 +94,42 @@ if (!function_exists('update_system_config_cache')) {
 
         \Illuminate\Support\Facades\Storage::disk('root')->put(
             'bootstrap/cache/system_config.php',
-            "<?php \n\rreturn " . var_export($formatConfig,true) . ";"
+            "<?php \n\rreturn " . var_export($formatConfig, true) . ";"
         );
 
+    }
+}
+
+
+/*
+ * 保持系统配置
+ */
+if (!function_exists('system_config_store')) {
+    function system_config_store($data, $group)
+    {
+        $cfg = Modules\System\Models\Config::whereIn('cfg_key', array_keys($data))
+            ->get()->toArray();
+
+        $newConfigs = array_diff(
+            array_keys($data),
+            array_column($cfg, 'cfg_key')
+        );
+
+        foreach ($newConfigs as $cfg) {
+            (new Modules\System\Models\Config())->store([
+                'cfg_key' => $cfg,
+                'cfg_val' => $data[$cfg],
+                'cfg_group' => $group,
+            ]);
+        }
+
+        $result = (new Modules\System\Models\Config())->batchUpdate([
+            'cfg_val' => ['cfg_key' => $data]
+        ], "cfg_group = '{$group}'");
+
+        update_system_config_cache();
+
+        return $result;
     }
 }
 

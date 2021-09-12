@@ -2,7 +2,7 @@
     "name": "友情链接",
     "ident": "FriendLink",
     "description": "FriendLink",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "mycms",
     "providers": [
         "Addons\\FriendLink\\Providers\\ServiceProvider"

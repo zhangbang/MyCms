@@ -24,4 +24,7 @@ Route::group(
     Route::get('/create', 'FriendLinkController@create')->name('addon.friend_link.create');
     Route::post('/create', 'FriendLinkController@store');
     Route::post('/destroy', 'FriendLinkController@destroy');
+
+    Route::get('/config', 'FriendLinkController@config')->name('addon.friend_link.config');
+    Route::post('/config', 'FriendLinkController@storeCfg');
 });

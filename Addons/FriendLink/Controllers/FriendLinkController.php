@@ -83,4 +83,19 @@ class FriendLinkController extends MyController
         return $this->result($result);
     }
 
+    public function config()
+    {
+        $config = system_config([],'friend_link');
+        return $this->view('admin.config',compact('config'));
+    }
+
+    public function storeCfg()
+    {
+        $show = $this->request('friend_link_show');
+
+        $result = system_config_store(['friend_link_show' => $show], 'friend_link');
+
+        return $this->result($result);
+    }
+
 }
