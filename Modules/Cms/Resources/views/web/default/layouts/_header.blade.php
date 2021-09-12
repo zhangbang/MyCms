@@ -18,13 +18,13 @@
     <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/lightbox.min.css" type="text/css">
     <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/mycms/cms/theme/default/assets/css/style.css" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Alike" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Alike" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <noscript>
 
     </noscript>
     <!--[if lt IE 9]>
-    <link rel="stylesheet" type="text/css" href="http://house.studio-themes.com/assets/css/ie.css">
+    <link rel="stylesheet" type="text/css" href="//house.studio-themes.com/assets/css/ie.css">
     <![endif]-->
     <!-- ======== / STYLESHEETS ======== -->
     <!-- ======== STANDARD SCRIPTS ======== -->
