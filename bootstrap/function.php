@@ -59,7 +59,7 @@ if (!function_exists('system_config_cache')) {
             }
 
             if (is_string($cfgKey)) {
-                return $systemConfig[$cfgKey];
+                return $systemConfig[$cfgKey] ?? '';
             }
 
             $array = [];
