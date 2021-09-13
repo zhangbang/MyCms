@@ -7,6 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-sm-8 column">
+                    {!! call_hook_function('ad','list_top_ad') !!}
                     @foreach($articles = cms_new_articles() as $article)
                         <article class="post">
                             <header>

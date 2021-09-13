@@ -175,3 +175,16 @@ if (!function_exists('system_resource_url')) {
         return system_image_url($path);
     }
 }
+
+/*
+ * 调用插件函数
+ */
+if (!function_exists('call_hook_function')) {
+    function call_hook_function($name, ...$arg)
+    {
+        if (function_exists($name)) {
+            return call_user_func($name, $arg);
+        }
+        return false;
+    }
+}

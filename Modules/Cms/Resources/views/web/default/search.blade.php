@@ -12,6 +12,7 @@
                         <div></div>
                         <span>Search</span>
                     </header>
+                    {!! call_hook_function('ad','list_top_ad') !!}
                     @foreach($articles as $article)
                         <article class="post">
                             <header>

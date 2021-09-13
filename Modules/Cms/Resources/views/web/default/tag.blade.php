@@ -12,6 +12,7 @@
                         <div></div>
                         <span>Tag</span>
                     </header>
+                    {!! call_hook_function('ad','list_top_ad') !!}
                     @foreach($articles = cms_tag_articles($tag->id) as $article)
                         <article class="post">
                             <header>

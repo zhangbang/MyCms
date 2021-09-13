@@ -1,0 +1,11 @@
+{
+    "name": "广告管理",
+    "ident": "Ads",
+    "description": "广告管理",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\Ads\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/ads"
+}
