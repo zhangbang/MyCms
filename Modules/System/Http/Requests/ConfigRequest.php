@@ -24,6 +24,7 @@ class ConfigRequest extends MyRequest
             'site_logo' => ['max:255'],
             'site_home_theme' => ['max:255'],
             'site_upload_disk' => ['max:255'],
+            'site_header_js' => [],
         ];
     }
 

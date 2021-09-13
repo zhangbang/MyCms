@@ -34,15 +34,9 @@
     <script src="/mycms/cms/theme/default/assets/js/respond.js"></script>
     <![endif]-->
     <!-- ======== / STANDARD SCRIPTS ======== -->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?96c4c531b8527a0c49252e95fb78bd9d";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    @if(($headerJs = system_config('site_header_js')) !== null)
+        {!! $headerJs !!}
+    @endif
 
 </head>
 <body>

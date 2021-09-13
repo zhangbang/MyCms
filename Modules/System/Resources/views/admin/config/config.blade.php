@@ -61,6 +61,13 @@
                             </div>
                         </div>
 
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">头部自定义js</label>
+                            <div class="layui-input-block">
+                                <textarea name="site_header_js" class="layui-textarea">{{$systemConfig['site_header_js'] ?? ''}}</textarea>
+                                <tip>常用于放置统计代码</tip>
+                            </div>
+                        </div>
 
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">文件上传</label>
