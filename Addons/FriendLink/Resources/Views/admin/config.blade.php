@@ -6,8 +6,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">显示页面</label>
             <div class="layui-input-block">
-                <input type="radio" name="friend_link_show" lay-skin="primary" value="all" @if($config['friend_link_show'] == 'all') checked @endif title="全部页面">
-                <input type="radio" name="friend_link_show" lay-skin="primary" value="home" @if($config['friend_link_show'] == 'home') checked @endif title="首页">
+                <input type="radio" name="friend_link_show" lay-skin="primary" value="all" @if(isset($config['friend_link_show']) && $config['friend_link_show'] == 'all') checked @endif title="全部页面">
+                <input type="radio" name="friend_link_show" lay-skin="primary" value="home" @if(isset($config['friend_link_show']) && $config['friend_link_show'] == 'home') checked @endif title="首页">
             </div>
         </div>
 
