@@ -6,6 +6,7 @@ namespace Addons\SiteMap\Controllers;
 
 use App\Http\Controllers\MyController;
 use Illuminate\Support\Facades\Storage;
+use Modules\Cms\Models\ArticleTag;
 use Modules\Cms\Service\ArticleService;
 
 class SiteMapController extends MyController
@@ -33,6 +34,14 @@ class SiteMapController extends MyController
         foreach ($ids as $id) {
 
             $url = cms_single_path($id);
+            $xml .= "<url><loc>{$url}</loc></url>";
+
+        }
+
+        $ids = ArticleTag::select(['id'])->get()->toArray();
+        foreach ($ids as $id) {
+
+            $url = cms_tag_path($id);
             $xml .= "<url><loc>{$url}</loc></url>";
 
         }
