@@ -6,8 +6,8 @@ namespace Addons\SiteMap\Controllers;
 
 use App\Http\Controllers\MyController;
 use Illuminate\Support\Facades\Storage;
+use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleTag;
-use Modules\Cms\Service\ArticleService;
 
 class SiteMapController extends MyController
 {
@@ -20,29 +20,29 @@ class SiteMapController extends MyController
     public function make()
     {
 
-        $xml = '<?xml version="1.0" encoding="utf-8"?>';
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
         foreach (cms_categories() as $category) {
 
             $url = cms_category_path($category->id);
-            $xml .= "<url><loc>{$url}</loc></url>";
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$category->updated_at}</lastmod></url>";
 
         }
 
-        $ids = (new ArticleService())->ids();
-        foreach ($ids as $id) {
+        $articles = Article::select(['id','updated_at'])->get();;
+        foreach ($articles as $article) {
 
-            $url = cms_single_path($id);
-            $xml .= "<url><loc>{$url}</loc></url>";
+            $url = cms_single_path($article->id);
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$article->updated_at}</lastmod></url>";
 
         }
 
-        $ids = ArticleTag::select(['id'])->get()->toArray();
-        foreach ($ids as $id) {
+        $tags = ArticleTag::select(['id','updated_at'])->get();
+        foreach ($tags as $tag) {
 
-            $url = cms_tag_path($id);
-            $xml .= "<url><loc>{$url}</loc></url>";
+            $url = cms_tag_path($tag->id);
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$tag->updated_at}</lastmod></url>";
 
         }
 
