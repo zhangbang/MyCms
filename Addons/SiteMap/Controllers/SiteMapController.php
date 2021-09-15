@@ -25,24 +25,27 @@ class SiteMapController extends MyController
 
         foreach (cms_categories() as $category) {
 
+            $date = date("Y-m-d",strtotime($category->updated_at));
             $url = cms_category_path($category->id);
-            $xml .= "<url><loc>{$url}</loc><lastmod>{$category->updated_at}</lastmod></url>";
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod></url>";
 
         }
 
         $articles = Article::select(['id','updated_at'])->get();;
         foreach ($articles as $article) {
 
+            $date = date("Y-m-d",strtotime($article->updated_at));
             $url = cms_single_path($article->id);
-            $xml .= "<url><loc>{$url}</loc><lastmod>{$article->updated_at}</lastmod></url>";
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod></url>";
 
         }
 
         $tags = ArticleTag::select(['id','updated_at'])->get();
         foreach ($tags as $tag) {
 
+            $date = date("Y-m-d",strtotime($tag->updated_at));
             $url = cms_tag_path($tag->id);
-            $xml .= "<url><loc>{$url}</loc><lastmod>{$tag->updated_at}</lastmod></url>";
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod></url>";
 
         }
 
