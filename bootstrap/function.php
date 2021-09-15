@@ -188,3 +188,32 @@ if (!function_exists('call_hook_function')) {
         return false;
     }
 }
+
+/*
+ * 统计模型记录数
+ */
+if (!function_exists('system_model_count')) {
+    function system_model_count(\App\Models\MyModel $model, $where = [])
+    {
+        return $model::where($where)->count();
+    }
+}
+
+/*
+ * 统计模型模型某个字段的总数
+ */
+if (!function_exists('system_model_sum')) {
+    function system_model_sum(\App\Models\MyModel $model, $fields, $where = [])
+    {
+        if (is_string($fields)) {
+            return $model::where($where)->sum($fields);
+        }
+
+        if (is_array($fields)) {
+            $raws = array_map(function ($item) {
+                return "SUM({$item}) as {$item}_sum";
+            }, $fields);
+            return $model::select(\Illuminate\Support\Facades\DB::raw(join(",", $raws)))->where($where)->first();
+        }
+    }
+}

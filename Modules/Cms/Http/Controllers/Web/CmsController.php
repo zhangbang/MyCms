@@ -65,15 +65,9 @@ class CmsController extends MyController
     public function search($keyword)
     {
         $keyword = $this->filter($keyword, '');
-        $page = request()->route()->parameter('page');
-
-        $articles = Article::with("category:id,name")
-            ->orderBy('id','desc')
-            ->where('title', 'like', '%' . $keyword . '%')
-            ->paginate(10,'*','page',$page);
 
         is_search($keyword);
 
-        return $this->theme('search', compact('articles', 'keyword'));
+        return $this->theme('search', compact('keyword'));
     }
 }

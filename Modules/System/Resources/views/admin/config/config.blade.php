@@ -44,6 +44,19 @@
                             </div>
                         </div>
 
+                        @if ($themes = call_hook_function('cms_themes'))
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模板主题</label>
+                            <div class="layui-input-block">
+                                <select name="cms_theme">
+                                    @foreach($themes as $theme)
+                                    <option value="{{$theme['ident']}}" @if((!isset($systemConfig['cms_theme']) && $theme['ident'] == 'default') || (isset($systemConfig['cms_theme']) && $theme['ident'] == $systemConfig['cms_theme'])) selected @endif>{{$theme['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">首页模板</label>
                             <div class="layui-input-block">

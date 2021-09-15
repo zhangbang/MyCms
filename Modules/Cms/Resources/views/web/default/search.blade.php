@@ -13,7 +13,7 @@
                         <span>Search</span>
                     </header>
                     {!! call_hook_function('ad','list_top_ad') !!}
-                    @foreach($articles as $article)
+                    @foreach($articles = cms_search($keyword,20) as $article)
                         <article class="post">
                             <header>
                                 @if(isset($article->img))

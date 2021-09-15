@@ -3,6 +3,9 @@
 /*
  * 获取CMS首页地址
  */
+
+use Modules\Cms\Models\Article;
+
 if (!function_exists('cms_home_path')) {
     function cms_home_path(): string
     {
@@ -379,5 +382,41 @@ if (!function_exists('cms_page_url')) {
         $url .= strlen($url) == 1 ? "page/{$page}" : "/page/{$page}";
 
         return cms_hook_call('cms_hook_page_url', $url);
+    }
+}
+
+
+/*
+ * 扫描系统内模板
+ */
+if (!function_exists('cms_themes')) {
+    function cms_themes(): array
+    {
+        $directories = \Illuminate\Support\Facades\Storage::disk('root')
+            ->directories('Modules/Cms/Resources/views/web');
+
+        return array_map(function ($item) {
+            if (file_exists(base_path($item . '/theme.json'))) {
+                $info = \Illuminate\Support\Facades\Storage::disk('root')
+                    ->get($item . '/theme.json');
+                return json_decode($info, true);
+            }
+        }, $directories);
+    }
+}
+
+
+/*
+ * 搜索
+ */
+if (!function_exists('cms_search')) {
+    function cms_search($keyword, $limit = 10)
+    {
+        $page = request()->route()->parameter('page');
+
+        return Article::with("category:id,name")
+            ->orderBy('id', 'desc')
+            ->where('title', 'like', '%' . $keyword . '%')
+            ->paginate($limit, '*', 'page', $page);
     }
 }
