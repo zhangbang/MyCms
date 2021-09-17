@@ -27,6 +27,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerViews();
         $this->registerStatic();
         $this->loadMigrationsFrom(addon_path($this->addonName, '/Database/Migrations'));
+
+        include_once addon_path($this->addonName, '/Helpers/functions.php');
     }
 
     /**

@@ -24,11 +24,8 @@ class LinkSubmitEvent
         $this->response = $response;
     }
 
-    public function getValues(): array
+    public function getUrl(): array
     {
-        return [
-            'admin_name' => auth()->guard('admin')->user()->name,
-            'url' => json_decode($this->response->getContent(), true)['url'],
-        ];
+        return json_decode($this->response->getContent(), true)['url'];
     }
 }
