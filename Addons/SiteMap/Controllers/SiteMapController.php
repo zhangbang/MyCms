@@ -23,6 +23,11 @@ class SiteMapController extends MyController
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
+        $siteUrl = system_config('site_url');
+        $date = date("Y-m-d");
+
+        $xml .= "<url><loc>{$siteUrl}</loc><lastmod>{$date}</lastmod></url>";
+
         foreach (cms_categories() as $category) {
 
             $date = date("Y-m-d",strtotime($category->updated_at));

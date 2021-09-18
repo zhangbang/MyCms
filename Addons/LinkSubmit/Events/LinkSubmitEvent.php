@@ -24,7 +24,7 @@ class LinkSubmitEvent
         $this->response = $response;
     }
 
-    public function getUrl(): array
+    public function getUrl(): string
     {
         return json_decode($this->response->getContent(), true)['url'];
     }
