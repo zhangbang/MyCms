@@ -25,7 +25,7 @@
                             @if($category['child'])
                                 <ul class="sub-menu">
                                     @foreach($category['child'] as $child)
-                                    <li><a href="{{cms_category_path($category->id)}}">{{$child->name}}</a></li>
+                                    <li><a href="{{cms_category_path($child->id)}}">{{$child->name}}</a></li>
                                     @endforeach
                                 </ul>
                             @endif
