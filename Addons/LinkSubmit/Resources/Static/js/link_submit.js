@@ -4,6 +4,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         table_elem: '#currentTable',
         table_render_id: 'currentTableRenderId',
         index_url: '/addon/link_submit',
+        add_url: '/addon/link_submit/create',
         config_url: '/addon/link_submit/config',
     };
 
@@ -13,7 +14,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
             ea.table.render({
                 init: init,
-                toolbar:['refresh','config'],
+                toolbar: ['refresh', 'add', 'config'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: '流水号'},
                     {field: 'admin_name', minWidth: 80, title: '管理员名称'},
@@ -24,7 +25,9 @@ define(["jquery", "easy-admin"], function ($, ea) {
             });
 
             ea.listen();
-        },config: function () {
+        }, config: function () {
+            ea.listen();
+        }, create: function () {
             ea.listen();
         },
 

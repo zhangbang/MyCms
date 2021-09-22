@@ -26,6 +26,12 @@ class LinkSubmitEvent
 
     public function getUrl(): string
     {
-        return json_decode($this->response->getContent(), true)['url'];
+         $data = json_decode($this->response->getContent(), true);
+
+         if (isset($data['id'])) {
+             return cms_single_path($data['id']);
+         }
+
+        return $data['url'];
     }
 }

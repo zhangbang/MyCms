@@ -70,7 +70,7 @@ class RouteBehavior
 
             $classes = config("behavior.{$rule}") ?: [];
             foreach ($classes as $class) {
-                event(new $class($request, $response));
+                $class && event(new $class($request, $response));
             }
 
         }

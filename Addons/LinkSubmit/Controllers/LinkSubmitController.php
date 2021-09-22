@@ -45,4 +45,17 @@ class LinkSubmitController extends MyController
         return $this->result($result);
     }
 
+    public function create()
+    {
+        return $this->view('admin.create');
+    }
+
+    public function push()
+    {
+        $urls = $this->request('urls');
+        link_submit($urls);
+
+        return $this->result(true);
+    }
+
 }

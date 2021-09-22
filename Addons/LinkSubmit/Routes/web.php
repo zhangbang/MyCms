@@ -20,4 +20,6 @@ Route::group(
     Route::get('/', 'LinkSubmitController@index')->name('addon.link_submit.index');
     Route::get('config', 'LinkSubmitController@config')->name('addon.link_submit.config');
     Route::post('config', 'LinkSubmitController@store');
+    Route::get('create', 'LinkSubmitController@create')->name('addon.link_submit.create');
+    Route::post('create', 'LinkSubmitController@push');
 });

@@ -59,7 +59,7 @@ class ArticleController extends MyController
             $tagRel->insertRel($article->id, $tagIds);
         }
 
-        return $this->result($result, ['id' => $article->id, 'url' => cms_single_path($article->id)]);
+        return $this->result($result, ['id' => $article->id, 'title' => $article->title, 'url' => cms_single_path($article->id)]);
     }
 
     /**
