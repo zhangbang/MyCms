@@ -14,7 +14,7 @@
                                     <a href="{{cms_single_path($article->id)}}"><img src="{{$article->img}}" alt="{{$article->title}}"></a>
                                 </div>
                             @endif
-                            <h3><a href="{{cms_single_path($article->id)}}">{{$article->title}}</a></h3>
+                            <h1><a href="{{cms_single_path($article->id)}}">{{$article->title}}</a></h1>
                                 <span>{{$article->created_at}} / by <a href="javascript:">{{$article->author}}</a> / in: <a href="{{cms_category_path($article->category->id)}}">{{$article->category->name}}</a></span>
                         </header>
                         {!! call_hook_function('ad','single_ad') !!}

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-8 col-sm-8 column">
                     <header id="header-section">
-                        <h3>{{$category->name}}</h3>
+                        <h1>{{$category->name}}</h1>
                         <div></div>
                         <span>Category</span>
                     </header>

@@ -30,6 +30,8 @@ Route::group([
         Route::get('/edit', 'ArticleController@edit')->name('article.admin.edit');
         Route::post('/edit', 'ArticleController@update');
         Route::post('/destroy', 'ArticleController@destroy');
+        Route::get('/tags', 'ArticleController@tags')->name('article.admin.tags');
+        Route::post('/tags', 'ArticleController@tagStore');
 
 
         Route::get('/tag', 'ArticleTagController@index')->name('article.tag');

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <title>{{cms_the_title()}}</title>
+    <meta http-equiv='content-language' content='en-gb'>
     <!-- ======== META TAGS ======== -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -38,6 +39,16 @@
         {!! $headerJs !!}
     @endif
 
+    <style>
+        #header-section h1 {
+            margin-bottom: 0;
+            font-size: 30px;
+        }
+        .post>header h1 {
+            margin: 40px 0 10px!important;
+            font-size: 26px;
+        }
+    </style>
 </head>
 <body>
 

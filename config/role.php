@@ -62,6 +62,7 @@ return [
     'article/admin' => '文章列表',
     'article/admin/create' => '新建文章',
     'article/admin/edit' => '编辑文章',
+    'article/admin/tags' => '设置标签',
     'article/admin/destroy' => '删除文章',
     'article/admin/category' => '文章分类',
     'article/admin/category/create' => '创建分类',

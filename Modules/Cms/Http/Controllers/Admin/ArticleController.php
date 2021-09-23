@@ -107,4 +107,28 @@ class ArticleController extends MyController
         $result = Article::destroy($this->request('id', 'intval'));
         return $this->result($result);
     }
+
+
+    public function tags(ArticleService $articleService)
+    {
+        $id = $this->request('id', 'intval');
+        $tags = $articleService->tagsText($id);
+        $article = Article::find($id);
+
+        return $this->view('admin.article.tags', compact('article', 'tags'));
+    }
+
+    public function tagStore(ArticleTag $tag, ArticleTagRel $tagRel)
+    {
+        if ($id = $this->request('id', 'intval')) {
+            $tags = $this->request('tags');
+            $tagIds = $tag->insert(explode(",", $tags));
+            $tagRel->insertRel($id, $tagIds);
+
+            return $this->result($tagIds ?? false);
+        }
+
+        return $this->result(false);
+    }
+
 }

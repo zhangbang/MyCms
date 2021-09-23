@@ -7,6 +7,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         add_url: '/article/admin/create',
         edit_url: '/article/admin/edit',
         delete_url: '/article/admin/destroy',
+        tag_url: '/article/admin/tags',
     };
 
     return {
@@ -27,6 +28,13 @@ define(["jquery", "easy-admin"], function ($, ea) {
                         title: '操作',
                         templet: ea.table.tool,
                         operat: [
+                            [{
+                                text: '标签',
+                                url: init.tag_url,
+                                method: 'open',
+                                auth: 'password',
+                                class: 'layui-btn layui-btn-normal layui-btn-xs',
+                            }],
                             'edit',
                             'delete'
                         ]
@@ -40,6 +48,8 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         },
         edit: function () {
+            ea.listen();
+        }, tags: function () {
             ea.listen();
         },
     };
