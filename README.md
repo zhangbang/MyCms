@@ -27,6 +27,10 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
   
 * 演示后台：[https://demo.mycms.net.cn/system/login](https://demo.mycms.net.cn/system/login)（账号：admin，密码：admin）
 
+## 使用案例
+
+* 在线计算网：[https://www.zaixianjisuan.com/](https://www.zaixianjisuan.com/)
+
 ## [模块插件清单]
 
 - 免费模块or插件：和框架一样无任何使用限制，可以商业使用
