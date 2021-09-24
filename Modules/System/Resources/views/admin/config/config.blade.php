@@ -63,6 +63,7 @@
                                 <select name="site_home_theme">
                                     <option value="default" @if(isset($systemConfig['site_home_theme']) && $systemConfig['site_home_theme'] == 'default') selected @endif>默认首页</option>
                                     <option value="cms" @if(isset($systemConfig['site_home_theme']) && $systemConfig['site_home_theme'] == 'cms') selected @endif>CMS首页</option>
+                                    <option value="{{$systemConfig['site_home_theme'] ?? ''}}" @if(isset($systemConfig['site_home_theme']) && !in_array($systemConfig['site_home_theme'],['cms','default'])) selected @endif>插件首页</option>
                                 </select>
                             </div>
                         </div>

@@ -219,3 +219,42 @@ if (!function_exists('system_model_sum')) {
         }
     }
 }
+
+if (!function_exists("is_mobile")) {
+    function is_mobile(): bool
+    {
+
+        if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])) {
+            return true;
+        }
+
+        if (isset ($_SERVER['HTTP_VIA'])) {
+            return (bool)stristr($_SERVER['HTTP_VIA'], "wap");
+
+        }
+
+        if (isset ($_SERVER['HTTP_USER_AGENT'])) {
+            $client = [
+                'mobile','nokia', 'sony','ericsson','mot','samsung',
+                'htc','sgh','lg','sharp','sie-','philips','panasonic',
+                'alcatel','lenovo','iphone','ipod','blackberry','meizu',
+                'android','netfront','symbian','ucweb','windowsce','palm',
+                'operamini','operamobi','openwave','nexusone','cldc','midp','wap'
+            ];
+
+            if (preg_match("/(" . implode('|', $client) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+                return true;
+            }
+        }
+
+        if (isset ($_SERVER['HTTP_ACCEPT'])) {
+            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== FALSE) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === FALSE || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+}

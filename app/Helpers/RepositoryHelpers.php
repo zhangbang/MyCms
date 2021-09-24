@@ -23,7 +23,7 @@ trait RepositoryHelpers
                 $updateSql .= "{$column} = case ";
                 collect($data)->each(function ($items, $field) use (&$updateSql) {
                     $updateSql .= "{$field} ";
-                    collect($items)->each(function ($val, $key) use (&$updateSql)  {
+                    collect($items)->each(function ($val, $key) use (&$updateSql) {
                         $updateSql .= " WHEN '{$key}' THEN '{$val}' ";
                     });
                 });
@@ -31,7 +31,7 @@ trait RepositoryHelpers
             }
         );
 
-        $updateSql = rtrim($updateSql, ',') . " where {$condition}";
+        $updateSql = rtrim($updateSql, ',') . " where {$condition} and cfg_key in(" . join_data(array_keys($option['cfg_val']['cfg_key']),',') . ")";
         return DB::update($updateSql);
     }
 

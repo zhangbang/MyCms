@@ -21,6 +21,13 @@ Route::get('/', function () {
             case 'cms':
                 return App::call('Modules\Cms\Http\Controllers\Web\CmsController@index', []);
                 break;
+            case 'default':
+                return view('welcome');
+                break;
+            default:
+                $home = ucfirst($theme['site_home_theme']);
+                return App::call('Addons\\' . $home . '\Controllers\\' . $home . 'Controller@index', []);
+                break;
         }
     }
 
