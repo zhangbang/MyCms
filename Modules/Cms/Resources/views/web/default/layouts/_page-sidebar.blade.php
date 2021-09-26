@@ -8,6 +8,12 @@
     </div>
 
     <div class="widget">
+        <h4>Case</h4>
+        <p>在线计算网：<a href="https://www.zaixianjisuan.com/" target="_blank">https://www.zaixianjisuan.com/</a> </p>
+        <p>程序员导航：<a href="https://nav.mycms.net.cn/" target="_blank">https://nav.mycms.net.cn/</a> </p>
+    </div>
+
+    <div class="widget">
         <h4>About</h4>
         <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。源码地址：<a href="https://gitee.com/qq386654667/mycms" target="_blank" rel="nofollow" style="color: blue">Gitee</a>，技术交流QQ群：887522124 加群请备注来源：如gitee、github、官网等</p>
     </div>
