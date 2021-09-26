@@ -30,6 +30,7 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 ## 使用案例
 
 * 在线计算网：[https://www.zaixianjisuan.com/](https://www.zaixianjisuan.com/)
+* 程序员导航：[https://nav.mycms.net.cn/](https://nav.mycms.net.cn/)
 
 ## [模块插件清单]
 
@@ -52,6 +53,7 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 |Sql转换|Sql转Laravel数据库迁移|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/sql_convert_migrate.html)|
 |在线制作海报|拖拽在线制作海报|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/poster.html)|
 |语音合成|在线文字转语音|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/online_tts.html)|
+|网址导航|网址导航|插件|完成|免费&保留版权&[演示](https://nav.mycms.net.cn/)|
 
 ## 代码仓库
 

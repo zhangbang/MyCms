@@ -1,0 +1,11 @@
+{
+    "name": "导航",
+    "ident": "Nav",
+    "description": "导航",
+    "version": "1.0.0",
+    "author": "mycms",
+    "providers": [
+        "Addons\\Nav\\Providers\\ServiceProvider"
+    ],
+    "home": "/addon/nav"
+}

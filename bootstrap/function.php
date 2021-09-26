@@ -118,11 +118,13 @@ if (!function_exists('system_config_store')) {
         );
 
         foreach ($newConfigs as $cfg) {
-            (new Modules\System\Models\Config())->store([
-                'cfg_key' => $cfg,
-                'cfg_val' => $data[$cfg],
-                'cfg_group' => $group,
-            ]);
+            if ($data[$cfg]) {
+                (new Modules\System\Models\Config())->store([
+                    'cfg_key' => $cfg,
+                    'cfg_val' => $data[$cfg],
+                    'cfg_group' => $group,
+                ]);
+            }
         }
 
         $result = (new Modules\System\Models\Config())->batchUpdate([
@@ -228,18 +230,13 @@ if (!function_exists("is_mobile")) {
             return true;
         }
 
-        if (isset ($_SERVER['HTTP_VIA'])) {
-            return (bool)stristr($_SERVER['HTTP_VIA'], "wap");
-
-        }
-
         if (isset ($_SERVER['HTTP_USER_AGENT'])) {
             $client = [
-                'mobile','nokia', 'sony','ericsson','mot','samsung',
-                'htc','sgh','lg','sharp','sie-','philips','panasonic',
-                'alcatel','lenovo','iphone','ipod','blackberry','meizu',
-                'android','netfront','symbian','ucweb','windowsce','palm',
-                'operamini','operamobi','openwave','nexusone','cldc','midp','wap'
+                'mobile', 'nokia', 'sony', 'ericsson', 'mot', 'samsung',
+                'htc', 'sgh', 'lg', 'sharp', 'sie-', 'philips', 'panasonic',
+                'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu',
+                'android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm',
+                'operamini', 'operamobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap'
             ];
 
             if (preg_match("/(" . implode('|', $client) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
