@@ -52,4 +52,4 @@
 </head>
 <body>
 
-<div id="preloader"></div>
+{{--<div id="preloader"></div>--}}

@@ -24,33 +24,33 @@
                 return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
             }
         };
-		
-		
+
+
 		/* ============== PRELOADER ============== */
-		jQuery(window).load(function() {
+		/*jQuery(window).load(function() {
 			jQuery('#preloader').fadeOut(300);
-		});
-		
-		
+		});*/
+
+
 		/* ============== FEATURED ============== */
 		var top_news = jQuery('#featured');
-		
-		
+
+
 		top_news.owlCarousel({
 			items : 4,
 			pagination : false
 		});
-		
+
 		jQuery("#next-owl").click(function(){
 			top_news.trigger('owl.next');
 		});
-		
+
 		jQuery("#prev-owl").click(function(){
 			top_news.trigger('owl.prev');
 		});
 
 
-		
+
 		/* ============== SLIDESHOW IMAGES ============== */
 		if(jQuery('.house-slideshow').length) {
 			jQuery('.house-slideshow').each(function() {
@@ -63,38 +63,38 @@
 				});
 			});
 		}
-		
-		
-		
+
+
+
 		/* ============== VIDEO SCALE ============== */
 		jQuery('.fit').fitVids();
-		
-		
-		
+
+
+
 		/* ============== MASONRY ============== */
 		var masonry_2col = jQuery('#masonry-1');
 			masonry_2col.isotope({
 			itemSelector: '.post'
 		});
-		
+
 		var masonry_3col = jQuery('#masonry-2');
 			masonry_3col.isotope({
 			itemSelector: '.post'
 		});
-		
+
 		jQuery(window).load(function() {
 			masonry_2col.isotope('layout');
 			masonry_3col.isotope('layout');
 		});
-		
-		
-		
+
+
+
 		/* ============== MENU ============== */
 		jQuery('.sticky').sticky({topSpacing:0});
 		jQuery('#menu-container nav > ul > li').each(function() {
 			if(jQuery('.ubermenu-submenu' , this).length > 0) jQuery(this).css('position', 'static');
 		});
-		
+
 		jQuery('.ubermenu-tabs-group > li').hover(function() {
 			var parent_ubermenu = jQuery(this).parent();
 			jQuery('> li', parent_ubermenu).each(function() {
@@ -102,13 +102,13 @@
 			});
 			jQuery(this).addClass('ubermenu-active');
 		});
-		
+
 		jQuery('#menu-container li').hover(function() {
 			if(jQuery(window).width() > 991) jQuery('> .sub-menu, > .ubermenu-submenu', this).stop().fadeIn(300);
 		}, function() {
 			if(jQuery(window).width() > 991) jQuery('> .sub-menu, > .ubermenu-submenu', this).stop().fadeOut(300);
 		});
-		
+
 
         // Mobile menu
         jQuery('#mobile-button').click(function() {
@@ -117,11 +117,11 @@
             else
                 jQuery('#menu-container').css('display', 'none');
         });
-		
+
 		jQuery('#menu-container li').each(function() {
 			if(jQuery('.sub-menu, .ubermenu-submenu, .ubermenu-tab-content-panel', this).length > 0) jQuery('> a', this).addClass('arrow');
 		});
-		
+
 		jQuery('#menu-container a').click(function() {
 			if(jQuery(window).width() < 991) {
 				var list = jQuery(this).parent();
@@ -137,8 +137,8 @@
 				}
 			}
 		});
-		
-		
+
+
 
 
 
@@ -191,7 +191,7 @@
             // Success validate
             if (errors == 0) {
                 jQuery('#contactform button[type="submit"], #contactform input').attr('disabled', 'disabled');
-				
+
 				jQuery('#contactform .loading').slideDown(300);
                 $.ajax({
                     type: "POST",
@@ -213,21 +213,21 @@
             }
             return false;
         });
-		
-		
-		
-		
+
+
+
+
 		/* ============== STYLE SWITCHER ============== */
-		
-		
+
+
 		jQuery('#style-switcher span').click(function() {
 			var styleswitcher = jQuery(this).parent().css('left');
 			if(parseInt(styleswitcher, 10) < 0) jQuery(this).parent().addClass('open');
 			else jQuery(this).parent().removeClass('open');
 		});
-		
+
 		var top_news_owl = top_news.data('owlCarousel');
-		
+
 		if($.cookie('layout') == 'boxed') {
 			jQuery('html').addClass('boxed');
 			top_news_owl.reinit();
@@ -245,8 +245,8 @@
 			jQuery('#style-switcher select option:contains("Boxed")').prop('selected', true);
 			top_news_owl.reinit();
 		}
-		
-		
+
+
 		jQuery('#style-switcher img').click(function() {
 			var body_class = jQuery(this).attr('data-background');
 			jQuery('body').removeAttr('class');
@@ -257,8 +257,8 @@
 			jQuery('#style-switcher select option:contains("Boxed")').prop('selected', true);
 			top_news_owl.reinit();
 		});
-		
-		
+
+
 		jQuery('#style-switcher select').on('change', function() {
 			if(this.value == 'Boxed') {
 				jQuery('html').addClass('boxed');
@@ -273,7 +273,7 @@
 				$.cookie('layout', 'wide', { expires: 1 });
 			}
 		});
-		
+
 
     });
 })(jQuery);
