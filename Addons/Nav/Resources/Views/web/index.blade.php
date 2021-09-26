@@ -18,7 +18,9 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
+    @if(($headerJs = system_config('site_header_js')) !== null)
+        {!! $headerJs !!}
+    @endif
 </head>
 <body id="moulemBody">
 

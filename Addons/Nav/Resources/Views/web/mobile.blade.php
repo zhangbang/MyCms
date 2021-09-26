@@ -16,7 +16,9 @@
     <script src='/mycms/addons/nav/js/jquery.js' type='text/javascript'></script>
     <script type="text/javascript" src='/mycms/addons/nav/js/mkeyword.js'></script>
     <script type="text/javascript" src='/mycms/addons/nav/js/mjs.js'></script>
-
+    @if(($headerJs = system_config('site_header_js')) !== null)
+        {!! $headerJs !!}
+    @endif
 </head>
 <body style="zoom: 1;">
 <div id="container">
