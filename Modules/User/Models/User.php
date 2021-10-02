@@ -4,9 +4,7 @@
 namespace Modules\User\Models;
 
 
-use App\Models\MyModel;
-
-class User extends MyModel
+class User extends MyUserAuth
 {
 
     protected $table = 'my_user';

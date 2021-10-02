@@ -28,6 +28,8 @@ class UserServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
+        include_once module_path($this->moduleName, '/Helpers/functions.php');
     }
 
     /**

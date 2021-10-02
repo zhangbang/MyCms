@@ -420,3 +420,21 @@ if (!function_exists('cms_search')) {
             ->paginate($limit, '*', 'page', $page);
     }
 }
+
+/*
+ * 获取指定排序的文章
+ */
+if (!function_exists('cms_sort_articles')) {
+    function cms_sort_articles($field = 'id', $orderBy = 'desc', $categoryId = [], $limit = 10)
+    {
+        $page = request()->route()->parameter('page');
+        $whereRaw = $categoryId ? "  category_id in(" . join( ",",$categoryId) . ")" : '1=1';
+
+        $values = Article::with('category:id,name')
+            ->orderBy($field, $orderBy)
+            ->whereRaw($whereRaw)
+            ->paginate($limit, '*', 'page', $page);
+
+        return cms_hook_call('cms_hook_sort_articles', $values);
+    }
+}
