@@ -16,8 +16,10 @@ class ArticleTagService
 
         if ($ids = array_column($rel, 'article_id')) {
 
+            $page = request()->route()->parameter('page');
+
             return Article::whereIn('id', $ids)
-                ->paginate($limit);
+                ->paginate($limit, '*', 'page', $page);
 
         }
 

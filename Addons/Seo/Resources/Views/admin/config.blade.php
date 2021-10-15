@@ -64,7 +64,7 @@
                             <label class="layui-form-label ">文章标题</label>
                             <div class="layui-input-block">
                                 <input type="text" name="seo_single_title" class="layui-input" placeholder="填写文章标题" value="{{$seoConfig['seo_single_title'] ?? ''}}">
-                                <tip>填写文章标题.<em style="color: red">{name}</em>:为文章标题，<em style="color: red">{description}</em>为文章描述，<em style="color: red">{tags}</em>:为文章标签，<em style="color: red">{category}</em>:为文章分类</tip>
+                                <tip>填写文章标题.<em style="color: red">{name}</em>:为文章标题，<em style="color: red">{description}</em>为文章描述，<em style="color: red">{tags}</em>:为文章标签，<em style="color: red">{category}</em>:为文章分类，<em style="color: red">{author}</em>:为文章作者</tip>
                             </div>
                         </div>
 

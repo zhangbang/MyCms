@@ -187,7 +187,7 @@ if (!function_exists('call_hook_function')) {
     function call_hook_function($name, ...$arg)
     {
         if (function_exists($name)) {
-            return call_user_func($name, $arg);
+            return call_user_func($name, ...$arg);
         }
         return false;
     }

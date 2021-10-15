@@ -32,7 +32,8 @@
             "Database\\Seeders\\": "database/seeders/",
             "Modules\\": "Modules/",
             "Expand\\": "Expand/",
-            "Addons\\": "Addons/"
+            "Addons\\": "Addons/",
+            "Template\\": "Template/"
         },
         "files":[
             "bootstrap/function.php",

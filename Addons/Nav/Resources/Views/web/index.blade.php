@@ -15,6 +15,7 @@
     <script src="/mycms/addons/nav/js/jquery2.1.1.min.js" type='text/javascript'></script>
     <script type="text/javascript" src="/mycms/addons/nav/js/keyword.js"></script>
     <script type="text/javascript" src="/mycms/addons/nav/js/moulem.js"></script>
+    <script src="/mycms/addons/nav/js/zui.min.js"></script>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -97,13 +98,43 @@
                 @endforeach
 
             <div class="bottomCopyright"><span>©{{system_config('site_name')}} 由<a href="https://www.mycms.net.cn/" target="_blank">MyCms</a> 强力驱动</span>&nbsp;
-                @if(($icp = system_config('site_icp')) !== null)<a target="_blank" href="https://beian.miit.gov.cn">{{$icp}}</a>@endif&nbsp;
+                @if(($icp = system_config('site_icp')) !== null)<a target="_blank" href="https://beian.miit.gov.cn">{{$icp}}</a>@endif&nbsp;@if(!auth()->user())<a href="Javascript:void(0);" class="aboutBtn">登录</a>@endif
             </div>
         </div>
     </div>
 
 </div>
 </div>
+
+<script>
+    $(document).ready(
+        function () {
+            $('.aboutBtn').click(
+                function () {
+                    $("#LoginModal").modal('show');
+                }
+            );
+        }
+    );
+</script>
+
+<div class="modal fade addSourceModal" id="LoginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <a href="Javascript:void(0);" data-dismiss="modal" class="close-btn">
+                <img src="/mycms/addons/nav/images/close-btn.png" alt="">
+            </a>
+
+            <div class="login-btn">
+                <div class="info">请登录后使用自定义功能！</div>
+                <div class="addSimpleSourText">登录后即可新增分类、自定义分类和自定义网址</div>
+                <div class="btns">
+                    <a target="_blank" href="{{route('addon.qq.login')}}" style="display: inline-block"><img src="https://wiki.connect.qq.com/wp-content/uploads/2016/12/Connect_logo_1.png">QQ登录</a>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script>
     $(document).ready(
