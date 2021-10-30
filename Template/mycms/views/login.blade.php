@@ -27,7 +27,7 @@
                                 <span><i class="fa fa-eye-slash"></i></span>
                             </div>
                             <button type="submit" style="border: none" class="maan-primary-btn maan-btn">登录</button>
-                            <span class="forget-pass">忘记密码 ? <a href="{{route('user.forget')}}">找回密码</a></span>
+                            {{--<span class="forget-pass">忘记密码 ? <a href="{{route('user.forget')}}">找回密码</a></span>--}}
 
                         </form>
                     </div>
