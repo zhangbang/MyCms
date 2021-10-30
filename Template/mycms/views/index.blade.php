@@ -442,7 +442,7 @@
                             <ul>
                                 <li>
                                     <i><img src="/mycms/cms/theme/mycms/assets/img/icons/check-list.png" ></i>
-                                    <span>{{$article->created_at}}</span>
+                                    <span>{{created_at_date($article->created_at)}}</span>
                                 </li>
                             </ul>
                         </div>
