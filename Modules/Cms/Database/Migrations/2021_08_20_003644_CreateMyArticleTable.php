@@ -20,7 +20,7 @@ class CreateMyArticleTable extends Migration
             $table->string('description')->nullable();
             $table->string('img')->nullable();
             $table->string('author')->nullable();
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

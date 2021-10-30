@@ -12,6 +12,18 @@ if (!function_exists('cms_hook_the_title')) {
             return cms_single_seo_rule($config['seo_single_title']);
         }
 
+        if (is_goods() && isset($config['seo_store_goods_title'])) {
+            return shop_goods_seo_rule($config['seo_store_goods_title']);
+        }
+
+        if (is_store() && isset($config['seo_store_title'])) {
+            return shop_seo_rule($config['seo_store_title']);
+        }
+
+        if (is_store_category() && isset($config['seo_store_category_title'])) {
+            return shop_category_seo_rule($config['seo_store_category_title']);
+        }
+
         if (is_category() && isset($config['seo_category_title'])) {
             return cms_category_seo_rule($config['seo_category_title']);
         }
@@ -47,6 +59,18 @@ if (!function_exists('cms_hook_the_keyword')) {
             return cms_single_seo_rule($config['seo_single_keyword']);
         }
 
+        if (is_goods() && isset($config['seo_store_goods_keyword'])) {
+            return shop_goods_seo_rule($config['seo_store_goods_keyword']);
+        }
+
+        if (is_store() && isset($config['seo_store_keyword'])) {
+            return shop_seo_rule($config['seo_store_keyword']);
+        }
+
+        if (is_store_category() && isset($config['seo_store_category_keyword'])) {
+            return shop_category_seo_rule($config['seo_store_category_keyword']);
+        }
+
         if (is_category() && isset($config['seo_category_keyword'])) {
             return cms_category_seo_rule($config['seo_category_keyword']);
         }
@@ -80,6 +104,18 @@ if (!function_exists('cms_hook_the_description')) {
 
         if (is_single() && isset($config['seo_single_description'])) {
             return cms_single_seo_rule($config['seo_single_description']);
+        }
+
+        if (is_goods() && isset($config['seo_store_goods_description'])) {
+            return shop_goods_seo_rule($config['seo_store_goods_description']);
+        }
+
+        if (is_store() && isset($config['seo_store_description'])) {
+            return shop_seo_rule($config['seo_store_description']);
+        }
+
+        if (is_store_category() && isset($config['seo_store_category_description'])) {
+            return shop_category_seo_rule($config['seo_store_category_description']);
         }
 
         if (is_category() && isset($config['seo_category_description'])) {
@@ -135,6 +171,49 @@ if (!function_exists('cms_category_seo_rule')) {
     }
 }
 
+if (!function_exists('shop_category_seo_rule')) {
+    function shop_category_seo_rule($value)
+    {
+
+        $page = request()->route()->parameter('page');
+
+        return str_replace(
+            ['{name}', '{description}', '{page}'],
+            [session('store_category')->name, session('store_category')->description, $page && $page > 1 ? " - 第{$page}页" : '' ],
+            $value
+        );
+    }
+}
+
+if (!function_exists('shop_seo_rule')) {
+    function shop_seo_rule($value)
+    {
+
+        $page = request()->route()->parameter('page');
+
+        return str_replace(
+            ['{page}'],
+            [$page && $page > 1 ? " - 第{$page}页" : '' ],
+            $value
+        );
+    }
+}
+
+
+if (!function_exists('shop_goods_seo_rule')) {
+    function shop_goods_seo_rule($value)
+    {
+        return str_replace(
+            ['{name}', '{description}', '{category}'],
+            [
+                session('goods')->goods_name,
+                session('goods')->description,
+                session('goods')->category->name,
+            ],
+            $value
+        );
+    }
+}
 
 if (!function_exists('cms_tag_seo_rule')) {
     function cms_tag_seo_rule($value)

@@ -19,7 +19,7 @@ if (!function_exists('cms_home_path')) {
     }
 }
 
-/*
+/**
  * 获取CMS文章地址
  */
 if (!function_exists('cms_single_path')) {
@@ -32,7 +32,7 @@ if (!function_exists('cms_single_path')) {
     }
 }
 
-/*
+/**
  * 获取CMS分类地址
  */
 if (!function_exists('cms_category_path')) {
@@ -45,7 +45,7 @@ if (!function_exists('cms_category_path')) {
     }
 }
 
-/*
+/**
  * 获取CMS Tag地址
  */
 if (!function_exists('cms_tag_path')) {
@@ -58,112 +58,114 @@ if (!function_exists('cms_tag_path')) {
     }
 }
 
-/*
+/**
  * 获取CMS分类
  */
 if (!function_exists('cms_categories')) {
     function cms_categories()
     {
-        $values = (new \Modules\Cms\Service\ArticleCategoryService())->childTree();
+        $values = app('articleCategory')->childTree();
 
         return cms_hook_call('cms_hook_categories', $values);
     }
 }
 
-/*
+/**
  * 获取有缩略图的文章
  */
 if (!function_exists('cms_img_articles')) {
     function cms_img_articles($limit = 10)
     {
-        $values = (new \Modules\Cms\Service\ArticleService())->newPosts($limit, true);
+        $values = app('article')->newPosts($limit, true);
 
         return cms_hook_call('cms_hook_img_articles', $values);
     }
 }
 
-/*
+/**
  * 获取最新的文章
  */
 if (!function_exists('cms_new_articles')) {
     function cms_new_articles($limit = 10)
     {
-        $values = (new \Modules\Cms\Service\ArticleService())->newPosts($limit);
+
+        $values = app('article')->newPosts($limit);
 
         return cms_hook_call('cms_hook_new_articles', $values);
     }
 }
 
-/*
+/**
  * 获取标签
  */
 if (!function_exists('cms_tags')) {
     function cms_tags($limit = 10)
     {
-        $values = \Modules\Cms\Models\ArticleTag::orderBy('id', 'desc')->paginate($limit);
+        $values = app('articleTag')->newTags($limit);
 
         return cms_hook_call('cms_hook_tags', $values);
     }
 }
 
-/*
+/**
  * 获取文章标签
  */
 if (!function_exists('cms_article_tags')) {
     function cms_article_tags($id)
     {
-        $values = (new \Modules\Cms\Service\ArticleService())->tags($id);
+        $values = app('article')->tags($id);
 
         return cms_hook_call('cms_hook_article_tags', $values);
     }
 }
 
-/*
+/**
  * 获取分类文章
  */
 if (!function_exists('cms_category_articles')) {
     function cms_category_articles($id, $limit = 10)
     {
-        $child = (new \Modules\Cms\Service\ArticleCategoryService())->childIds([], $id);
-        $child[] = $id;
+        $child = app('articleCategory')->childIds([], $id, true);
 
-        $values = (new \Modules\Cms\Service\ArticleService())->newPosts(
-            $limit,
-            null,
-            $child
-        );
+        $values = app('article')->newPosts($limit, null, $child);
 
         return cms_hook_call('cms_hook_category_articles', $values);
     }
 }
 
 
-/*
+/**
  * 获取标签文章
  */
 if (!function_exists('cms_tag_articles')) {
     function cms_tag_articles($id, $limit = 10)
     {
-        $values = (new \Modules\Cms\Service\ArticleTagService())->articles(
-            $id, $limit
-        );
+        $values = app('articleTag')->articles($id, $limit);
 
         return cms_hook_call('cms_hook_tag_articles', $values);
     }
 }
 
-/*
+/**
  * 获取页面当前标题
  */
 if (!function_exists('cms_the_title')) {
     function cms_the_title()
     {
-        $value = '';
+        $value = session('page_title');
 
         $page = request()->route()->parameter('page');
 
         if (is_single()) {
             $value = session('single')->title;
+        }
+
+        if (is_goods()) {
+            $value = session('goods')->goods_name;
+        }
+
+        if (is_store_category()) {
+            $value = session('store_category')->name;
         }
 
         if (is_category()) {
@@ -188,17 +190,25 @@ if (!function_exists('cms_the_title')) {
     }
 }
 
-/*
+/**
  * 获取页面关键词
  */
 if (!function_exists('cms_the_keyword')) {
     function cms_the_keyword()
     {
 
-        $value = '';
+        $value = session('page_keyword');
 
         if (is_single()) {
             $value = session('single')->title;
+        }
+
+        if (is_goods()) {
+            $value = session('goods')->goods_name;
+        }
+
+        if (is_store_category()) {
+            $value = session('store_category')->name;
         }
 
         if (is_category()) {
@@ -222,17 +232,25 @@ if (!function_exists('cms_the_keyword')) {
 }
 
 
-/*
+/**
  * 获取页面描述
  */
 if (!function_exists('cms_the_description')) {
     function cms_the_description()
     {
 
-        $value = '';
+        $value = session('page_description');
 
         if (is_single()) {
             $value = session('single')->description;
+        }
+
+        if (is_goods()) {
+            $value = session('goods')->description;
+        }
+
+        if (is_store_category()) {
+            $value = session('store_category')->description;
         }
 
         if (is_category()) {
@@ -256,7 +274,7 @@ if (!function_exists('cms_the_description')) {
 }
 
 
-/*
+/**
  * 文章页
  */
 if (!function_exists('is_single')) {
@@ -393,7 +411,7 @@ if (!function_exists('cms_themes')) {
     function cms_themes(): array
     {
         $directories = \Illuminate\Support\Facades\Storage::disk('root')
-            ->directories('Modules/Cms/Resources/views/web');
+            ->directories('Template');
 
         return array_map(function ($item) {
             if (file_exists(base_path($item . '/theme.json'))) {
@@ -428,7 +446,7 @@ if (!function_exists('cms_sort_articles')) {
     function cms_sort_articles($field = 'id', $orderBy = 'desc', $categoryId = [], $limit = 10)
     {
         $page = request()->route()->parameter('page');
-        $whereRaw = $categoryId ? "  category_id in(" . join( ",",$categoryId) . ")" : '1=1';
+        $whereRaw = $categoryId ? "  category_id in(" . join(",", $categoryId) . ")" : '1=1';
 
         $values = Article::with('category:id,name')
             ->orderBy($field, $orderBy)
@@ -436,5 +454,12 @@ if (!function_exists('cms_sort_articles')) {
             ->paginate($limit, '*', 'page', $page);
 
         return cms_hook_call('cms_hook_sort_articles', $values);
+    }
+}
+
+if (!function_exists('created_at_date')) {
+    function created_at_date($dateTime, $format = 'Y-m-d')
+    {
+        return date($format, strtotime($dateTime));
     }
 }

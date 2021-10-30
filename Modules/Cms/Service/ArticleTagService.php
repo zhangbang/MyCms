@@ -5,6 +5,7 @@ namespace Modules\Cms\Service;
 
 
 use Modules\Cms\Models\Article;
+use Modules\Cms\Models\ArticleTag;
 use Modules\Cms\Models\ArticleTagRel;
 
 class ArticleTagService
@@ -24,6 +25,11 @@ class ArticleTagService
         }
 
         return [];
+    }
+
+    public function newTags($limit = 10)
+    {
+        return ArticleTag::orderBy('id', 'desc')->paginate($limit);
     }
 
 }

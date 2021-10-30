@@ -252,6 +252,19 @@ if (!function_exists("is_mobile")) {
 
         return false;
     }
-
-
 }
+
+if (!function_exists('paramFilter')) {
+    function paramFilter($value)
+    {
+        if (preg_match("/['\\\"]+/", $value)) {
+            return null;
+        }
+        $value = str_replace("&#x", "& # x", $value);    //过滤一些不安全字符
+        $value = preg_replace("/eval/i", "eva l", $value);    //过滤不安全函数
+        !get_magic_quotes_gpc() && $value = addslashes($value);
+        return $value;
+    }
+}
+
+

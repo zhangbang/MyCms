@@ -46,9 +46,10 @@ class ArticleCategoryService
         return [];
     }
 
-    public function childIds($categories = [], $pid = 0)
+    public function childIds($categories = [], $pid = 0, $self = false)
     {
         $categories = $categories ?: ArticleCategory::toTree();
+        $result = $self ? [$pid] : [];
 
         if (isset($categories[$pid]) && is_array($categories[$pid])) {
 
@@ -61,10 +62,9 @@ class ArticleCategoryService
                 }
             });
 
-            return $result;
         }
 
-        return [];
+        return $result;
     }
 
 }

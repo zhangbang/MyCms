@@ -21,13 +21,7 @@ trait RequestHelpers
             if ($filter) {
                 return $this->{$filter}($value);
             } else {
-                if (preg_match("/['\\\"]+/", $value)) {
-                    return null;
-                }
-                $value = str_replace("&#x", "& # x", $value);    //过滤一些不安全字符
-                $value = preg_replace("/eval/i", "eva l", $value);    //过滤不安全函数
-                !get_magic_quotes_gpc() && $value = addslashes($value);
-                return $value;
+                return paramFilter($value);
             }
 
         } else {
@@ -46,6 +40,11 @@ trait RequestHelpers
     protected function floatval($value): float
     {
         return floatval($value);
+    }
+
+    protected function mobile($value)
+    {
+        return preg_match("/^1\d{10}$/", $value) ? $value : false;
     }
 
 }

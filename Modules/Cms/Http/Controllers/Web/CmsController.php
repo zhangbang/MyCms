@@ -4,8 +4,8 @@
 namespace Modules\Cms\Http\Controllers\Web;
 
 
+use App\Helpers\ViewHelpers;
 use App\Http\Controllers\MyController;
-use Modules\Cms\Helper\CmsHelper;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleCategory;
 use Modules\Cms\Models\ArticleTag;
@@ -13,7 +13,7 @@ use Modules\Cms\Models\ArticleTag;
 class CmsController extends MyController
 {
 
-    use CmsHelper;
+    use ViewHelpers;
 
     public function index()
     {

@@ -12,70 +12,86 @@
 
 ## 项目介绍
 
-MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。
+MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，适用于个人网站及企业网站开发使用，软件著作权编号：2021SR1543432。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。
 
 技术交流QQ群：[887522124](https://qm.qq.com/cgi-bin/qm/qr?k=y3Q3pCWJdIRtCzdLMGdqMv3Jx04bib8D&jump_from=webapi) `加群请备注来源：如gitee、github、官网等`。
 
-
 ## 站点地址
 
-* 官方网站：[https://mycms.net.cn/](https://mycms.net.cn/)
+* [官方网站](https://www.mycms.net.cn/)
 
-* 文档地址：[https://www.kancloud.cn/b386654667/mycms](https://www.kancloud.cn/b386654667/mycms)
+* [文档地址](https://www.kancloud.cn/b386654667/mycms)
 
-* 演示地址：[https://demo.mycms.net.cn/](https://demo.mycms.net.cn/)
+* [源码下载](https://gitee.com/qq386654667/mycms)
   
-* 演示后台：[https://demo.mycms.net.cn/system/login](https://demo.mycms.net.cn/system/login)（账号：admin，密码：admin）
+* [演示前台](https://www.mycms.net.cn/) / [演示后台](https://demo.mycms.net.cn/system/login) 
 
-## 使用案例
+* 演示后台：admin / admin
 
-* 在线计算网：[https://www.zaixianjisuan.com/](https://www.zaixianjisuan.com/)
-* 程序员导航：[https://nav.mycms.net.cn/](https://nav.mycms.net.cn/)
-* 古诗词网：[https://www.gushici.top/](https://www.gushici.top/)
+## 优秀案例
 
-## [模块插件清单]
+* [在线计算网](https://www.zaixianjisuan.com/)
+* [程序员导航](https://nav.mycms.net.cn/)
+* [古诗词网](https://www.gushici.top/)
 
-- 免费模块or插件：和框架一样无任何使用限制，可以商业使用
-- 授权模块or插件：可用于个人或企业自营网站或应用或为客户定制开发， 禁止二次转售插件源码！
+## 系统特性
+* 简洁优雅、灵活可扩展
+* 后台基础功能
+    * 权限管理
+    * 内容管理
+    * 商品管理
+    * 会员管理
+    * 插件管理
+* 前台功能实现
+    * 首页
+    * 文章分类页
+    * 文章搜索页
+    * 文章标签页
+    * 文章详情页
+    * 商品列表页
+    * 商品详情页
+    * 会员登录/注册
+    * 会员中心
+* 对SEO优化友好的URL模式
+* 更优雅、符合SEO优化的分页
+* 基础缓存功能及数据库索引建立
+* 更具拓展性的路由监听功能
+* 完善的插件安装/卸载机制
+
+## 插件清单
+
 
 |  名称 | 简介  |类型　　|状态　　|价格　　|
 |---|---|---|---|---|
-|内容管理|基础内容管理模块|模块|<font color="green">完成</font>|免费|
-|会员模块|会员基础模块|模块|<font color="green">后台完成</font>|免费|
-|商城模块|商城基本管理|模块|<font color="green">后台完成</font>|免费|
-|系统记录|后台操作记录|插件|<font color="green">完成</font>|免费|
-|百度推送|百度资源推送，加速页面收录|插件|<font color="green">完成</font>|免费|
-|SEO设置|自定义设置标题，关键词，描述|插件|<font color="green">完成</font>|免费|
+|系统记录|后台操作记录|插件|完成|免费|
+|百度推送|百度资源推送，加速页面收录|插件|完成|免费|
+|SEO设置|自定义设置标题，关键词，描述|插件|完成|免费|
 |友情链接|友情链接|插件|完成|免费|
 |网站地图|生成网站XML地图|插件|完成|免费|
 |广告管理|广告管理|插件|完成|免费|
-|URL美化|美化URL|插件|<font color="green">完成</font>|授权|
-|阿里云OSS|阿里云OSS|插件|<font color="green">完成</font>|授权|
-|Sql转换|Sql转Laravel数据库迁移|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/sql_convert_migrate.html)|
-|在线制作海报|拖拽在线制作海报|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/poster.html)|
-|语音合成|在线文字转语音|插件|<font color="green">完成</font>|授权 & [演示](https://www.mycms.net.cn/chajian/online_tts.html)|
-|网址导航|网址导航|插件|完成|免费&保留版权&[演示](https://nav.mycms.net.cn/)|
+|网址导航|网址导航|插件|完成|免费|
+|SEO优化（URL）|SEO优化（URL）|插件|完成|授权|
+|阿里云OSS|阿里云OSS|插件|完成|授权|
+|Sql转换|Sql转Laravel数据库迁移|插件|完成|授权|
+|在线制作海报|拖拽在线制作海报|插件|完成|授权|
+|语音合成|在线文字转语音|插件|完成|授权|
 |QQ登录|QQ登录|插件|完成|授权|
 |模板管理|快速生成模板|插件|完成|授权|
+|阿里云短信|阿里云短信|插件|完成|授权|
+|支付宝支付|个人版（当面付）|插件|完成|授权|
+|采集爬虫|采集爬虫|插件|完成|授权|
 
-## 代码仓库
+## 快速安装
+1. 下载源码 / 上传源码到服务器
+2. 在根目录运行composer install --ignore-platform-reqs
+3. 在根目录创建.env文件并运行 php artisan key:generate生成秘钥   
+4. 将网站运行目录设置为 /public
+5. 访问 http://xxx.xxx/install 根据安装向导进行在线配置
 
-* Gitee地址：[https://gitee.com/qq386654667/mycms](https://gitee.com/qq386654667/mycms)
+## 后台界面
+![login-demo](https://static.mycms.net.cn/public/demo/login-demo.png)
+![system-demo](http://static.mycms.net.cn/public/demo/system-demo.png)
 
-
-## 项目特性
-* 采用Laravel-module实现模块化，降低耦合度，分工更明确，为做大做强创造无限可能
-* 使用Laravel中间件实现更智能的RBAC权限管理，自动读取更新，无需手动插入节点，告别手工插入时代
-* 后台采用Layuimini进行开发，对表格、表单进行封装，统一样式，统一交互，开发更快捷，使用更舒服
-* 后台页面基于Layui开发，手机、平板、PC均已自动适配，无需担心兼容性问题，专注业务逻辑代码开发
-* 使用Laravel-install实现在线配置程序，安装使用更方便
-* 完善的菜单管理，分模块管理更清晰，支持无限级菜单
-* 新增插件支持，轻松定制个性插件
-* 新增监听功能（支持单条URL、中间件和所有页面监听）
-* 支持区分生产&调试视图
-* 支持命令创建模块&插件
-* 新增用户后台模块（用户管理&余额明细&积分明细）
-* 新增CMS后台模块（文章管理&文章分类&文章标签）
 
 ## 特别感谢
 
@@ -96,10 +112,3 @@ MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyC
 * 任何单位或个人在阅读本免责声明后，应在《Apache2.0 开源许可证》所允许的范围内进行合法的发布、传播和使用`MyCms`后台框架等行为，若违反本免责声明条款或违反法律法规所造成的法律责任(包括但不限于民事赔偿和刑事责任），由违约者自行承担。
 * 如果本声明的任何部分被认为无效或不可执行，其余部分仍具有完全效力。不可执行的部分声明，并不构成我们放弃执行该声明的权利。
 * 本开源项目有权随时对本声明条款及附件内容进行单方面的变更，并以消息推送、网页公告等方式予以公布，公布后立即自动生效，无需另行单独通知；若您在本声明内容公告变更后继续使用的，表示您已充分阅读、理解并接受修改后的声明内容。
-
-
-## 捐赠支持
-
-开源项目不易，若此项目能帮助您提高开发速度，可以捐赠支持作者持续开发与维护，感谢所有支持开源的朋友。
-
-![Image text](https://mycms.net.cn/donate_qrcode.png)

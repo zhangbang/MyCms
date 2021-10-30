@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->moduleViews();
         $this->addonViews();
+        $this->templateViews();
 
         if(env('IS_HTTPS')){
             URL::forceScheme('https');
@@ -66,6 +67,14 @@ class AppServiceProvider extends ServiceProvider
             );
         }
 
+    }
+
+    protected function templateViews()
+    {
+        $this->loadViewsFrom(
+            base_path("Template"),
+            'template'
+        );
     }
 
 }

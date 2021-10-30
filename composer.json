@@ -37,7 +37,8 @@
         },
         "files":[
             "bootstrap/function.php",
-            "Modules/Cms/Helper/functions.php"
+            "Modules/Cms/Helper/functions.php",
+            "Modules/Shop/Helper/functions.php"
         ]
     },
     "autoload-dev": {

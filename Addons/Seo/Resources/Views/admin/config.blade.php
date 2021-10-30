@@ -125,7 +125,7 @@
                             <label class="layui-form-label">搜索关键词</label>
                             <div class="layui-input-block">
                                 <input type="text" name="seo_search_keyword" class="layui-input"  placeholder="请输入搜索关键词" value="{{$seoConfig['seo_search_keyword'] ?? ''}}">
-                                <tip>请输入标签关键词</tip>
+                                <tip>请输入关键词</tip>
                             </div>
                         </div>
 
@@ -133,6 +133,86 @@
                             <label class="layui-form-label">搜索描述</label>
                             <div class="layui-input-block">
                                 <textarea name="seo_search_description" class="layui-textarea">{{$seoConfig['seo_search_description'] ?? ''}}</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="hr-line"></div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ">商城标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_title" class="layui-input" placeholder="填写商城标题" value="{{$seoConfig['seo_store_title'] ?? ''}}">
+                                <tip>填写商城标题.<em style="color: red">{page}</em>:为 " - 第X页"</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商城关键词</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_keyword" class="layui-input"  placeholder="请输入商城关键词" value="{{$seoConfig['seo_store_keyword'] ?? ''}}">
+                                <tip>请输入关键词</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">商城描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="seo_store_description" class="layui-textarea">{{$seoConfig['seo_store_description'] ?? ''}}</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="hr-line"></div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ">商城分类标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_category_title" class="layui-input" placeholder="填写商城分类标题" value="{{$seoConfig['seo_store_category_title'] ?? ''}}">
+                                <tip>填写商城分类标题.<em style="color: red">{name}</em>:为分类名，<em style="color: red">{description}</em>为分类描述，<em style="color: red">{page}</em>:为 " - 第X页"</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商城分类关键词</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_category_keyword" class="layui-input"  placeholder="请输入商城关键词" value="{{$seoConfig['seo_store_category_keyword'] ?? ''}}">
+                                <tip>请输入分类关键词</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">商城分类描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="seo_store_category_description" class="layui-textarea">{{$seoConfig['seo_store_category_description'] ?? ''}}</textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="hr-line"></div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label ">商品标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_goods_title" class="layui-input" placeholder="填写商品标题" value="{{$seoConfig['seo_store_goods_title'] ?? ''}}">
+                                <tip>填写商品标题.<em style="color: red">{name}</em>:为商品标题，<em style="color: red">{description}</em>为商品描述，<em style="color: red">{category}</em>:为商品分类</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品关键词</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="seo_store_goods_keyword" class="layui-input"  placeholder="请输入商品关键词" value="{{$seoConfig['seo_store_goods_keyword'] ?? ''}}">
+                                <tip>请商品关键词</tip>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">商品描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="seo_store_goods_description" class="layui-textarea">{{$seoConfig['seo_store_goods_description'] ?? ''}}</textarea>
                             </div>
                         </div>
 

@@ -42,7 +42,7 @@ class ArticleCategoryController extends MyController
 
         $result = $category->store($data);
 
-        return $this->result($result);
+        return $this->result($result, ['title' => $data['name'], 'id' => $category->id]);
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace Modules\Cms\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\Cms\Service\ArticleCategoryService;
+use Modules\Cms\Service\ArticleService;
+use Modules\Cms\Service\ArticleTagService;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,18 @@ class CmsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind('article', function ($app) {
+            return new ArticleService();
+        });
+
+        $this->app->bind('articleCategory', function ($app) {
+            return new ArticleCategoryService();
+        });
+
+        $this->app->bind('articleTag', function ($app) {
+            return new ArticleTagService();
+        });
     }
 
     /**

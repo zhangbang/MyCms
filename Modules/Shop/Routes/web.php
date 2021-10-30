@@ -16,7 +16,7 @@ Route::group([
     'middleware' => 'admin.auth',
     'namespace' => '\Modules\Shop\Http\Controllers\Admin'
 ], function () {
-    Route::group(['prefix' => 'shop/admin'],function (){
+    Route::group(['prefix' => 'shop/admin'], function () {
         Route::get('/category', 'CategoryController@index')->name('shop.category');
         Route::get('/category/edit', 'CategoryController@edit')->name('shop.category.edit');
         Route::post('/category/edit', 'CategoryController@update');
@@ -38,5 +38,13 @@ Route::group([
 Route::group([
     'namespace' => '\Modules\Shop\Http\Controllers\Web'
 ], function () {
-    Route::get('/shop', 'ShopController@index');
+    Route::get('/goods/{id}', 'ShopController@goods')->name('store.goods');
+    Route::get('/store', 'ShopController@store')->name('store.index');
+    Route::get('/store/page/{page}', 'ShopController@store')->where(['page' => '[0-9]+']);
+    Route::get('/store/{cid}', 'ShopController@category')->name('store.category')->where(['cid' => '[0-9]+']);
+    Route::get('/store/{cid}/page/{page}', 'ShopController@category')->where(['cid' => '[0-9]+', 'page' => '[0-9]+']);
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/store/create/order', 'ShopController@createOrder')->name('store.create.order');
+    });
 });

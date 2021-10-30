@@ -34,7 +34,29 @@ Route::group([
         Route::get('/account', 'UserController@account')->name('user.admin.account');
         Route::post('/account', 'UserController@setAccount');
 
-        Route::get('/balance', 'BalanceController@index')->name('user.balance');
-        Route::get('/point', 'PointController@index')->name('user.point');
+        Route::get('/balance', 'BalanceController@index')->name('user.admin.balance');
+        Route::get('/point', 'PointController@index')->name('user.admin.point');
     });
+});
+
+Route::group([
+    'namespace' => '\Modules\User\Http\Controllers\Web'
+], function () {
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/user', 'UserController@index')->name('user.index');
+        Route::get('/user/logout', 'UserController@logout')->name('user.logout');
+    });
+
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('/user/reg', 'UserController@reg')->name('user.reg');
+        Route::post('/user/reg', 'UserController@store');
+        Route::get('/user/login', 'UserController@login')->name('user.login');
+        Route::post('/user/login', 'UserController@auth');
+        Route::get('/user/forget', 'UserController@forget')->name('user.forget');
+        Route::post('/user/reg/code', 'UserController@regCode')->name('user.reg.code');
+    });
+
+
+
 });

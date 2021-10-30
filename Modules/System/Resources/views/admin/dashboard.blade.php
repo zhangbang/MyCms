@@ -197,7 +197,7 @@
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>v1.0.5</td>
+                                <td>v1.3.0</td>
                             </tr>
                             <tr>
                                 <td>主要特色</td>
@@ -236,8 +236,7 @@
                 <div class="layui-card">
                     <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>作者心语</div>
                     <div class="layui-card-body layui-text layadmin-text">
-                        <p>MyCms是一款基于Laravel8+layuimini开发的模块化后台管理系统。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。</p>
-                        <p>喜欢此后台模板的可以给我的GitHub和Gitee加个Star支持一下</p>
+                        <p>MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，适用于个人网站及企业网站开发使用，软件著作权编号：2021SR1543432。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。</p>
                     </div>
                 </div>
 

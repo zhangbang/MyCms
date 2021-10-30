@@ -47,9 +47,14 @@ class ArticleTagController extends MyController
     {
         $data = $request->validated();
 
-        $result = $tag->store($data);
+        $row = ArticleTag::where('tag_name', $data['tag_name'])->first();
 
-        return $this->result($result);
+        if (!$row) {
+            $result = $tag->store($data);
+            return $this->result($result, ['title' => $data['tag_name'], 'id' => $tag->id]);
+        }
+
+        return $this->result(false, ['msg' => '该标签已存在']);
     }
 
     /**
@@ -86,7 +91,7 @@ class ArticleTagController extends MyController
      */
     public function destroy()
     {
-        $result = ArticleTag::destroy($this->request('id','intval'));
+        $result = ArticleTag::destroy($this->request('id', 'intval'));
         return $this->result($result);
     }
 }
