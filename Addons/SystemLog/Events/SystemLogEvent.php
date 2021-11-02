@@ -32,7 +32,7 @@ class SystemLogEvent
             'url' => $this->request->path(),
             'method' => $this->request->method(),
             'is_ajax' => $this->request->ajax(),
-            'ip' => $this->request->getClientIp(),
+            'ip' => get_client_ip(),
             'param' => json_encode($this->request->all()),
             'useragent' => $this->request->userAgent(),
         ];

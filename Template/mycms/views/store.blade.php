@@ -86,7 +86,7 @@
                                     <ul>
                                         @foreach(shop_categories() as $category)
                                             <li>
-                                                <a href="{{route('store.category',['cid'=>$category->id])}}">
+                                                <a href="{{shop_category_path($category->id)}}">
 
                                                     <span>{{$category->name}}</span>
                                                 </a>

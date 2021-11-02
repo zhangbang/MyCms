@@ -7,6 +7,7 @@ namespace Modules\User\Http\Controllers\Web;
 use App\Http\Controllers\MyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Modules\User\Http\Requests\ForgetRequest;
 use Modules\User\Http\Requests\RegRequest;
 use Modules\User\Models\User;
 
@@ -38,7 +39,7 @@ class UserController extends MyController
     {
         $data = $request->validated();
 
-        if (session('reg_code') == $data['reg_code']) {
+        if (session('reg_code') == $data['reg_code'] && session('reg_mobile') == $data['mobile']) {
 
             unset($data['reg_code']);
             $data['password'] = Hash::make($data['password']);
@@ -87,11 +88,12 @@ class UserController extends MyController
         if ($mobile = $this->request('mobile', 'mobile')) {
 
             $number = rand(1111, 9999);
-            $result = ali_sms($mobile, 0, ['number' => $number]);
+            $result = ali_sms($mobile, 0, ['code' => $number]);
 
             if ($result) {
 
                 session(['reg_code' => $number]);
+                session(['reg_mobile' => $mobile]);
                 session(['send_time' => time() + 60]);
             }
 
@@ -109,4 +111,28 @@ class UserController extends MyController
         return redirect()->intended();
     }
 
+    public function forget()
+    {
+        return $this->theme('forget');
+    }
+
+    public function editPwd(ForgetRequest $request)
+    {
+        $data = $request->validated();
+
+        if (session('reg_code') == $data['reg_code'] && session('reg_mobile') == $data['mobile']) {
+
+            $user = User::where('mobile', $data['mobile'])->first();
+
+            if ($user) {
+
+                $user->password = Hash::make($data['password']);
+                $result = $user->save();
+
+                return $this->result($result, ['msg' => '修改成功']);
+            }
+        }
+
+        return $this->result(false, ['msg' => "修改失败"]);
+    }
 }

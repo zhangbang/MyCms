@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleCategory;
 use Modules\Cms\Models\ArticleTag;
+use Modules\Shop\Models\Goods;
+use Modules\Shop\Models\GoodsCategory;
 
 class SiteMapController extends MyController
 {
@@ -56,6 +58,27 @@ class SiteMapController extends MyController
 
             $date = date("Y-m-d",strtotime($tag->updated_at));
             $url = cms_tag_path($tag->id);
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
+
+        }
+
+        $url = shop_path();
+        $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
+
+        $goodsCategories = GoodsCategory::select(['id','updated_at'])->get();
+        foreach ($goodsCategories as $category) {
+
+            $date = date("Y-m-d",strtotime($category->updated_at));
+            $url = shop_category_path($category->id);
+            $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
+
+        }
+
+        $goods = Goods::select(['id','updated_at'])->get();
+        foreach ($goods as $item) {
+
+            $date = date("Y-m-d",strtotime($item->updated_at));
+            $url = shop_goods_path($item->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }

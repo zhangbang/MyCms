@@ -175,7 +175,16 @@ class SystemMenuSeeder extends Seeder
                 'sort' => 0,
                 'created_at' => $createdTime,
                 'updated_at' => $createdTime,
-            ],
+            ],[
+                'pid' => 15,
+                'title' => '支付流水',
+                'icon' => 'fa fa-money',
+                'url' => '/shop/admin/pay/logs',
+                'target' => '_self',
+                'sort' => 0,
+                'created_at' => $createdTime,
+                'updated_at' => $createdTime,
+            ]
         ]);
     }
 }

@@ -42,7 +42,7 @@
                     <div class="col-xl-4">
                         <aside class="sidebar">
                             <!-- Price Widget -->
-                            <div class="theme-single-pill">
+                            <div class="theme-single-pill" style="margin-bottom: 3rem;">
                                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                     <li class="nav-item" onclick="$('#radio--1').click();" role="presentation">
                                         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
@@ -137,6 +137,23 @@
                                 </div>
 
 
+                            </div>
+
+                            <!-- Category -->
+                            <div class="widget category" style="margin-top: 15px">
+                                <h5 class="work-title">插件分类</h5>
+                                <div class="category-list">
+                                    <ul>
+                                        @foreach(shop_categories() as $category)
+                                            <li>
+                                                <a href="{{shop_category_path($category->id)}}">
+
+                                                    <span>{{$category->name}}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
 
                             <div class="widget category" style="margin-top: 15px">

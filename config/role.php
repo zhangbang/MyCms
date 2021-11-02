@@ -86,4 +86,5 @@ return [
     'shop/admin/goods/create' => '创建商品',
     'shop/admin/goods/edit' => '编辑商品',
     'shop/admin/goods/destroy' => '删除商品',
+    'shop/admin/pay/logs' => '支付流水',
 ];

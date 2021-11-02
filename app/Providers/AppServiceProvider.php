@@ -26,47 +26,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->moduleViews();
-        $this->addonViews();
+
         $this->templateViews();
 
-        if(env('IS_HTTPS')){
+        if (env('IS_HTTPS')) {
             URL::forceScheme('https');
         }
-    }
-
-    protected function addonViews()
-    {
-        if (env('APP_DEBUG')) {
-            collect(
-                Storage::disk('root')->directories('app/Addons')
-            )->each(
-                function ($directory, $key) {
-                    $this->loadViewsFrom(
-                        base_path("{$directory}/Resources/Views/"),
-                        strtolower(explode('/', $directory)[2])
-                    );
-                }
-            );
-
-        }
-    }
-
-    protected function moduleViews()
-    {
-        if (env('APP_DEBUG')) {
-            collect(
-                Storage::disk('root')->directories('Modules')
-            )->each(
-                function ($directory, $key) {
-                    $this->loadViewsFrom(
-                        base_path("{$directory}/Resources/views/"),
-                        strtolower(explode('/', $directory)[1])
-                    );
-                }
-            );
-        }
-
     }
 
     protected function templateViews()

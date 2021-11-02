@@ -5,8 +5,7 @@ namespace Modules\Shop\Listeners;
 
 
 use Illuminate\Support\Facades\DB;
-use Modules\Cms\Events\ViewEvent;
-use Modules\Cms\Models\Article;
+use Modules\Shop\Events\ViewEvent;
 use Modules\Shop\Models\Goods;
 
 class ViewListener

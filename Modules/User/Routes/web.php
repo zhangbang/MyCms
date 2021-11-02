@@ -54,9 +54,8 @@ Route::group([
         Route::get('/user/login', 'UserController@login')->name('user.login');
         Route::post('/user/login', 'UserController@auth');
         Route::get('/user/forget', 'UserController@forget')->name('user.forget');
+        Route::post('/user/forget', 'UserController@editPwd');
         Route::post('/user/reg/code', 'UserController@regCode')->name('user.reg.code');
     });
-
-
 
 });

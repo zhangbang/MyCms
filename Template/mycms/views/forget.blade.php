@@ -10,33 +10,15 @@
                     <a href="/" class="logo d-none d-sm-block"><img src="{{system_config('site_logo')}}" style="height: 46px" alt="Logo"></a>
                     <nav>
                         <div class="nav nav-tabs maan-swetch-btn" id="nav-tab" role="tablist">
-                            <button class="nav-link login-btn maan-btn active" id="Login-tab" data-bs-toggle="tab" data-bs-target="#Login" type="button" role="tab" aria-selected="true">登录</button>
-                            <button class="nav-link registration-btn" id="registration-tab" data-bs-toggle="tab" data-bs-target="#registration" type="button" role="tab" aria-selected="false">注册</button>
+                            <button class="nav-link  login-btn active" id="registration-tab" data-bs-toggle="tab" data-bs-target="#forget" type="button" role="tab" aria-selected="true">忘记密码</button>
+                            <button class="nav-link registration-btn maan-btn " id="Login-tab" data-bs-toggle="tab" data-bs-target="#Login" type="button" role="tab" aria-selected="false">登录</button>
+
                         </div>
                     </nav>
                 </div>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade active show" id="Login" role="tabpanel" aria-labelledby="Login-tab">
-                        <form method="post" id="login" onsubmit="return login();">
-                            <div class="maan-input-group">
-                                <input type="text" required name="name" placeholder="请输入用户名">
-                                <span><i class="fas fa-user"></i></span>
-                            </div>
-                            <div class="maan-input-group">
-                                <input type="password" required name="password" placeholder="* * * * * * * * * * * * *">
-                                <span><i class="fa fa-eye-slash"></i></span>
-                            </div>
-                            <button type="submit" style="border: none" class="maan-primary-btn maan-btn">登录</button>
-                            <span class="forget-pass">忘记密码 ? <a href="{{route('user.forget')}}">找回密码</a></span>
-
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
-                        <form method="post" id="reg" onsubmit="return register();">
-                            <div class="maan-input-group">
-                                <input type="text" required name="name" placeholder="请输入用户名">
-                                <span><i class="fas fa-user"></i></span>
-                            </div>
+                    <div class="tab-pane fade active show" id="forget" role="tabpanel" aria-labelledby="registration-tab">
+                        <form method="post" id="reg" onsubmit="return forget();">
                             <div class="maan-input-group">
                                 <input type="text" required name="mobile" id="mobile" placeholder="请输入手机号码">
                                 <span><i class="fas fa-mobile"></i></span>
@@ -49,7 +31,22 @@
                                 <input type="password" required name="password" placeholder="请输入密码">
                                 <span><i class="fa fa-eye-slash"></i></span>
                             </div>
-                            <button type="submit" style="border: none" class="maan-primary-btn maan-btn">马上注册</button>
+                            <button type="submit" style="border: none" class="maan-primary-btn maan-btn">修改密码</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="Login" role="tabpanel" aria-labelledby="Login-tab">
+                        <form method="post" id="login" onsubmit="return login();">
+                            <div class="maan-input-group">
+                                <input type="text" required name="name" placeholder="请输入用户名">
+                                <span><i class="fas fa-user"></i></span>
+                            </div>
+                            <div class="maan-input-group">
+                                <input type="password" required name="password" placeholder="* * * * * * * * * * * * *">
+                                <span><i class="fa fa-eye-slash"></i></span>
+                            </div>
+                            <button type="submit" style="border: none" class="maan-primary-btn maan-btn">登录</button>
+                            <span class="forget-pass">忘记密码 ? <a href="{{route('user.forget')}}">找回密码</a></span>
+
                         </form>
                     </div>
                 </div>
@@ -88,11 +85,11 @@
         return false;
     }
 
-    function register()
+    function forget()
     {
 
         $.ajax({
-            url: '{{route('user.reg')}}',
+            url: '{{route('user.forget')}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",
@@ -103,7 +100,7 @@
             },
             success: function (res) {
                 alert(res.msg);
-                location.reload();
+                location.href = '{{route('user.login')}}';
             },
             error: function (xhr) {
                 alert(xhr.responseJSON.msg);

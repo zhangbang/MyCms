@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <!-- ========== Start Stylesheet ========== -->
     <link href="/mycms/cms/theme/mycms/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/mycms/cms/theme/mycms/assets/css/fontawesome.min.css" rel="stylesheet" />

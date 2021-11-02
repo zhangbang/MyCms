@@ -267,4 +267,15 @@ if (!function_exists('paramFilter')) {
     }
 }
 
+if (!function_exists('get_client_ip')) {
+    function get_client_ip()
+    {
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
+            return explode(",",$_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+        }
+
+        return request()->getClientIp();
+    }
+}
+
 

@@ -21,9 +21,11 @@
             <div class="blog-wpr grid-3">
                 @foreach($articles = cms_search($keyword,12) as $article)
                     <div class="blog-box wow fadeInUp">
-                        <a href="{{cms_single_path($article->id)}}" class="blog-pic">
-                            <img src="{{$article->img}}" alt="{{$article->title}}" style="max-height: 220px;max-width: 340px">
-                        </a>
+                        @if(isset($article->img))
+                            <a href="{{cms_single_path($article->id)}}" class="blog-pic">
+                                <img src="{{$article->img}}" alt="{{$article->title}}" style="max-height: 220px;max-width: 340px">
+                            </a>
+                        @endif
                         <div class="blog-desc">
                             <div class="blog-meta">
                                 <ul>

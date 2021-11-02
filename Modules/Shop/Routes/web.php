@@ -32,6 +32,8 @@ Route::group([
         Route::post('/goods/create', 'GoodsController@store');
         Route::post('/goods/destroy', 'GoodsController@destroy');
 
+        Route::get('/pay/logs', 'PayController@logs')->name('pay.logs');
+
     });
 });
 

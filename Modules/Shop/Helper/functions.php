@@ -18,7 +18,7 @@ if (!function_exists('shop_categories')) {
  * 获取商品
  */
 if (!function_exists('shop_goods')) {
-    function shop_new_goods($cid = 0,$limit = 10)
+    function shop_new_goods($cid = 0, $limit = 10)
     {
         $values = app('goods')->lists($cid, $limit);
 
@@ -100,22 +100,23 @@ if (!function_exists('shop_path')) {
 if (!function_exists('shop_category_path')) {
     function shop_category_path($id): string
     {
-        return route('store.index');
+        return route('store.category', ['cid' => $id]);
     }
 }
 
 if (!function_exists('create_pay_log')) {
-    function create_pay_log($userId, $total, $goodsId, $payType = 'dmf')
+    function create_pay_log($userId, $total, $goodsId, $goodsName, $payType = 'dmf')
     {
         do {
             $tradeNo = date("YmdHi") . rand(1111, 9999) . date("s");
-            $log = PayLog::where('trade_no',$tradeNo)->first();
+            $log = PayLog::where('trade_no', $tradeNo)->first();
         } while ($log);
 
         $data = [
             'trade_no' => $tradeNo,
             'user_id' => $userId,
             'goods_id' => $goodsId,
+            'goods_name' => $goodsName,
             'total_amount' => $total,
             'pay_type' => $payType,
         ];
@@ -123,5 +124,13 @@ if (!function_exists('create_pay_log')) {
         $result = (new PayLog)->store($data);
 
         return $result ? $tradeNo : false;
+    }
+}
+
+
+if (!function_exists('finish_pay_order')) {
+    function finish_pay_order($tradeNo)
+    {
+        PayLog::where('trade_no', $tradeNo)->update(['status' => 1, 'pay_time' => time()]);
     }
 }

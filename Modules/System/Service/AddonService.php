@@ -135,10 +135,6 @@ class AddonService
         foreach ($this->all() as $item) {
 
             Storage::disk("root")->deleteDirectory(
-                "resources/views/addons/" . strtolower(Str::snake($item['ident']))
-            );
-
-            Storage::disk("root")->deleteDirectory(
                 "public/mycms/addons/" . strtolower(Str::snake($item['ident']))
             );
 
