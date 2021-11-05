@@ -80,7 +80,7 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 ]
 ```
 
-## Swoole配置
+## Nginx配置
 
 ```nginx
 map $http_upgrade $connection_upgrade {
