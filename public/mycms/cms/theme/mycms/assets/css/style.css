@@ -1807,7 +1807,9 @@ button.navbar-toggler:focus {
     letter-spacing: 0.0015em;
     margin-bottom: 2.9rem;
     text-transform: capitalize;
-    transition: all 0.3s
+    transition: all 0.3s;
+    height: 30px;
+    overflow: hidden;
 }
 
 .work-title:hover,
@@ -2333,6 +2335,11 @@ button.navbar-toggler:focus {
 
 .blog-box:hover {
     box-shadow: 0px 20px 50px 0px rgba(7, 14, 39, 0.07);
+}
+
+.blog-box .blog-pic{
+    height: 190px;
+    overflow: hidden;
 }
 
 .blog-box .blog-pic img {

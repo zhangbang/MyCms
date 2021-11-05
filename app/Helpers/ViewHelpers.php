@@ -34,8 +34,6 @@ trait ViewHelpers
         $namespace = (new \ReflectionClass($this))->getNamespaceName();
         list($type, $name) = explode("\\", $namespace);
 
-        $name = $type == 'Template' ? 'Cms' : $name;
-
         return [
             'type' => strtolower(Str::snake($type)),
             'name' => strtolower(Str::snake($name))

@@ -58,6 +58,89 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 * 更具拓展性的路由监听功能
 * 完善的插件安装/卸载机制
 
+## 性能提升
+* 使用opcache加速性能
+* 缓存路由信息 `php artisan route:cache`
+* 关闭调试模式 `APP_DEBUG=false`
+* 缓存配置信息 `php artisan config:cache`
+* 使用 `Swoole` 版本
+
+## Swoole版本
+目前最新版本`v1.3.2+`已经加入 `Swoole` 支持。
+使用新版本的用户直接安装后按以下配置即可。
+
+使用旧版本的用户则需要先安装 `composer require swooletw/laravel-swoole`。
+在 `config/app.php` 服务提供者数组添加该服务提供者。
+
+```php
+[
+    'providers' => [
+        SwooleTW\Http\LaravelServiceProvider::class,
+    ],
+]
+```
+
+## Swoole配置
+
+```nginx
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name your.domain.com;
+    root /path/to/laravel/public;
+    index index.php;
+
+    location = /index.php {
+        # Ensure that there is no such file named "not_exists"
+        # in your "public" directory.
+        try_files /not_exists @swoole;
+    }
+    # any php files must not be accessed
+    #location ~* \.php$ {
+    #    return 404;
+    #}
+    location / {
+        try_files $uri $uri/ @swoole;
+    }
+
+    location @swoole {
+        set $suffix "";
+
+        if ($uri = /index.php) {
+            set $suffix ?$query_string;
+        }
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header Scheme $scheme;
+        proxy_set_header SERVER_PORT $server_port;
+        proxy_set_header REMOTE_ADDR $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        # IF https
+        # proxy_set_header HTTPS "on";
+
+        proxy_pass http://127.0.0.1:1215$suffix;
+    }
+}
+
+```
+
+## Swoole运行
+`php artisan swoole:http start`
+
+|  命令 | 说明  |
+|---|---|
+|  start | 开启  |
+|  stop | 停止  |
+|  restart | 重启  |
+|  reload | 重载  |
+|  infos | 信息  |
 ## 插件清单
 
 
@@ -83,10 +166,10 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 
 ## 快速安装
 1. 下载源码 / 上传源码到服务器
-2. 在根目录运行composer install --ignore-platform-reqs
-3. 在根目录创建.env文件并运行 php artisan key:generate生成秘钥   
-4. 将网站运行目录设置为 /public
-5. 访问 http://xxx.xxx/install 根据安装向导进行在线配置
+2. 在根目录运行 `composer install --ignore-platform-reqs`
+3. 在根目录创建.env文件并运行 `php artisan key:generate` 生成秘钥   
+4. 将网站运行目录设置为 `/public`
+5. 访问 `http://xxx.xxx/install` 根据安装向导进行在线配置
 
 ## 后台界面
 ![login-demo](https://static.mycms.net.cn/public/demo/login-demo.png)

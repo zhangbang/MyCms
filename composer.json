@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "nwidart/laravel-modules": "^8.2",
-        "rachidlaasri/laravel-installer": "^4.1"
+        "rachidlaasri/laravel-installer": "^4.1",
+        "swooletw/laravel-swoole": "^2.10"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
