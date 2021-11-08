@@ -60,6 +60,16 @@ class RouteBehavior
 
         }
 
+        $tag = $request->route()->getAction('tag');
+
+        if ($tag) {
+
+            $tag = str_replace(".", "_", $tag);
+            $rules[] = "tag:{$tag}:{$method}:{$statusCode}";
+            $rules[] = "tag:{$tag}:{$statusCode}";
+
+        }
+
         foreach ($middlewares as $middleware) {
             $middleware = str_replace(".", "_", $middleware);
             $rules[] = "md:{$middleware}:{$method}:{$statusCode}";

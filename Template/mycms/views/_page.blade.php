@@ -5,22 +5,25 @@
         </a>
     @endif
 
-    @if (($paginator->currentPage() - 1) >= 2)
-        @for($i = $paginator->currentPage() - 2;$i < $paginator->currentPage();$i++)
+
+
+    @for($i = $paginator->currentPage() - 2;$i < $paginator->currentPage();$i++)
+        @if ($i >= 1)
             <a href="{{cms_page_url($i)}}">{{$i}}</a>
-        @endfor
-    @endif
+        @endif
+    @endfor
 
-    @if (($paginator->lastPage() - $paginator->currentPage()) >= 3)
-        @for($i = $paginator->currentPage();$i < ($paginator->currentPage()+3);$i++)
-            @if($i == $paginator->currentPage())
-                <a href="javascript:" style="background-color: var(--clr-def);color: white">{{$i}}</a>
-            @else
-                <a href="{{cms_page_url($i)}}">{{$i}}</a>
-            @endif
+    <a href="javascript:" style="background-color: var(--clr-def);color: white">{{$paginator->currentPage()}}</a>
 
-        @endfor
-    @endif
+    @for($i = $paginator->currentPage() + 1;$i <= $paginator->lastPage();$i++)
+        @if ($i <= $paginator->currentPage() + 3)
+            <a href="{{cms_page_url($i)}}">{{$i}}</a>
+        @endif
+    @endfor
+
+
+
+
     @if ($paginator->currentPage() < $paginator->lastPage())
         <a href="{{cms_page_url($paginator->currentPage() + 1)}}"> »</a>
     @endif

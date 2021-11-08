@@ -278,4 +278,36 @@ if (!function_exists('get_client_ip')) {
     }
 }
 
+if (!function_exists('get_img_suffix')) {
+    function get_img_suffix($name)
+    {
+        $info = getimagesize($name);
 
+        $suffix = false;
+
+        if($mime = $info['mime']){
+            $suffix = explode('/',$mime)[1];
+        }
+
+        return $suffix;
+    }
+}
+
+if (!function_exists('get_resource_http_path')) {
+    function get_resource_http_path($src, $url)
+    {
+
+        if (substr($src, 0, 4) == 'http' || substr($src, 0, 2) == '//') {
+            $imgUrl = $src;
+        } else {
+            $http = parse_url($url);
+            $imgUrl = (
+                substr($src, 0, 1) == '/'
+                    ? $http['scheme'] . "://" . $http['host']
+                    : dirname($url) . "/"
+                ) . $src;
+        }
+
+        return $imgUrl;
+    }
+}

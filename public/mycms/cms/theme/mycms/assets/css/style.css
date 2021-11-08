@@ -2741,6 +2741,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .tags-link {
