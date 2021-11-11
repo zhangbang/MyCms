@@ -15,11 +15,11 @@ class PayController extends MyController
     {
         if ($request->ajax() && $request->wantsJson()) {
 
-            $where = [];
+            $where = ['trade_type' => 'goods'];
             if ($json = $request->input('filter')) {
                 $filters = json_decode($json, true);
                 foreach ($filters as $name => $filter) {
-                    $where[] = [$name,  '=', $filter];
+                    $where[] = [$name, '=', $filter];
                 }
             }
 

@@ -1,7 +1,5 @@
 <?php
 
-use Modules\Shop\Models\PayLog;
-
 /*
  * 获取Shop分类
  */
@@ -104,33 +102,3 @@ if (!function_exists('shop_category_path')) {
     }
 }
 
-if (!function_exists('create_pay_log')) {
-    function create_pay_log($userId, $total, $goodsId, $goodsName, $payType = 'dmf')
-    {
-        do {
-            $tradeNo = date("YmdHi") . rand(1111, 9999) . date("s");
-            $log = PayLog::where('trade_no', $tradeNo)->first();
-        } while ($log);
-
-        $data = [
-            'trade_no' => $tradeNo,
-            'user_id' => $userId,
-            'goods_id' => $goodsId,
-            'goods_name' => $goodsName,
-            'total_amount' => $total,
-            'pay_type' => $payType,
-        ];
-
-        $result = (new PayLog)->store($data);
-
-        return $result ? $tradeNo : false;
-    }
-}
-
-
-if (!function_exists('finish_pay_order')) {
-    function finish_pay_order($tradeNo)
-    {
-        PayLog::where('trade_no', $tradeNo)->update(['status' => 1, 'pay_time' => time()]);
-    }
-}

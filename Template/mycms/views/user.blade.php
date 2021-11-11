@@ -28,7 +28,7 @@
                     <div class="col-lg-4">
                         <div class="user-profile">
                             <div class="user-profile-pic">
-                                <img src="/mycms/cms/theme/mycms/assets/img/team/profile.png">
+                                <img src="{{auth()->user()->img ?: '/mycms/cms/theme/mycms/assets/img/user/user-default-img.png'}}">
                                 <div class="user-profile-bio">
                                     <h5 class="work-title">{{auth()->user()->name}}</h5>
                                     <span>普通会员</span>

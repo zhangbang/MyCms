@@ -40,6 +40,12 @@ Route::group([
         Route::get('/tag/create', 'ArticleTagController@create')->name('article.tag.create');
         Route::post('/tag/create', 'ArticleTagController@store');
         Route::post('/tag/destroy', 'ArticleTagController@destroy');
+
+        Route::get('/comment', 'ArticleCommentController@index')->name('article.comment');
+        Route::get('/comment/config', 'ArticleCommentController@config')->name('article.comment.config');
+        Route::post('/comment/config', 'ArticleCommentController@storeCfg');
+        Route::post('/comment/modify', 'ArticleCommentController@modify')->name('article.comment.modify');
+        Route::post('/comment/destroy', 'ArticleCommentController@destroy');
     });
 });
 
@@ -55,4 +61,9 @@ Route::group([
     Route::get('/page/{page}', 'CmsController@index')->where(['page' => '[0-9]+']);
     Route::get('/search/{keyword}', 'CmsController@search')->name('cms.search');
     Route::get('/search/{keyword}/page/{page}', 'CmsController@search')->where(['page' => '[0-9]+']);
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/comment/create', 'CmsController@createComment')->name('cms.single.comment.create');
+    });
+
 });

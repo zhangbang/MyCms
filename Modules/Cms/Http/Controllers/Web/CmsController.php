@@ -6,8 +6,10 @@ namespace Modules\Cms\Http\Controllers\Web;
 
 use App\Helpers\ViewHelpers;
 use App\Http\Controllers\MyController;
+use Modules\Cms\Http\Requests\ArticleCommentRequest;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleCategory;
+use Modules\Cms\Models\ArticleComment;
 use Modules\Cms\Models\ArticleTag;
 
 class CmsController extends MyController
@@ -45,7 +47,9 @@ class CmsController extends MyController
 
         is_single($article);
 
-        return $this->theme('single', compact('article'));
+        $config = system_config([], 'cms');
+
+        return $this->theme('single', compact('article', 'config'));
     }
 
 
@@ -69,5 +73,51 @@ class CmsController extends MyController
         is_search($keyword);
 
         return $this->theme('search', compact('keyword'));
+    }
+
+    public function createComment(ArticleCommentRequest $request)
+    {
+        $config = system_config([], 'cms');
+
+        if (isset($config['is_allow_comment']) && $config['is_allow_comment'] == 1) {
+
+            $data = $request->validated();
+            $content = strip_tags(paramFilter($data['content']));
+
+            $article = Article::find($data['single_id']);
+
+            if (!$article) {
+                return $this->result(false, ['msg' => '非法参数.']);
+            }
+
+            $pid = $data['parent_id'];
+            $rid = 0;
+
+            if ($pid > 0) {
+
+                $obj = cms_comment($pid, $data['single_id']);
+
+                if (!$obj) {
+                    return $this->result(false, ['msg' => '非法参数.']);
+                }
+
+                $rid = $obj->parent_id == 0 ? $obj->id : $obj->root_id;
+            }
+
+            $comment = [
+                'single_id' => $data['single_id'],
+                'user_id' => auth()->user()->id,
+                'root_id' => $rid,
+                'parent_id' => $pid,
+                'status' => isset($config['is_auto_status']) && $config['is_auto_status'] == 1 ? 1 : 0,
+                'content' => $content,
+            ];
+
+            $result = (new ArticleComment())->store($comment);
+            return $this->result($result);
+        }
+
+        return $this->result(false);
+
     }
 }

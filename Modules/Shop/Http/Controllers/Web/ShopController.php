@@ -61,7 +61,7 @@ class ShopController extends MyController
 
                 $total = $empower == 1 ? $goods->shop_price : $goods->market_price;
 
-                $tradeNo = create_pay_log(auth()->user()->id, $total, $goodsId, $goods->goods_name);
+                $tradeNo = create_pay_log(auth()->user()->id, $total, $goodsId, $goods->goods_name,'goods');
                 $payLink = dmf_trade_create($tradeNo, $total, $goods->goods_name);
 
                 return $this->result(true, ['pay_url' => $payLink]);

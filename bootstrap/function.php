@@ -1,9 +1,10 @@
 <?php
-/*
+
+use Modules\Shop\Models\PayLog;
+
+/**
  * 将数组拼接成字符串
  */
-
-
 if (!function_exists('join_data')) {
     function join_data($array, $separator = ''): string
     {
@@ -15,7 +16,7 @@ if (!function_exists('join_data')) {
     }
 }
 
-/*
+/**
  * 插件地址
  */
 if (!function_exists('addon_path')) {
@@ -25,7 +26,7 @@ if (!function_exists('addon_path')) {
     }
 }
 
-/*
+/**
  * 获取系统配置
  */
 if (!function_exists('system_config')) {
@@ -46,7 +47,7 @@ if (!function_exists('system_config')) {
     }
 }
 
-/*
+/**
  * 从缓存中获取系统配置
  */
 if (!function_exists('system_config_cache')) {
@@ -78,7 +79,7 @@ if (!function_exists('system_config_cache')) {
     }
 }
 
-/*
+/**
  * 更新系统配置缓存
  */
 if (!function_exists('update_system_config_cache')) {
@@ -103,7 +104,7 @@ if (!function_exists('update_system_config_cache')) {
 }
 
 
-/*
+/**
  * 保持系统配置
  */
 if (!function_exists('system_config_store')) {
@@ -138,7 +139,7 @@ if (!function_exists('system_config_store')) {
 }
 
 
-/*
+/**
  * 获取当前域名
  */
 if (!function_exists('system_http_domain')) {
@@ -148,7 +149,7 @@ if (!function_exists('system_http_domain')) {
     }
 }
 
-/*
+/**
  * 获取图片链接
  */
 if (!function_exists('system_image_url')) {
@@ -170,7 +171,7 @@ if (!function_exists('system_image_url')) {
     }
 }
 
-/*
+/**
  * 获取资源链接
  */
 if (!function_exists('system_resource_url')) {
@@ -180,7 +181,7 @@ if (!function_exists('system_resource_url')) {
     }
 }
 
-/*
+/**
  * 调用插件函数
  */
 if (!function_exists('call_hook_function')) {
@@ -193,7 +194,7 @@ if (!function_exists('call_hook_function')) {
     }
 }
 
-/*
+/**
  * 统计模型记录数
  */
 if (!function_exists('system_model_count')) {
@@ -203,7 +204,7 @@ if (!function_exists('system_model_count')) {
     }
 }
 
-/*
+/**
  * 统计模型模型某个字段的总数
  */
 if (!function_exists('system_model_sum')) {
@@ -222,6 +223,9 @@ if (!function_exists('system_model_sum')) {
     }
 }
 
+/**
+ * 判断是否为手机端
+ */
 if (!function_exists("is_mobile")) {
     function is_mobile(): bool
     {
@@ -254,6 +258,9 @@ if (!function_exists("is_mobile")) {
     }
 }
 
+/**
+ * 参数过滤
+ */
 if (!function_exists('paramFilter')) {
     function paramFilter($value)
     {
@@ -267,17 +274,23 @@ if (!function_exists('paramFilter')) {
     }
 }
 
+/**
+ * 获取客户端真实IP
+ */
 if (!function_exists('get_client_ip')) {
     function get_client_ip()
     {
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
-            return explode(",",$_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+            return explode(",", $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
         }
 
         return request()->getClientIp();
     }
 }
 
+/**
+ * 获取图片文件格式
+ */
 if (!function_exists('get_img_suffix')) {
     function get_img_suffix($name)
     {
@@ -285,14 +298,17 @@ if (!function_exists('get_img_suffix')) {
 
         $suffix = false;
 
-        if($mime = $info['mime']){
-            $suffix = explode('/',$mime)[1];
+        if ($mime = $info['mime']) {
+            $suffix = explode('/', $mime)[1];
         }
 
         return $suffix;
     }
 }
 
+/**
+ * 获取资源的http地址
+ */
 if (!function_exists('get_resource_http_path')) {
     function get_resource_http_path($src, $url)
     {
@@ -309,5 +325,43 @@ if (!function_exists('get_resource_http_path')) {
         }
 
         return $imgUrl;
+    }
+}
+
+
+/**
+ * 创建支付订单记录
+ */
+if (!function_exists('create_pay_log')) {
+    function create_pay_log($userId, $total, $goodsId, $goodsName, $tradeType, $payType = 'dmf')
+    {
+        do {
+            $tradeNo = date("YmdHi") . rand(1111, 9999) . date("s");
+            $log = PayLog::where('trade_no', $tradeNo)->first();
+        } while ($log);
+
+        $data = [
+            'trade_no' => $tradeNo,
+            'trade_type' => $tradeType,
+            'user_id' => $userId,
+            'goods_id' => $goodsId,
+            'goods_name' => $goodsName,
+            'total_amount' => $total,
+            'pay_type' => $payType,
+        ];
+
+        $result = (new PayLog)->store($data);
+
+        return $result ? $tradeNo : false;
+    }
+}
+
+/**
+ * 完成支付订单
+ */
+if (!function_exists('finish_pay_order')) {
+    function finish_pay_order($tradeNo)
+    {
+        PayLog::where('trade_no', $tradeNo)->update(['status' => 1, 'pay_time' => time()]);
     }
 }

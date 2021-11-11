@@ -4,8 +4,6 @@
  * 获取CMS首页地址
  */
 
-use Modules\Cms\Models\Article;
-
 if (!function_exists('cms_home_path')) {
     function cms_home_path(): string
     {
@@ -430,12 +428,7 @@ if (!function_exists('cms_themes')) {
 if (!function_exists('cms_search')) {
     function cms_search($keyword, $limit = 10)
     {
-        $page = request()->route()->parameter('page');
-
-        return Article::with("category:id,name")
-            ->orderBy('id', 'desc')
-            ->where('title', 'like', '%' . $keyword . '%')
-            ->paginate($limit, '*', 'page', $page);
+        return app('article')->search($keyword, $limit);
     }
 }
 
@@ -445,15 +438,7 @@ if (!function_exists('cms_search')) {
 if (!function_exists('cms_sort_articles')) {
     function cms_sort_articles($field = 'id', $orderBy = 'desc', $categoryId = [], $limit = 10)
     {
-        $page = request()->route()->parameter('page');
-        $whereRaw = $categoryId ? "  category_id in(" . join(",", $categoryId) . ")" : '1=1';
-
-        $values = Article::with('category:id,name')
-            ->orderBy($field, $orderBy)
-            ->whereRaw($whereRaw)
-            ->paginate($limit, '*', 'page', $page);
-
-        return cms_hook_call('cms_hook_sort_articles', $values);
+        return app('article')->sort($field, $orderBy, $categoryId, $limit);
     }
 }
 
@@ -461,5 +446,26 @@ if (!function_exists('created_at_date')) {
     function created_at_date($dateTime, $format = 'Y-m-d')
     {
         return date($format, strtotime($dateTime));
+    }
+}
+
+if (!function_exists('cms_article_comments')) {
+    function cms_article_comments($singleId, $rootId = 0, $limit = 10)
+    {
+        return app('article')->comments($singleId, $rootId, $limit);
+    }
+}
+
+if (!function_exists('cms_comment')) {
+    function cms_comment($id, $sid = 0, $status = false)
+    {
+        $param = [
+            ['id', '=', $id]
+        ];
+
+        $sid && $param[] = ['single_id', '=', $sid];
+        $status !== false && $param[] = ['status', '=', $status];
+
+        return \Modules\Cms\Models\ArticleComment::where($param)->first();
     }
 }

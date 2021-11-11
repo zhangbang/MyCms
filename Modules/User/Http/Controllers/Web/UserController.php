@@ -71,7 +71,7 @@ class UserController extends MyController
             return $this->result(false, ['msg' => "请正确填写账号密码"]);
         }
 
-        if (Auth::attempt(['name' => $name, 'password' => $password])) {
+        if (Auth::attempt(['name' => $name, 'password' => $password, 'status' => 1])) {
             return $this->result(true, ['msg' => "登录成功"]);
         }
 

@@ -74,6 +74,11 @@ return [
     'article/admin/tag/edit' => '编辑标签',
     'article/admin/tag/destroy' => '删除标签',
 
+    'article/admin/comment' => '文章评论',
+    'article/admin/comment/config' => '评论设置',
+    'article/admin/comment/destroy' => '删除评论',
+    'article/admin/comment/modify' => '状态修改',
+
 
     'shop' => '商城模块',
     'shop.admin' => '商城后台',

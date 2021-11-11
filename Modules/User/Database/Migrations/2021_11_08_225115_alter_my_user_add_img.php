@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableMyUser extends Migration
+class AlterMyUserAddImg extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterTableMyUser extends Migration
     public function up()
     {
         Schema::table('my_user', function (Blueprint $table) {
-            $table->string('remember_token')->after('point')->nullable();
+            $table->string('img')->after('password')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterTableMyUser extends Migration
     public function down()
     {
         Schema::table('my_user', function (Blueprint $table) {
-            $table->dropColumn('remember_token');
+            $table->dropColumn('img');
         });
     }
 }
