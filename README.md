@@ -20,7 +20,7 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 
 * [官方网站](https://www.mycms.net.cn/)
 
-* [文档地址](https://www.kancloud.cn/b386654667/mycms)
+* [文档地址](https://www.kancloud.cn/b386654667/mycms/content)
 
 * [源码下载](https://gitee.com/qq386654667/mycms)
   
