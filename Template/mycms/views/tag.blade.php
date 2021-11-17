@@ -7,7 +7,7 @@
         <div class="container">
             <h1 class="breadcrumb-title">{{$tag->tag_name}}</h1>
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="{{cms_home_path()}}">网站首页</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
                 <li class="active">{{$tag->tag_name}}</li>
             </ul>
         </div>
@@ -19,10 +19,10 @@
     <div class="blog-area de-padding">
         <div class="container">
             <div class="blog-wpr grid-3">
-                @foreach($articles = cms_tag_articles($tag->id,12) as $article)
+                @foreach($articles = articles($page,12) as $article)
                     <div class="blog-box wow fadeInUp">
                         @if(isset($article->img))
-                            <a href="{{cms_single_path($article->id)}}" class="blog-pic">
+                            <a href="{{single_path($article->id)}}" class="blog-pic">
                                 <img src="{{$article->img}}" alt="{{$article->title}}" style="max-height: 220px;max-width: 340px">
                             </a>
                         @endif
@@ -34,11 +34,11 @@
                                         <span>{{created_at_date($article->created_at)}}</span>
                                     </li>
                                     <li>
-                                        <span><a href="{{cms_category_path($article->category->id)}}">{{$article->category->name}}</a></span>
+                                        <span><a href="{{category_path($article->category->id)}}">{{$article->category->name}}</a></span>
                                     </li>
                                 </ul>
                             </div>
-                            <a href="{{cms_single_path($article->id)}}">
+                            <a href="{{single_path($article->id)}}">
                                 <h5 class="work-title">
                                     {{$article->title}}
                                 </h5>
@@ -47,7 +47,7 @@
                                 {{$article->description}}
                             </p>
                             <div class="work-btn">
-                                <a href="{{cms_single_path($article->id)}}" class="btn-2">阅读更多
+                                <a href="{{single_path($article->id)}}" class="btn-2">阅读更多
                                     <i>
                                         <img src="/mycms/cms/theme/mycms/assets/img/icons/long-arrow.png">
                                     </i>

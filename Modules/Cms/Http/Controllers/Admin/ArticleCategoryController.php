@@ -8,7 +8,7 @@ use App\Http\Controllers\MyController;
 use Illuminate\Http\Request;
 use Modules\Cms\Http\Requests\ArticleCategoryRequest;
 use Modules\Cms\Models\ArticleCategory;
-use Modules\Cms\Service\ArticleCategoryService;
+use Modules\Cms\Models\ArticleCategoryMeta;
 
 class ArticleCategoryController extends MyController
 {
@@ -27,9 +27,9 @@ class ArticleCategoryController extends MyController
     /**
      * Show the form for creating a new resource.
      */
-    public function create(ArticleCategoryService $service)
+    public function create()
     {
-        $categories = $service->categoryTree();
+        $categories = app('cms')->categoryTree();
         return $this->view('admin.category.create', compact('categories'));
     }
 
@@ -42,18 +42,27 @@ class ArticleCategoryController extends MyController
 
         $result = $category->store($data);
 
+        if ($result) {
+
+            $this->updateMeta($category->id);
+        }
+
         return $this->result($result, ['title' => $data['name'], 'id' => $category->id]);
     }
 
     /**
      * 编辑
      */
-    public function edit(ArticleCategoryService $service)
+    public function edit()
     {
-        $categories = $service->categoryTree();
-        $category = ArticleCategory::find($this->request('id', 'intval'));
+        $id = $this->request('id', 'intval');
 
-        return $this->view('admin.category.edit', compact('categories', 'category'));
+        $categories = app('cms')->categoryTree();
+        $category = ArticleCategory::find($id);
+
+        $meta = ArticleCategoryMeta::where('category_id', $id)->get();
+
+        return $this->view('admin.category.edit', compact('categories', 'category', 'meta'));
     }
 
     /**
@@ -69,6 +78,11 @@ class ArticleCategoryController extends MyController
 
             $result = $category->up($data);
 
+            if ($result) {
+
+                $this->updateMeta($id);
+            }
+
             return $this->result($result);
         }
 
@@ -80,8 +94,28 @@ class ArticleCategoryController extends MyController
      */
     public function destroy()
     {
-        $result = ArticleCategory::destroy($this->request('id','intval'));
+        $result = ArticleCategory::destroy($this->request('id', 'intval'));
         return $this->result($result);
+    }
+
+    protected function updateMeta($id)
+    {
+        $attr = $this->request('attr');
+        ArticleCategoryMeta::where('category_id', $id)->delete();
+
+        foreach ($attr['ident'] as $key => $ident) {
+
+            if ($ident) {
+
+                $meta = [
+                    'category_id' => $id,
+                    'meta_key' => $ident,
+                    'meta_value' => $attr['value'][$key],
+                ];
+
+                (new ArticleCategoryMeta)->store($meta);
+            }
+        }
     }
 
 }

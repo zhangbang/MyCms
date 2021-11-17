@@ -7,7 +7,7 @@
         <div class="container">
             <h2 class="breadcrumb-title">会员中心</h2>
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="/">网站首页</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
                 <li class="active">会员中心</li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
                             <div class="profile-list">
                                 <div class="category-list">
                                     <div class="profile-btn">
-                                        <a href="{{route('user.logout')}}" class="btn-2">
+                                        <a href="{{user_logout_path()}}" class="btn-2">
                                             <i>
                                                 <img src="/mycms/cms/theme/mycms/assets/img/icons/login.png">
                                             </i>

@@ -5,8 +5,9 @@ namespace Addons\Nav\Service;
 
 
 use Addons\Nav\Models\Nav;
+use App\Service\MyService;
 
-class NavService
+class NavService extends MyService
 {
     public function categoryTree($categories = [], $pid = 0, $prefix = '')
     {
@@ -28,20 +29,9 @@ class NavService
         return [];
     }
 
-    public function childTree($categories = [], $pid = 0)
+    public function childTree($pid = 0)
     {
-        $categories = $categories ?: Nav::toTree();
+        return $this->tree(Nav::toTree(), $pid);
 
-        if (isset($categories[$pid]) && is_array($categories[$pid])) {
-
-            collect($categories[$pid])->each(function ($item) use (&$result, $pid, $categories) {
-                $item['child'] = $this->childTree($categories, $item['id']);
-                $result[] = $item;
-            });
-
-            return $result;
-        }
-
-        return [];
     }
 }

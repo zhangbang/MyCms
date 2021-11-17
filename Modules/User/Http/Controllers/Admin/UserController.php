@@ -144,18 +144,18 @@ class UserController extends MyController
     /**
      * 变动资金
      */
-    public function setAccount(UserService $service)
+    public function setAccount()
     {
 
         $balanceRes = $pointRes = true;
         $id = $this->request('id', 'intval');
 
         if ($balance = $this->request('balance', 'floatval')) {
-            $balanceRes = $service->balance($balance, $id);
+            $balanceRes = app('user')->balance($balance, $id);
         }
 
         if ($point = $this->request('point', 'floatval')) {
-            $pointRes = $service->point($point, $id);
+            $pointRes = app('user')->point($point, $id);
         }
 
         return $this->result($balanceRes && $pointRes);

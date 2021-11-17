@@ -8,7 +8,7 @@
         <div class="container">
             <h1 class="breadcrumb-title">插件协议 & 免责声明</h1>
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="/">网站首页</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
                 <li class="active">插件协议 & 免责声明</li>
             </ul>
         </div>

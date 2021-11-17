@@ -132,6 +132,8 @@ class AddonService
     {
         $statuses = $rules = $roles = [];
 
+        $pipelines = config('pipe');
+
         foreach ($this->all() as $item) {
 
             Storage::disk("root")->deleteDirectory(
@@ -162,6 +164,11 @@ class AddonService
                     $roles = array_merge($roles ?? [], $array);
                 }
 
+                if (file_exists($path = addon_path($item['ident'], '/Config/pipeline.php'))) {
+                    $array = include_once $path;
+                    $pipelines = array_merge($pipelines ?? [], $array);
+                }
+
                 Artisan::call(
                     'vendor:publish --tag=addon_' . strtolower(Str::snake($item['ident']))
                 );
@@ -172,6 +179,11 @@ class AddonService
         Storage::disk("root")->put(
             'bootstrap/cache/role.php',
             "<?php return " . var_export($roles, true) . "; ?>"
+        );
+
+        Storage::disk("root")->put(
+            'bootstrap/cache/pipeline.php',
+            "<?php return " . var_export($pipelines, true) . "; ?>"
         );
 
         Storage::disk("root")->put('addons_statuses.json', json_encode($statuses));

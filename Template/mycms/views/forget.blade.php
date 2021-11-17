@@ -63,7 +63,7 @@
     function login()
     {
         $.ajax({
-            url: '{{route('user.login')}}',
+            url: '{{user_login_path()}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",
@@ -74,7 +74,7 @@
             },
             success: function (res) {
                 alert(res.msg);
-                location.href = '{{route('user.index')}}';
+                location.href = '{{user_index_path()}}';
             },
             error: function (xhr) {
                 alert(xhr.responseJSON.msg);
@@ -89,7 +89,7 @@
     {
 
         $.ajax({
-            url: '{{route('user.forget')}}',
+            url: '{{user_forget_path()}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",
@@ -100,7 +100,7 @@
             },
             success: function (res) {
                 alert(res.msg);
-                location.href = '{{route('user.login')}}';
+                location.href = '{{user_login_path()}}';
             },
             error: function (xhr) {
                 alert(xhr.responseJSON.msg);
@@ -126,7 +126,7 @@
         send_lock = true;
 
         $.ajax({
-            url: '{{route('user.reg.code')}}',
+            url: '{{user_reg_code_path()}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",

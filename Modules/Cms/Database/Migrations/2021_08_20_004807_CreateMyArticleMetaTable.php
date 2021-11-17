@@ -13,7 +13,7 @@ class CreateMyArticleMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('my_article_mata', function (Blueprint $table) {
+        Schema::create('my_article_meta', function (Blueprint $table) {
             $table->id();
             $table->integer('article_id');
             $table->string('meta_key');

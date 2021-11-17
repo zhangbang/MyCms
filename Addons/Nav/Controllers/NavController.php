@@ -50,9 +50,9 @@ class NavController extends MyController
         return $this->view('admin.index');
     }
 
-    public function create(NavService $service)
+    public function create()
     {
-        $navs = $service->categoryTree();
+        $navs = app('nav')->categoryTree();
         return $this->view('admin.create', compact('navs'));
     }
 
@@ -64,9 +64,9 @@ class NavController extends MyController
         return $this->result($result);
     }
 
-    public function edit(NavService $service)
+    public function edit()
     {
-        $navs = $service->categoryTree();
+        $navs = app('nav')->categoryTree();
 
         $id = $this->request('id', 'intval');
         $nav = Nav::find($id);

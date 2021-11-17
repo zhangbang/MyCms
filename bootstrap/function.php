@@ -1,6 +1,11 @@
 <?php
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pipeline\Pipeline;
+use Modules\Cms\Models\Article;
+use Modules\Cms\Models\ArticleComment;
 use Modules\Shop\Models\PayLog;
+use Nwidart\Modules\Json;
 
 /**
  * 将数组拼接成字符串
@@ -105,7 +110,7 @@ if (!function_exists('update_system_config_cache')) {
 
 
 /**
- * 保持系统配置
+ * 保存系统配置
  */
 if (!function_exists('system_config_store')) {
     function system_config_store($data, $group)
@@ -363,5 +368,404 @@ if (!function_exists('finish_pay_order')) {
     function finish_pay_order($tradeNo)
     {
         PayLog::where('trade_no', $tradeNo)->update(['status' => 1, 'pay_time' => time()]);
+    }
+}
+
+/**
+ * 获取系统已安装的插件
+ */
+if (!function_exists('system_addons')) {
+    /**
+     * @throws Exception
+     */
+    function system_addons()
+    {
+        $addons = Json::make(base_path('addons_statuses.json'))->getAttributes();
+        return array_keys($addons);
+    }
+
+}
+
+/**
+ * 管道处理通用方法
+ */
+
+if (!function_exists('pipeline_func')) {
+    function pipeline_func($value, $ident)
+    {
+        $pipes = config('pipeline')[$ident] ?? [];
+
+        if ($pipes) {
+
+            return app(Pipeline::class)
+                ->send($value)
+                ->through($pipes)
+                ->then(function ($value) {
+                    return $value;
+                });
+        }
+
+        return $value;
+    }
+}
+
+/**
+ * 页面标题
+ */
+if (!function_exists('page_title')) {
+    function page_title()
+    {
+        $title = session('page_title');
+        $pageIdent = session('the_page');
+
+        if (function_exists("the_{$pageIdent}_title")) {
+            $title = call_user_func("the_{$pageIdent}_title");
+        }
+
+        $title = pipeline_func($title, 'page_title');
+
+
+        return $title ?: system_config('site_name');
+
+    }
+}
+
+/**
+ * 页面标题
+ */
+if (!function_exists('page_keyword')) {
+    function page_keyword()
+    {
+        $keyword = session('page_keyword');
+        $pageIdent = session('the_page');
+
+        if (function_exists("the_{$pageIdent}_keyword")) {
+            $keyword = call_user_func("the_{$pageIdent}_keyword");
+        }
+
+        $keyword = pipeline_func($keyword, 'page_keyword');
+
+        return $keyword ?: '';
+    }
+}
+
+/**
+ * 页面描述
+ */
+if (!function_exists('page_description')) {
+    function page_description()
+    {
+        $description = session('page_description');
+        $pageIdent = session('the_page');
+
+        if (function_exists("the_{$pageIdent}_description")) {
+            $description = call_user_func("the_{$pageIdent}_description");
+        }
+
+        $description = pipeline_func($description, 'page_description');
+
+        return $description ?: '';
+    }
+}
+
+if (!function_exists('page_list')) {
+    function page_list($type, $page = 1, $limit = 10, $tag = '', $params = [])
+    {
+        $tag = $tag ?: the_page();
+
+        if (function_exists($tag . "_" . $type)) {
+
+            $params[$tag . "_id"] = $params[$tag . "_id"] ?? the_page_id();
+            $articles = call_user_func($tag . "_" . $type, $page, $limit, $params);
+
+            return pipeline_func($articles, $tag . "_" . $type);
+        }
+
+        return false;
+    }
+}
+
+/**
+ * 文章列表
+ */
+if (!function_exists('articles')) {
+    function articles($page = 1, $limit = 10, $tag = '', $params = [])
+    {
+        return page_list('articles', $page, $limit, $tag, $params);
+    }
+}
+
+/**
+ * 最新文章列表
+ */
+if (!function_exists('home_articles')) {
+
+    function home_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return new_articles($page, $limit, $params);
+    }
+}
+
+/**
+ * 最新文章列表
+ */
+if (!function_exists('new_articles')) {
+
+    function new_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return Article::with('category:id,name')
+            ->orderBy('id', 'desc')
+            ->paginate($limit, '*', 'page', $page);
+    }
+}
+
+/**
+ * 热门文章列表
+ */
+if (!function_exists('hot_articles')) {
+
+    function hot_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return Article::with('category:id,name')
+            ->orderBy('view', 'desc')
+            ->paginate($limit, '*', 'page', $page);
+    }
+}
+
+/**
+ * 分类最新文章列表
+ */
+if (!function_exists('category_articles')) {
+
+    function category_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('cms')->articleForCategory($params['category_id'], $page, $limit);
+    }
+}
+
+
+/**
+ * 分类最热文章列表
+ */
+if (!function_exists('category_hot_articles')) {
+
+    function category_hot_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('cms')->articleForCategory($params['category_id'], $page, $limit, 'view');
+    }
+}
+
+
+/**
+ * 标签最新文章列表
+ */
+if (!function_exists('tag_articles')) {
+
+    function tag_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('cms')->articleForTag($params['tag_id'], $page, $limit);
+    }
+}
+
+
+/**
+ * 搜索最新文章列表
+ */
+if (!function_exists('search_articles')) {
+
+    function search_articles($page = 1, $limit = 10, $params = [])
+    {
+        return app('cms')->articleForSearch($params['search'] ?? '', $page, $limit);
+    }
+}
+
+/**
+ * 分类列表
+ */
+if (!function_exists('categories')) {
+    function categories()
+    {
+        $values = app('cms')->categoryTree();
+        return pipeline_func($values, 'categories');
+    }
+}
+
+/**
+ * 标签列表
+ */
+if (!function_exists('tags')) {
+    function tags($limit = 10)
+    {
+        $values = app('cms')->tags($limit);
+        return pipeline_func($values, 'tags');
+    }
+}
+
+/**
+ * 文章标签列表
+ */
+if (!function_exists('article_tags')) {
+    function article_tags($articleId = false)
+    {
+        $articleId = $articleId ?: the_page_id();
+
+        $values = app('cms')->tagForArticle($articleId);
+        return pipeline_func($values, 'article_tags');
+    }
+}
+
+/**
+ * 文章标签文本
+ */
+if (!function_exists('article_tags_text')) {
+    function article_tags_text($articleId = false): string
+    {
+        $articleId = $articleId ?: the_page_id();
+        $tags = article_tags($articleId);
+
+        if ($tags) {
+
+            return join(
+                ',',
+                array_column($tags->toArray(),'tag_name')
+            );
+        }
+
+        return '';
+    }
+}
+
+/**
+ * 文章评论列表
+ */
+if (!function_exists('article_comments')) {
+    function article_comments($articleId, $rootId = 0, $page = 1, $limit = 10)
+    {
+        $values = app('cms')->commentForArticle($articleId, $rootId, $page, $limit);
+        return pipeline_func($values, 'article_comments');
+    }
+}
+
+/**
+ * 单条评论
+ */
+if (!function_exists('comment')) {
+    function comment($id, $singleId = 0)
+    {
+        $param = [
+            ['id', '=', $id],
+            ['status', '=', 1],
+        ];
+
+        $singleId && $param[] = ['single_id', '=', $singleId];
+        $comment = ArticleComment::where($param)->first();
+
+        return pipeline_func($comment, 'comment');
+    }
+}
+
+/**
+ * 商品列表
+ */
+if (!function_exists('goods')) {
+    function goods($page = 1, $limit = 10, $tag = '', $params = [])
+    {
+        return page_list('goods', $page, $limit, $tag, $params);
+    }
+}
+
+/**
+ * 首页商品列表
+ */
+if (!function_exists('home_goods')) {
+
+    function home_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return new_goods($page, $limit, $params);
+    }
+}
+
+/**
+ * 商城首页商品列表
+ */
+if (!function_exists('store_goods')) {
+
+    function store_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return new_goods($page, $limit, $params);
+    }
+}
+
+/**
+ * 最新商品列表
+ */
+if (!function_exists('new_goods')) {
+
+    function new_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('store')->goods($page, $limit);
+    }
+}
+
+/**
+ * 分类最新商品列表
+ */
+if (!function_exists('store_category_goods')) {
+
+    function store_category_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('store')->goodsForCategory($params['store_category_id'], $page, $limit);
+    }
+}
+
+/**
+ * 商品分类列表
+ */
+if (!function_exists('store_category')) {
+
+    function store_category()
+    {
+        return app('store')->categoryTree();
+    }
+}
+
+
+/**
+ * 格式化日期
+ */
+if (!function_exists('created_at_date')) {
+    function created_at_date($dateTime, $format = 'Y-m-d')
+    {
+        return date($format, strtotime($dateTime));
+    }
+}
+
+/**
+ * 获取友情链接
+ */
+if (!function_exists('friend_link')) {
+    function friend_link()
+    {
+        return pipeline_func([], 'friend_link');
+    }
+}
+
+/**
+ * 获取导航
+ */
+if (!function_exists('navs')) {
+    function navs()
+    {
+        return pipeline_func([], 'navs');
+    }
+}
+
+/**
+ * 获取广告
+ */
+if (!function_exists('ad')) {
+    function ad($code)
+    {
+        return pipeline_func($code, 'ad');
     }
 }

@@ -3,7 +3,7 @@
 namespace Modules\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Modules\User\Service\UserService;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,6 @@ class UserServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
 
-        include_once module_path($this->moduleName, '/Helpers/functions.php');
     }
 
     /**
@@ -40,6 +39,10 @@ class UserServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind('user', function ($app) {
+            return new UserService();
+        });
     }
 
     /**

@@ -4,6 +4,8 @@
 namespace Addons\Nav\Providers;
 
 
+use Addons\Nav\Service\NavService;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -28,7 +30,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerStatic();
         $this->loadMigrationsFrom(addon_path($this->addonName, '/Database/Migrations'));
 
-        include_once addon_path($this->addonName, '/Helpers/functions.php');
     }
 
     /**
@@ -39,6 +40,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->register(RouteProvider::class);
+
+        $this->app->bind('nav', function ($app) {
+            return new NavService();
+        });
     }
 
     /**

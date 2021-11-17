@@ -3,9 +3,7 @@
 namespace Modules\Cms\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Cms\Service\ArticleCategoryService;
-use Modules\Cms\Service\ArticleService;
-use Modules\Cms\Service\ArticleTagService;
+use Modules\Cms\Service\CmsService;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -41,16 +39,8 @@ class CmsServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
 
-        $this->app->bind('article', function ($app) {
-            return new ArticleService();
-        });
-
-        $this->app->bind('articleCategory', function ($app) {
-            return new ArticleCategoryService();
-        });
-
-        $this->app->bind('articleTag', function ($app) {
-            return new ArticleTagService();
+        $this->app->bind('cms', function ($app) {
+            return new CmsService();
         });
     }
 

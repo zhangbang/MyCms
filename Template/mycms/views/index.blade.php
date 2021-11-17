@@ -62,12 +62,6 @@
             <div class="portfolio-items-area">
                 <div class="row">
                     <div class="col-xl-12 portfolio-content">
-                        {{--<div class="mix-item-menu active-theme text-center">
-                            <button class="active" data-filter="*">All</button>
-                            <button data-filter=".development">Web Themes</button>
-                            <button data-filter=".design">Mobile Apps</button>
-                            <button data-filter=".photography">Dashboard</button>
-                        </div>--}}
                         <!-- End Mixitup Nav-->
                         <div class="magnific-mix-gallery masonary">
                             <div id="portfolio-grid" class="portfolio-items">
@@ -155,7 +149,7 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                          aria-labelledby="pills-home-tab">
                         <div class="latest-wpr magnific-mix-gallery grid-3">
-                            @foreach(shop_new_goods(0,6) as $goods)
+                            @foreach(goods(1,6) as $goods)
                             <div class="work-box wow zoomIn">
                                 <div class="work-pic">
                                     <img src="{{$goods->goods_image}}" alt="{{$goods->goods_name}}">
@@ -165,7 +159,7 @@
                                 </div>
                                 <div class="work-desc">
 
-                                    <a href="{{shop_goods_path($goods->id)}}">
+                                    <a href="{{goods_path($goods->id)}}">
                                         <h5 class="work-title">
                                             {{$goods->goods_name}}
                                         </h5>
@@ -191,7 +185,7 @@
                                         <div class="work-btns">
                                             <ul>
                                                 <li>{{$goods->view}} 浏览</li>
-                                                <li><a href="{{shop_goods_path($goods->id)}}" class="btn-7">详情</a></li>
+                                                <li><a href="{{goods_path($goods->id)}}" class="btn-7">详情</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -204,7 +198,7 @@
             </div>
         </div>
         <div class="work-view text-center mt-70">
-            <a href="{{shop_path()}}" class="btn-4">插件市场</a>
+            <a href="{{store_path()}}" class="btn-4">插件市场</a>
         </div>
     </div>
     <!-- End Latest Themes -->
@@ -378,7 +372,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="1200" data-speed="3000">1200</p>
+                        <p class="timer" data-count="+" data-to="1200" data-speed="3000">2000</p>
                         <span class="medium">Gitee Ip</span>
                     </div>
                 </div>
@@ -389,7 +383,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="200" data-speed="3000">50</p>
+                        <p class="timer" data-count="+" data-to="200" data-speed="3000">100</p>
                         <span class="medium">Download zip</span>
                     </div>
                 </div>
@@ -400,7 +394,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="30" data-speed="3000">30</p>
+                        <p class="timer" data-count="+" data-to="30" data-speed="3000">50</p>
                         <span class="medium">Starred</span>
                     </div>
                 </div>
@@ -411,7 +405,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="200" data-speed="3000">200</p>
+                        <p class="timer" data-count="+" data-to="200" data-speed="3000">270</p>
                         <span class="medium">Pull</span>
                     </div>
                 </div>
@@ -432,10 +426,10 @@
                 </div>
             </div>
             <div class="blog-wpr grid-3">
-                @foreach($articles = cms_new_articles(3) as $article)
+                @foreach($articles = articles(1,3) as $article)
                 <div class="blog-box wow fadeInUp">
                     <div class="blog-pic">
-                        <a href="{{cms_single_path($article->id)}}"><img src="@if(isset($article->img)) {{$article->img}} @else /mycms/cms/theme/mycms/assets/img/blog/1.jpg @endif" ></a>
+                        <a href="{{single_path($article->id)}}"><img src="@if(isset($article->img)) {{$article->img}} @else /mycms/cms/theme/mycms/assets/img/blog/1.jpg @endif" ></a>
                     </div>
                     <div class="blog-desc">
                         <div class="blog-meta">
@@ -446,7 +440,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <a href="{{cms_single_path($article->id)}}">
+                        <a href="{{single_path($article->id)}}">
                             <h5 class="work-title">
                                 {{$article->title}}
                             </h5>
@@ -455,7 +449,7 @@
                             {{$article->description}}
                         </p>
                         <div class="work-btn">
-                            <a href="{{cms_single_path($article->id)}}" class="btn-2">阅读更多
+                            <a href="{{single_path($article->id)}}" class="btn-2">阅读更多
                                 <i>
                                     <img src="/mycms/cms/theme/mycms/assets/img/icons/long-arrow.png" >
                                 </i>

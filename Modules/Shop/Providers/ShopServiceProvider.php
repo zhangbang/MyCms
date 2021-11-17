@@ -3,8 +3,7 @@
 namespace Modules\Shop\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Shop\Service\CategoryService;
-use Modules\Shop\Service\GoodsService;
+use Modules\Shop\Service\StoreService;
 
 class ShopServiceProvider extends ServiceProvider
 {
@@ -40,12 +39,8 @@ class ShopServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
 
-        $this->app->bind('goods', function ($app) {
-            return new GoodsService();
-        });
-
-        $this->app->bind('goodsCategory', function ($app) {
-            return new CategoryService();
+        $this->app->bind('store', function ($app) {
+            return new StoreService();
         });
     }
 

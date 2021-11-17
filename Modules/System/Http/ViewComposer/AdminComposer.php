@@ -11,7 +11,6 @@ class AdminComposer
     public function compose(View $view)
     {
 
-
         $view->with([
             'js_path' => $this->path(),
             'js_action' => $this->action(),

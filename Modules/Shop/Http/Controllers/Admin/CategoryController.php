@@ -28,9 +28,9 @@ class CategoryController extends MyController
     /**
      * Show the form for creating a new resource.
      */
-    public function create(CategoryService $service)
+    public function create()
     {
-        $categories = $service->categoryTree();
+        $categories = app('store')->categoryTree();
         return $this->view('admin.category.create', compact('categories'));
     }
 
@@ -48,9 +48,9 @@ class CategoryController extends MyController
     /**
      * 编辑
      */
-    public function edit(CategoryService $service)
+    public function edit()
     {
-        $categories = $service->categoryTree();
+        $categories = app('store')->categoryTree();
         $category = GoodsCategory::find($this->request('id', 'intval'));
 
         return $this->view('admin.category.edit', compact('categories', 'category'));

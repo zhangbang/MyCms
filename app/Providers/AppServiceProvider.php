@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        $this->registerConfig();
         $this->templateViews();
 
         if (env('IS_HTTPS')) {
@@ -40,6 +41,17 @@ class AppServiceProvider extends ServiceProvider
             base_path("Template"),
             'template'
         );
+    }
+
+    protected function registerConfig()
+    {
+
+        if (file_exists(base_path('bootstrap/cache/pipeline.php'))) {
+            $this->mergeConfigFrom(
+                base_path('bootstrap/cache/pipeline.php'), 'pipeline'
+            );
+        }
+
     }
 
 }

@@ -7,8 +7,8 @@
         <div class="container">
             <h1 class="breadcrumb-title">{{$goods->goods_name}}</h1>
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="/">网站首页</a></li>
-                <li><a href="{{shop_path()}}">插件市场</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
+                <li><a href="{{store_path()}}">插件市场</a></li>
                 <li class="active">{{$goods->goods_name}}</li>
             </ul>
         </div>
@@ -144,9 +144,9 @@
                                 <h5 class="work-title">插件分类</h5>
                                 <div class="category-list">
                                     <ul>
-                                        @foreach(shop_categories() as $category)
+                                        @foreach(store_category() as $category)
                                             <li>
-                                                <a href="{{shop_category_path($category->id)}}">
+                                                <a href="{{store_category_path($category->id)}}">
 
                                                     <span>{{$category->name}}</span>
                                                 </a>
@@ -171,6 +171,10 @@
                                             阿里云服务器1核/2G/1M(72.6元/1年) </a>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div class="widget" style="margin-top: 15px">
+                                {!! ad('right-ad') !!}
                             </div>
 
                         </aside>

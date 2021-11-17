@@ -18,6 +18,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot() {
 
         View::composer('system::admin.layouts._header', 'Modules\System\Http\ViewComposer\AdminComposer');
+        View::composer('template::*', 'Modules\System\Http\ViewComposer\TemplateComposer');
 
     }
 

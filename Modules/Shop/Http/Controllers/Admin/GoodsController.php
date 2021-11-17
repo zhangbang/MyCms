@@ -37,9 +37,9 @@ class GoodsController extends MyController
     /**
      * Show the form for creating a new resource.
      */
-    public function create(CategoryService $service)
+    public function create()
     {
-        $categories = $service->categoryTree();
+        $categories = app('store')->categoryTree();
         return $this->view('admin.goods.create', compact('categories'));
     }
 
@@ -57,9 +57,9 @@ class GoodsController extends MyController
     /**
      * 编辑
      */
-    public function edit(CategoryService $service)
+    public function edit()
     {
-        $categories = $service->categoryTree();
+        $categories = app('store')->categoryTree();
         $goods = Goods::find($this->request('id', 'intval'));
 
         return $this->view('admin.goods.edit', compact('categories', 'goods'));

@@ -34,7 +34,7 @@ class CmsController extends MyController
 
         is_category($category);
 
-        return $this->theme('category', compact('category'));
+        return $this->theme($category->template ?: 'category', compact('category'));
     }
 
     public function single($id)
@@ -49,7 +49,7 @@ class CmsController extends MyController
 
         $config = system_config([], 'cms');
 
-        return $this->theme('single', compact('article', 'config'));
+        return $this->theme($article->template ?: 'single', compact('article', 'config'));
     }
 
 
@@ -95,7 +95,7 @@ class CmsController extends MyController
 
             if ($pid > 0) {
 
-                $obj = cms_comment($pid, $data['single_id']);
+                $obj = comment($pid, $data['single_id']);
 
                 if (!$obj) {
                     return $this->result(false, ['msg' => '非法参数.']);

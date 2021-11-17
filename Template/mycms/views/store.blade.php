@@ -11,11 +11,11 @@
                 <h1 class="breadcrumb-title">{{$category->name}}</h1>
             @endif
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="/">网站首页</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
                 @if (is_store())
                     <li class="active">插件市场</li>
                 @else
-                    <li><a href="{{shop_path()}}">插件市场</a></li>
+                    <li><a href="{{store_path()}}">插件市场</a></li>
                     <li class="active">{{$category->name}}</li>
                 @endif
 
@@ -32,13 +32,13 @@
                 <div class="row ps g-5">
                     <div class="col-xl-8">
                         <div class="product-grid-app grid-2">
-                            @foreach($goods = shop_new_goods($cid) as $item)
+                            @foreach($goods = goods($page) as $item)
                                 <div class="work-box wow fadeInUp">
-                                    <a href="{{shop_goods_path($item->id)}}" class="work-pic">
+                                    <a href="{{goods_path($item->id)}}" class="work-pic">
                                         <img src="{{$item->goods_image}}">
                                     </a>
                                     <div class="work-desc">
-                                        <a href="{{shop_goods_path($item->id)}}">
+                                        <a href="{{goods_path($item->id)}}">
                                             <h5 class="work-title">
                                                 {{$item->goods_name}}
                                             </h5>
@@ -55,7 +55,7 @@
                                             <div class="work-btns">
                                                 <ul>
                                                     <li>{{$item->view}} 浏览</li>
-                                                    <li><a href="{{shop_goods_path($item->id)}}" class="btn-7">详情</a>
+                                                    <li><a href="{{goods_path($item->id)}}" class="btn-7">详情</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -84,9 +84,9 @@
                                 <h5 class="work-title">插件分类</h5>
                                 <div class="category-list">
                                     <ul>
-                                        @foreach(shop_categories() as $category)
+                                        @foreach(store_category() as $category)
                                             <li>
-                                                <a href="{{shop_category_path($category->id)}}">
+                                                <a href="{{store_category_path($category->id)}}">
 
                                                     <span>{{$category->name}}</span>
                                                 </a>
@@ -111,6 +111,10 @@
                                             阿里云服务器1核/2G/1M(72.6元/1年) </a>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div class="widget" style="margin-top: 15px">
+                                {!! ad('right-ad') !!}
                             </div>
 
                         </aside>

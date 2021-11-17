@@ -8,10 +8,9 @@ use App\Http\Controllers\MyController;
 use Illuminate\Http\Request;
 use Modules\Cms\Http\Requests\ArticleRequest;
 use Modules\Cms\Models\Article;
+use Modules\Cms\Models\ArticleMeta;
 use Modules\Cms\Models\ArticleTag;
 use Modules\Cms\Models\ArticleTagRel;
-use Modules\Cms\Service\ArticleCategoryService;
-use Modules\Cms\Service\ArticleService;
 
 class ArticleController extends MyController
 {
@@ -40,9 +39,9 @@ class ArticleController extends MyController
     /**
      * Show the form for creating a new resource.
      */
-    public function create(ArticleCategoryService $service)
+    public function create()
     {
-        $categories = $service->categoryTree();
+        $categories = app('cms')->categoryTree();
         return $this->view('admin.article.create', compact('categories'));
     }
 
@@ -59,19 +58,28 @@ class ArticleController extends MyController
             $tagRel->insertRel($article->id, $tagIds);
         }
 
+        if ($result) {
+
+            $this->updateMeta($article->id);
+        }
+
         return $this->result($result, ['id' => $article->id, 'title' => $article->title, 'url' => cms_single_path($article->id)]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function edit(ArticleCategoryService $service, ArticleService $articleService)
+    public function edit()
     {
         $id = $this->request('id', 'intval');
-        $categories = $service->categoryTree();
+        $categories = app('cms')->categoryTree();
+
         $article = Article::find($id);
-        $tags = $articleService->tagsText($id);
-        return $this->view('admin.article.edit', compact('categories', 'article', 'tags'));
+        $tags = app('cms')->article_tags_text($id);
+
+        $meta = ArticleMeta::where('article_id', $id)->get();
+
+        return $this->view('admin.article.edit', compact('categories', 'article', 'tags', 'meta'));
     }
 
 
@@ -91,6 +99,11 @@ class ArticleController extends MyController
             if ($result !== false && $tags = $this->request('tags')) {
                 $tagIds = $tag->insert(explode(",", $tags));
                 $tagRel->insertRel($id, $tagIds);
+            }
+
+            if ($result) {
+
+                $this->updateMeta($id);
             }
 
             return $this->result($result);
@@ -131,4 +144,24 @@ class ArticleController extends MyController
         return $this->result(false);
     }
 
+    protected function updateMeta($id)
+    {
+        $attr = $this->request('attr');
+        ArticleMeta::where('article_id', $id)->delete();
+
+        foreach ($attr['ident'] as $key => $ident) {
+
+            if ($ident) {
+
+                $meta = [
+                    'article_id' => $id,
+                    'meta_key' => $ident,
+                    'meta_value' => $attr['value'][$key],
+                ];
+
+                (new ArticleMeta)->store($meta);
+            }
+
+        }
+    }
 }

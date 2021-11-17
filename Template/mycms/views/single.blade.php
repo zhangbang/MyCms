@@ -7,8 +7,8 @@
         <div class="container">
             <h1 class="breadcrumb-title">{{$article->title}}</h1>
             <ul class="breadcrumb-menu clearfix">
-                <li><a href="{{cms_home_path()}}">网站首页</a></li>
-                <li><a href="{{cms_category_path($article->category->id)}}">{{$article->category->name}}</a></li>
+                <li><a href="{{home_path()}}">网站首页</a></li>
+                <li><a href="{{category_path($article->category->id)}}">{{$article->category->name}}</a></li>
                 <li class="active">{{$article->title}}</li>
             </ul>
         </div>
@@ -32,7 +32,7 @@
                                         <ul>
                                             <li>作者:{{$article->author}}</li>
                                             <li>分类: <a
-                                                    href="{{cms_category_path($article->category->id)}}">{{$article->category->name}}</a>
+                                                    href="{{category_path($article->category->id)}}">{{$article->category->name}}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -48,9 +48,9 @@
                                     <div class="content-tags pb-20">
                                         <h5 class="mb-0">标签</h5>
                                         <ul>
-                                            @foreach(cms_article_tags($article->id) as $tag)
-                                                <li><a href="{{cms_tag_path($tag['id'])}}"
-                                                       class="tags-link">{{$tag['tag_name']}}</a></li>
+                                            @foreach(article_tags($article->id) as $tag)
+                                                <li><a href="{{tag_path($tag->id)}}"
+                                                       class="tags-link">{{$tag->tag_name}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -62,7 +62,7 @@
                         <div class="single-comments-section blg-single">
                             <h4 class="single-content-title">评论列表</h4>
                             <div class="single-commentor">
-                                @if(($comments = cms_article_comments($article->id)) && $comments->count() > 0)
+                                @if(($comments = article_comments($article->id)) && $comments->count() > 0)
                                     <ul>
                                         @foreach($comments as $comment)
                                             <li>
@@ -85,7 +85,7 @@
                                                 </div>
                                             </li>
 
-                                            @foreach(cms_article_comments($article->id,$comment->id) as $child)
+                                            @foreach(article_comments($article->id,$comment->id) as $child)
                                             <li>
                                                 <div class="single-commentor-user de-bpd">
                                                     <img src="{{$child->user->img ?: '/mycms/cms/theme/mycms/assets/img/user/user-default-img.png'}}">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="single-comments-section-form">
                                 <h4 class="single-content-title">发表评论</h4>
-                                <form method="post" id="comment" action="{{route('cms.single.comment.create')}}"
+                                <form method="post" id="comment" action="{{single_comment_create_path()}}"
                                       onsubmit="return create_comment();">
                                     <div class="row g-5">
                                         <div class="col-md-12">
@@ -155,9 +155,9 @@
                                 <h5 class="work-title">分类</h5>
                                 <div class="category-list">
                                     <ul>
-                                        @foreach(cms_categories() as $category)
+                                        @foreach(categories() as $category)
                                             <li>
-                                                <a href="{{cms_category_path($category->id)}}">
+                                                <a href="{{category_path($category->id)}}">
 
                                                     <span>{{$category->name}}</span>
                                                 </a>
@@ -170,14 +170,14 @@
                             <!-- Recent Post -->
                             <div class="widget recent-post">
                                 <h5 class="work-title">最近文章</h5>
-                                @foreach(cms_new_articles(3) as $article)
+                                @foreach(articles(1,5,'new') as $article)
                                     <div class="recent-post-single">
                                         <div class="recent-post-pic">
                                             <img src="{{$article->img}}" style="width: 80px">
                                         </div>
                                         <div class="recent-post-bio">
                                             <h6>
-                                                <a href="{{cms_single_path($article->id)}}">{{$article->title}}</a>
+                                                <a href="{{single_path($article->id)}}">{{$article->title}}</a>
                                             </h6>
                                             <span>
 												<i>
@@ -193,14 +193,14 @@
 
                             <div class="widget recent-post">
                                 <h5 class="work-title">热门文章</h5>
-                                @foreach(cms_sort_articles('view','desc',[],3) as $article)
+                                @foreach(articles(1,5,'hot') as $article)
                                     <div class="recent-post-single">
                                         <div class="recent-post-pic">
                                             <img src="{{$article->img}}" style="width: 80px">
                                         </div>
                                         <div class="recent-post-bio">
                                             <h6>
-                                                <a href="{{cms_single_path($article->id)}}">{{$article->title}}</a>
+                                                <a href="{{single_path($article->id)}}">{{$article->title}}</a>
                                             </h6>
                                             <span>
 												<i>
@@ -216,8 +216,8 @@
                             <div class="widget sidebar-tags">
                                 <h5 class="work-title">标签</h5>
                                 <div class="tags">
-                                    @foreach(cms_tags() as $tag)
-                                        <a href="{{cms_tag_path($tag->id)}}" class="tags-link">{{$tag->tag_name}}</a>
+                                    @foreach(tags() as $tag)
+                                        <a href="{{tag_path($tag->id)}}" class="tags-link">{{$tag->tag_name}}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -238,6 +238,11 @@
                                     </ul>
                                 </div>
                             </div>
+
+                            <div class="widget" style="margin-top: 15px">
+                                {!! ad('right-ad') !!}
+                            </div>
+
                         </aside>
                     </div>
                 </div>
@@ -251,7 +256,7 @@
 <script>
     function create_comment() {
         $.ajax({
-            url: '{{route('cms.single.comment.create')}}',
+            url: '{{single_comment_create_path()}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",

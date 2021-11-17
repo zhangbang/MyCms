@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{cms_the_title()}}</title>
-    <meta name="keywords" content="{{cms_the_keyword()}}">
-    <meta name="description" content="{{cms_the_description()}}">
+    <title>{{page_title()}}</title>
+    <meta name="keywords" content="{{page_keyword()}}">
+    <meta name="description" content="{{page_description()}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Place favicon.ico in the root directory -->
@@ -37,7 +37,7 @@
     <div class="main-navigation">
         <nav id="navbar_top" class="navbar navbar-expand-lg">
             <div class="container g-0">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="{{home_path()}}">
                     <img src="{{system_config('site_logo')}}" style="height: 46px" class="logo-display">
                     <img src="{{system_config('site_logo')}}" style="height: 46px" class="logo-scrolled">
                 </a>

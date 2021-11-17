@@ -1,243 +1,423 @@
 <?php
-
-/*
- * 获取页面当前标题
+/**
+ * SEO规则
  */
-if (!function_exists('cms_hook_the_title')) {
-    function cms_hook_the_title()
+if (!function_exists("seo_rule")) {
+    function seo_rule()
     {
-        $config = system_config([], 'seo');;
-
-        if (is_single() && isset($config['seo_single_title'])) {
-            return cms_single_seo_rule($config['seo_single_title']);
-        }
-
-        if (is_goods() && isset($config['seo_store_goods_title'])) {
-            return shop_goods_seo_rule($config['seo_store_goods_title']);
-        }
-
-        if (is_store() && isset($config['seo_store_title'])) {
-            return shop_seo_rule($config['seo_store_title']);
-        }
-
-        if (is_store_category() && isset($config['seo_store_category_title'])) {
-            return shop_category_seo_rule($config['seo_store_category_title']);
-        }
-
-        if (is_category() && isset($config['seo_category_title'])) {
-            return cms_category_seo_rule($config['seo_category_title']);
-        }
-
-        if (is_tag() && isset($config['seo_tag_title'])) {
-            return cms_tag_seo_rule($config['seo_tag_title']);
-        }
-
-        if (is_search() && isset($config['seo_search_title'])) {
-            return cms_search_seo_rule($config['seo_search_title']);
-        }
-
-        if (is_home() && isset($config['seo_site_title'])) {
-            $page = request()->route()->parameter('page');
-            return str_replace('{page}', ($page && $page > 1 ? " - 第{$page}页" : ""), $config['seo_site_title']);
-        }
-
-        return session('page_title') ?? false;
-
+        return system_config([], 'seo');
     }
 }
 
-/*
- * 获取页面关键词
+/**
+ * 分页SEO规则
  */
-if (!function_exists('cms_hook_the_keyword')) {
-    function cms_hook_the_keyword()
+if (!function_exists("seo_page_rule")) {
+    function seo_page_rule(): string
     {
-
-        $config = system_config([], 'seo');;
-
-        if (is_single() && isset($config['seo_single_keyword'])) {
-            return cms_single_seo_rule($config['seo_single_keyword']);
-        }
-
-        if (is_goods() && isset($config['seo_store_goods_keyword'])) {
-            return shop_goods_seo_rule($config['seo_store_goods_keyword']);
-        }
-
-        if (is_store() && isset($config['seo_store_keyword'])) {
-            return shop_seo_rule($config['seo_store_keyword']);
-        }
-
-        if (is_store_category() && isset($config['seo_store_category_keyword'])) {
-            return shop_category_seo_rule($config['seo_store_category_keyword']);
-        }
-
-        if (is_category() && isset($config['seo_category_keyword'])) {
-            return cms_category_seo_rule($config['seo_category_keyword']);
-        }
-
-        if (is_tag() && isset($config['seo_tag_keyword'])) {
-            return cms_tag_seo_rule($config['seo_tag_keyword']);
-        }
-
-        if (is_search() && isset($config['seo_search_keyword'])) {
-            return cms_search_seo_rule($config['seo_search_keyword']);
-        }
-
-        if (is_home() && isset($config['seo_site_keyword'])) {
-            return $config['seo_site_keyword'];
-        }
-
-        return session('page_keyword') ?? false;
-
+        $page = request()->route()->parameter('page');
+        return $page && $page > 1 ? " - 第{$page}页" : '';
     }
 }
 
-
-/*
- * 获取页面描述
+/**
+ * 首页SEO规则
  */
-if (!function_exists('cms_hook_the_description')) {
-    function cms_hook_the_description()
+if (!function_exists("the_home_seo_rule")) {
+    function the_home_seo_rule($value)
     {
 
-        $config = system_config([], 'seo');;
 
-        if (is_single() && isset($config['seo_single_description'])) {
-            return cms_single_seo_rule($config['seo_single_description']);
-        }
-
-        if (is_goods() && isset($config['seo_store_goods_description'])) {
-            return shop_goods_seo_rule($config['seo_store_goods_description']);
-        }
-
-        if (is_store() && isset($config['seo_store_description'])) {
-            return shop_seo_rule($config['seo_store_description']);
-        }
-
-        if (is_store_category() && isset($config['seo_store_category_description'])) {
-            return shop_category_seo_rule($config['seo_store_category_description']);
-        }
-
-        if (is_category() && isset($config['seo_category_description'])) {
-            return cms_category_seo_rule($config['seo_category_description']);
-        }
-
-        if (is_tag() && isset($config['seo_tag_description'])) {
-            return cms_tag_seo_rule($config['seo_tag_description']);
-        }
-
-        if (is_search() && isset($config['seo_search_description'])) {
-            return cms_search_seo_rule($config['seo_search_description']);
-        }
-
-        if (is_home() && isset($config['seo_site_description'])) {
-            return $config['seo_site_description'];
-        }
-
-        return session('page_description') ?? false;
-
+        return str_replace(
+            ['{page}'],
+            [seo_page_rule()],
+            $value
+        );
     }
 }
 
-if (!function_exists('cms_single_seo_rule')) {
-    function cms_single_seo_rule($value)
+/**
+ * 分类SEO规则
+ */
+if (!function_exists("the_category_seo_rule")) {
+    function the_category_seo_rule($value)
+    {
+        return str_replace(
+            ['{name}', '{description}', '{page}'],
+            [the_category_title(), the_category_description(), seo_page_rule()],
+            $value
+        );
+    }
+}
+
+/**
+ * 文章SEO规则
+ */
+if (!function_exists("the_single_seo_rule")) {
+    function the_single_seo_rule($value)
     {
         return str_replace(
             ['{name}', '{description}', '{tags}', '{category}', '{author}'],
             [
-                session('single')->title,
-                session('single')->description,
-                join(',', array_column(cms_article_tags(session('single')->id), 'tag_name')),
-                session('single')->category->name,
-                session('single')->author
+                the_single_title(),
+                the_single_description(),
+                article_tags_text(),
+                the_single()->category->name,
+                the_single()->author
             ],
             $value
         );
     }
 }
 
-
-if (!function_exists('cms_category_seo_rule')) {
-    function cms_category_seo_rule($value)
+/**
+ * 标签页SEO规则
+ */
+if (!function_exists("the_tag_seo_rule")) {
+    function the_tag_seo_rule($value)
     {
-
-        $page = request()->route()->parameter('page');
-
         return str_replace(
             ['{name}', '{description}', '{page}'],
-            [session('category')->name, session('category')->description, $page && $page > 1 ? " - 第{$page}页" : '' ],
+            [the_tag_title(), the_tag_description(), seo_page_rule()],
             $value
         );
     }
 }
 
-if (!function_exists('shop_category_seo_rule')) {
-    function shop_category_seo_rule($value)
+
+/**
+ * 搜索页SEO规则
+ */
+if (!function_exists("the_search_seo_rule")) {
+    function the_search_seo_rule($value)
     {
-
-        $page = request()->route()->parameter('page');
-
         return str_replace(
-            ['{name}', '{description}', '{page}'],
-            [session('store_category')->name, session('store_category')->description, $page && $page > 1 ? " - 第{$page}页" : '' ],
-            $value
-        );
-    }
-}
-
-if (!function_exists('shop_seo_rule')) {
-    function shop_seo_rule($value)
-    {
-
-        $page = request()->route()->parameter('page');
-
-        return str_replace(
-            ['{page}'],
-            [$page && $page > 1 ? " - 第{$page}页" : '' ],
+            ['{keyword}', '{page}'],
+            [the_search_title(), seo_page_rule()],
             $value
         );
     }
 }
 
 
-if (!function_exists('shop_goods_seo_rule')) {
-    function shop_goods_seo_rule($value)
+/**
+ * 商品SEO规则
+ */
+if (!function_exists("the_goods_seo_rule")) {
+    function the_goods_seo_rule($value)
     {
         return str_replace(
             ['{name}', '{description}', '{category}'],
             [
-                session('goods')->goods_name,
-                session('goods')->description,
-                session('goods')->category->name,
+                the_goods_title(),
+                the_goods_description(),
+                the_goods()->category->name,
             ],
             $value
         );
     }
 }
 
-if (!function_exists('cms_tag_seo_rule')) {
-    function cms_tag_seo_rule($value)
-    {
-        $page = request()->route()->parameter('page');
 
+/**
+ * 商品分类SEO规则
+ */
+if (!function_exists("the_store_category_seo_rule")) {
+    function the_store_category_seo_rule($value)
+    {
         return str_replace(
             ['{name}', '{description}', '{page}'],
-            [session('tag')->tag_name, session('tag')->description, $page && $page > 1 ? " - 第{$page}页" : ''],
+            [the_store_category_title(), the_store_category_description(), seo_page_rule()],
             $value
         );
     }
 }
 
-
-if (!function_exists('cms_search_seo_rule')) {
-    function cms_search_seo_rule($value)
+/**
+ * 商城首页SEO规则
+ */
+if (!function_exists("the_store_seo_rule")) {
+    function the_store_seo_rule($value)
     {
-        $page = request()->route()->parameter('page');
-
         return str_replace(
-            ['{keyword}', '{page}'],
-            [session('search'), $page && $page > 1 ? " - 第{$page}页" : ''],
+            ['{page}'],
+            [seo_page_rule()],
             $value
         );
+    }
+}
+
+/**
+ * 首页标题
+ */
+if (!function_exists("the_home_title_for_rule")) {
+    function the_home_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_home_seo_rule($config['seo_site_title']);
+    }
+}
+
+/**
+ * 首页关键词
+ */
+if (!function_exists("the_home_keyword_for_rule")) {
+    function the_home_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_home_seo_rule($config['seo_site_keyword']);
+    }
+}
+
+/**
+ * 首页描述
+ */
+if (!function_exists("the_home_description_for_rule")) {
+    function the_home_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_home_seo_rule($config['seo_site_description']);
+    }
+}
+
+
+
+/**
+ * 分类页标题
+ */
+if (!function_exists("the_category_title_for_rule")) {
+    function the_category_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_category_seo_rule($config['seo_category_title']);
+    }
+}
+
+/**
+ * 分类页关键词
+ */
+if (!function_exists("the_category_keyword_for_rule")) {
+    function the_category_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_category_seo_rule($config['seo_category_keyword']);
+    }
+}
+
+/**
+ * 分类页描述
+ */
+if (!function_exists("the_category_description_for_rule")) {
+    function the_category_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_category_seo_rule($config['seo_category_description']);
+    }
+}
+
+
+/**
+ * 文章页标题
+ */
+if (!function_exists("the_single_title_for_rule")) {
+    function the_single_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_single_seo_rule($config['seo_single_title']);
+    }
+}
+
+/**
+ * 文章页关键词
+ */
+if (!function_exists("the_single_keyword_for_rule")) {
+    function the_single_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_single_seo_rule($config['seo_single_keyword']);
+    }
+}
+
+/**
+ * 文章页描述
+ */
+if (!function_exists("the_single_description_for_rule")) {
+    function the_single_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_single_seo_rule($config['seo_single_description']);
+    }
+}
+
+
+/**
+ * 标签页标题
+ */
+if (!function_exists("the_tag_title_for_rule")) {
+    function the_tag_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_tag_seo_rule($config['seo_tag_title']);
+    }
+}
+
+/**
+ * 标签页关键词
+ */
+if (!function_exists("the_tag_keyword_for_rule")) {
+    function the_tag_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_tag_seo_rule($config['seo_tag_keyword']);
+    }
+}
+
+/**
+ * 标签页描述
+ */
+if (!function_exists("the_tag_description_for_rule")) {
+    function the_tag_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_tag_seo_rule($config['seo_tag_description']);
+    }
+}
+
+
+
+/**
+ * 搜索页标题
+ */
+if (!function_exists("the_search_title_for_rule")) {
+    function the_search_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_search_seo_rule($config['seo_search_title']);
+    }
+}
+
+/**
+ * 搜索页关键词
+ */
+if (!function_exists("the_search_keyword_for_rule")) {
+    function the_search_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_search_seo_rule($config['seo_search_keyword']);
+    }
+}
+
+/**
+ * 搜索页描述
+ */
+if (!function_exists("the_search_description_for_rule")) {
+    function the_search_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_search_seo_rule($config['seo_search_description']);
+    }
+}
+
+
+
+/**
+ * 商城首页标题
+ */
+if (!function_exists("the_store_title_for_rule")) {
+    function the_store_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_seo_rule($config['seo_store_title']);
+    }
+}
+
+/**
+ * 商城首页关键词
+ */
+if (!function_exists("the_store_keyword_for_rule")) {
+    function the_store_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_seo_rule($config['seo_store_keyword']);
+    }
+}
+
+/**
+ * 商城首页描述
+ */
+if (!function_exists("the_store_description_for_rule")) {
+    function the_store_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_seo_rule($config['seo_store_description']);
+    }
+}
+
+
+/**
+ * 商品页标题
+ */
+if (!function_exists("the_goods_title_for_rule")) {
+    function the_goods_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_goods_seo_rule($config['seo_store_goods_title']);
+    }
+}
+
+/**
+ * 商品页关键词
+ */
+if (!function_exists("the_goods_keyword_for_rule")) {
+    function the_goods_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_goods_seo_rule($config['seo_store_goods_keyword']);
+    }
+}
+
+/**
+ * 商品页描述
+ */
+if (!function_exists("the_goods_description_for_rule")) {
+    function the_goods_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_goods_seo_rule($config['seo_store_goods_description']);
+    }
+}
+
+
+
+/**
+ * 商品分类页标题
+ */
+if (!function_exists("the_store_category_title_for_rule")) {
+    function the_store_category_title_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_category_seo_rule($config['seo_store_category_title']);
+    }
+}
+
+/**
+ * 商品分类页关键词
+ */
+if (!function_exists("the_store_category_keyword_for_rule")) {
+    function the_store_category_keyword_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_category_seo_rule($config['seo_store_category_keyword']);
+    }
+}
+
+/**
+ * 商品分类页描述
+ */
+if (!function_exists("the_store_category_description_for_rule")) {
+    function the_store_category_description_for_rule()
+    {
+        $config = seo_rule();
+        return the_store_category_seo_rule($config['seo_store_category_description']);
     }
 }

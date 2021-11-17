@@ -6,6 +6,7 @@ namespace Modules\Shop\Http\Controllers\Web;
 
 use App\Http\Controllers\MyController;
 use Modules\Shop\Models\Goods;
+use Modules\Shop\Models\GoodsCategory;
 
 class ShopController extends MyController
 {
@@ -37,7 +38,7 @@ class ShopController extends MyController
 
     public function category($cid)
     {
-        $category = app('goodsCategory')->find($cid);
+        $category = GoodsCategory::find($cid);
 
         if (empty($category)) {
             abort(404);

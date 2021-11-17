@@ -129,7 +129,7 @@
         send_lock = true;
 
         $.ajax({
-            url: '{{route('user.reg.code')}}',
+            url: '{{user_reg_code_path()}}',
             type: 'post',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             dataType: "json",
