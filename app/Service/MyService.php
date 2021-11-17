@@ -9,11 +9,11 @@ class MyService
 
     /**
      * 生成树形数据结构
-     * @param array $data
-     * @param int $pid
-     * @return array|mixed
+     * @param $data
+     * @param $pid
+     * @return array
      */
-    public function tree(array $data = [], int $pid = 0)
+    public function tree($data = [], $pid = 0): array
     {
         $result = [];
 
@@ -31,12 +31,12 @@ class MyService
 
     /**
      * 获取树形数据ID
-     * @param array $data
-     * @param int $pid
-     * @param boolean $self
+     * @param $data
+     * @param $pid
+     * @param $self
      * @return array
      */
-    public function childIds(array $data = [], int $pid = 0, bool $self = false): array
+    public function childIds($data = [], $pid = 0, $self = false): array
     {
         $result = $self ? [$pid] : [];
 
