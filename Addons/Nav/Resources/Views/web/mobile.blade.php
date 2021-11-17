@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="render" content="webkit">
-    <title>{{cms_the_title()}}</title>
-    <meta name="keywords" content="{{cms_the_keyword()}}">
-    <meta name="description" content="{{cms_the_description()}}">
+    <title>{{page_title()}}</title>
+    <meta name="keywords" content="{{page_keyword()}}">
+    <meta name="description" content="{{page_description()}}">
     <link rel="stylesheet" type="text/css" charset="utf-8" href="/mycms/addons/nav/css/normalize.css">
     <link rel="stylesheet" type="text/css" charset="utf-8" href="/mycms/addons/nav/css/mcss.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">

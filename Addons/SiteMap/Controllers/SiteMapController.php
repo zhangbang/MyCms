@@ -39,7 +39,7 @@ class SiteMapController extends MyController
         foreach ($categories as $category) {
 
             $date = date("Y-m-d",strtotime($category->updated_at));
-            $url = cms_category_path($category->id);
+            $url = category_path($category->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }
@@ -48,7 +48,7 @@ class SiteMapController extends MyController
         foreach ($articles as $article) {
 
             $date = date("Y-m-d",strtotime($article->updated_at));
-            $url = cms_single_path($article->id);
+            $url = single_path($article->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }
@@ -57,19 +57,19 @@ class SiteMapController extends MyController
         foreach ($tags as $tag) {
 
             $date = date("Y-m-d",strtotime($tag->updated_at));
-            $url = cms_tag_path($tag->id);
+            $url = tag_path($tag->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }
 
-        $url = shop_path();
+        $url = store_path();
         $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         $goodsCategories = GoodsCategory::select(['id','updated_at'])->get();
         foreach ($goodsCategories as $category) {
 
             $date = date("Y-m-d",strtotime($category->updated_at));
-            $url = shop_category_path($category->id);
+            $url = store_category_path($category->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }
@@ -78,7 +78,7 @@ class SiteMapController extends MyController
         foreach ($goods as $item) {
 
             $date = date("Y-m-d",strtotime($item->updated_at));
-            $url = shop_goods_path($item->id);
+            $url = goods_path($item->id);
             $xml .= "<url><loc>{$url}</loc><lastmod>{$date}</lastmod><priority>0.80</priority></url>";
 
         }

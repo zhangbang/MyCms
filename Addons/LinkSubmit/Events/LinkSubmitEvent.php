@@ -29,7 +29,7 @@ class LinkSubmitEvent
          $data = json_decode($this->response->getContent(), true);
 
          if (isset($data['id'])) {
-             return cms_single_path($data['id']);
+             return single_path($data['id']);
          }
 
         return $data['url'];

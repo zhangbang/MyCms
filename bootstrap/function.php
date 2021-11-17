@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\Storage;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleComment;
 use Modules\Shop\Models\PayLog;
@@ -767,5 +768,24 @@ if (!function_exists('ad')) {
     function ad($code)
     {
         return pipeline_func($code, 'ad');
+    }
+}
+
+/**
+ * 扫描系统内模板
+ */
+if (!function_exists('system_themes')) {
+    function system_themes(): array
+    {
+        $directories = Storage::disk('root')
+            ->directories('Template');
+
+        return array_map(function ($item) {
+            if (file_exists(base_path($item . '/theme.json'))) {
+                $info = \Illuminate\Support\Facades\Storage::disk('root')
+                    ->get($item . '/theme.json');
+                return json_decode($info, true);
+            }
+        }, $directories);
     }
 }

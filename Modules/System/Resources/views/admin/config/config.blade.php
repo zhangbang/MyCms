@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        @if ($themes = call_hook_function('cms_themes'))
+                        @if ($themes = system_themes())
                         <div class="layui-form-item">
                             <label class="layui-form-label">模板主题</label>
                             <div class="layui-input-block">

@@ -2,11 +2,11 @@
 <html lang="zh-CN" id="moulemHtml" class="screen-desktop-wide device-desktop">
 <head>
     <meta charset="UTF-8">
-    <title>{{cms_the_title()}}</title>
+    <title>{{page_title()}}</title>
     <meta name="keywords"
-          content="{{cms_the_keyword()}}">
+          content="{{page_keyword()}}">
     <meta name="description"
-          content="{{cms_the_description()}}">
+          content="{{page_description()}}">
     <link rel="stylesheet" type="text/css" href="/mycms/addons/nav/css/zui.min.css">
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_716225_9byylqtxsca.css">
     <link rel="stylesheet" type="text/css" href="/mycms/addons/nav/css/jquery-ui.css">
