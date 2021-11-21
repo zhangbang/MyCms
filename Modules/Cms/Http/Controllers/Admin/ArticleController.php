@@ -122,10 +122,10 @@ class ArticleController extends MyController
     }
 
 
-    public function tags(ArticleService $articleService)
+    public function tags()
     {
         $id = $this->request('id', 'intval');
-        $tags = $articleService->tagsText($id);
+        $tags = article_tags_text($id);
         $article = Article::find($id);
 
         return $this->view('admin.article.tags', compact('article', 'tags'));
