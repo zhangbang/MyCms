@@ -32,4 +32,9 @@ class ArticleCategory extends MyModel
         return $result;
     }
 
+    public function parent()
+    {
+        return $this->hasOne('Modules\Cms\Models\ArticleCategory', 'id', 'pid');
+    }
+
 }

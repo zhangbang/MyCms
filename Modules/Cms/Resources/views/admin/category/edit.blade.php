@@ -65,8 +65,7 @@
                         <label class="layui-form-label required">配置</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input type="text" name="attr[ident][]" class="layui-input" placeholder="配置标识"
-                                       value="">
+                                <input type="text" name="attr[ident][]" class="layui-input" placeholder="配置标识" value="">
                             </div>
                             <div class="layui-input-inline">
                                 <input type="text" name="attr[value][]" class="layui-input" placeholder="配置值"
@@ -74,6 +73,17 @@
                             </div>
                         </div>
                     </div>
+
+                        <div class="layui-form-item" id="extend-div">
+                            <label class="layui-form-label"></label>
+                            <div class="layui-input-block">
+
+                                <input type="checkbox" name="apply_to_category" lay-skin="primary" @if($category->apply_to_category == 1) checked @endif value="1" title="应用到子分类">
+
+                                <input type="checkbox" name="apply_to_article" @if($category->apply_to_article == 1) checked @endif lay-skin="primary" value="1" title="应用到文章">
+
+                            </div>
+                        </div>
 
                     <div class="layui-form-item" id="diy-button">
                         <label class="layui-form-label"></label>
@@ -121,7 +131,7 @@
         $('#add-diy-button').click(
             function () {
                 var html = $('#diy-tpl').html();
-                $('#diy-button').before(html);
+                $('#extend-div').before(html);
             }
         );
     });

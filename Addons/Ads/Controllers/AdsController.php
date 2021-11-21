@@ -6,7 +6,6 @@ namespace Addons\Ads\Controllers;
 
 use Addons\Ads\Models\Ads;
 use Addons\Ads\Requests\AdsRequest;
-use Addons\FriendLink\Requests\FriendLinkRequest;
 use App\Http\Controllers\MyController;
 use Illuminate\Http\Request;
 
@@ -16,10 +15,10 @@ class AdsController extends MyController
     public function index(Request $request)
     {
         if ($request->ajax() && $request->wantsJson()) {
-            $category = Ads::orderBy('id', 'desc')
+            $ads = Ads::orderBy('id', 'desc')
                 ->paginate($this->request('limit', 'intval'))->toArray();
 
-            return $this->jsonSuc($category);
+            return $this->jsonSuc($ads);
         }
 
         return $this->view('admin.index');

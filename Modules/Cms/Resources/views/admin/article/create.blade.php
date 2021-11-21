@@ -13,7 +13,8 @@
                     <div class="layui-form-item  layui-row layui-col-xs12">
                         <label class="layui-form-label required">分类</label>
                         <div class="layui-input-block">
-                            <select name="category_id">
+                            <select name="category_id" id="category_id" lay-filter="category_id">
+                                <option value="0">请选择分类</option>
                                 @foreach($categories as $item)
                                     <option value="{{$item['id']}}">{{$item['name']}}</option>
                                 @endforeach
@@ -78,7 +79,7 @@
 
                 <div class="layui-tab-item">
 
-                    <div class="layui-form-item">
+                    <div class="layui-form-item meta-item">
                         <label class="layui-form-label required">配置</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
@@ -114,7 +115,7 @@
 
 
 <div style="display: none" id="diy-tpl">
-    <div class="layui-form-item">
+    <div class="layui-form-item meta-item">
         <label class="layui-form-label required">配置</label>
         <div class="layui-inline">
             <div class="layui-input-inline">
@@ -127,9 +128,24 @@
     </div>
 </div>
 
+<div style="display: none" id="extend-tpl">
+    <div class="layui-form-item meta-item">
+        <label class="layui-form-label required">配置</label>
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" name="attr[ident][]" class="layui-input" placeholder="配置标识" value="{ident}">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="attr[value][]" class="layui-input" placeholder="配置值" value="{value}">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    layui.use(['jquery'], function () {
-        var $ = layui.jquery;
+    layui.use(['jquery', 'form'], function () {
+        var $ = layui.jquery,
+        form = layui.form;
 
         $('#add-diy-button').click(
             function () {
@@ -137,6 +153,25 @@
                 $('#diy-button').before(html);
             }
         );
+
+        form.on('select(category_id)', function (data) {
+            $.get(
+                "{{route('article.category.metaToArticle')}}?id=" + data.value,
+                function (result) {
+
+                    var html = '';
+                    $('.layui-tab-item .meta-item').remove();
+
+                    for (var i in result['data']) {
+                        var obj = result['data'][i];
+                        html += $('#extend-tpl').html().replace("{ident}",obj.meta_key).replace("{value}",obj.meta_value);
+                    }
+
+                    $('#diy-button').before(html);
+                }
+            );
+        });
+
     });
 </script>
 

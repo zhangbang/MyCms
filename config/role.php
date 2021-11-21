@@ -68,6 +68,7 @@ return [
     'article/admin/category/create' => '创建分类',
     'article/admin/category/edit' => '编辑分类',
     'article/admin/category/destroy' => '删除分类',
+    'article/admin/category/metaToArticle' => '查询分类拓展',
 
     'article/admin/tag' => '文章标签',
     'article/admin/tag/create' => '创建标签',

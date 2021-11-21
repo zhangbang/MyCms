@@ -60,7 +60,7 @@ class ArticleCategoryController extends MyController
         $categories = app('cms')->categoryTree();
         $category = ArticleCategory::find($id);
 
-        $meta = ArticleCategoryMeta::where('category_id', $id)->get();
+        $meta = app('cms')->categoryMeta($id, ['apply_to_category', 'apply_to_article']);
 
         return $this->view('admin.category.edit', compact('categories', 'category', 'meta'));
     }
@@ -98,9 +98,69 @@ class ArticleCategoryController extends MyController
         return $this->result($result);
     }
 
+    /**
+     * 应用到文章的拓展
+     */
+    public function metaToArticle()
+    {
+
+        $meta = [];
+        $result = false;
+
+        if ($id = $this->request('id')) {
+
+            $result = true;
+            $metaArray = app('cms')->categoryMeta($id, ['template', 'apply_to_category'])->toArray();
+
+            if (!in_array('apply_to_article', array_column($metaArray, 'meta_key'))) {
+                $meta = [];
+            } else {
+                foreach ($metaArray as $item) {
+                    if ($item['meta_key'] != 'apply_to_article') {
+                        $meta[] = $item;
+                    }
+                }
+            }
+        }
+
+        return $this->result($result, ['data' => $meta]);
+    }
+
+    /**
+     * 更新分类拓展
+     * @param $id
+     */
     protected function updateMeta($id)
     {
+
+        $category = ArticleCategory::find($id);
         $attr = $this->request('attr');
+
+        if ($applyCategory = $this->request('apply_to_category')) {
+            $attr['ident'][] = 'apply_to_category';
+            $attr['value'][] = $applyCategory;
+        }
+
+        if ($applyArticle = $this->request('apply_to_article')) {
+            $attr['ident'][] = 'apply_to_article';
+            $attr['value'][] = $applyArticle;
+        }
+
+        if ($category->pid > 0 && $category->parent->apply_to_category) {
+
+            $parentMeta = app('cms')->categoryMeta($category->pid, ['apply_to_category', 'apply_to_article']);
+
+            foreach ($parentMeta as $value) {
+
+                if (!in_array($value->meta_key, $attr['ident'])) {
+
+                    $attr['ident'][] = $value->meta_key;
+                    $attr['value'][] = $value->meta_value;
+                }
+            }
+
+        }
+
         ArticleCategoryMeta::where('category_id', $id)->delete();
 
         foreach ($attr['ident'] as $key => $ident) {
@@ -117,5 +177,6 @@ class ArticleCategoryController extends MyController
             }
         }
     }
+
 
 }

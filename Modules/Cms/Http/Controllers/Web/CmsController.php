@@ -34,7 +34,7 @@ class CmsController extends MyController
 
         is_category($category);
 
-        return $this->theme($category->template ?: 'category', compact('category'));
+        return $this->theme($this->cmsCategoryTemplate($category), compact('category'));
     }
 
     public function single($id)
@@ -49,7 +49,7 @@ class CmsController extends MyController
 
         $config = system_config([], 'cms');
 
-        return $this->theme($article->template ?: 'single', compact('article', 'config'));
+        return $this->theme($this->cmsArticleTemplate($article), compact('article', 'config'));
     }
 
 

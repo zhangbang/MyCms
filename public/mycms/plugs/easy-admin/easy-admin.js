@@ -207,14 +207,14 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 options.limits = options.limits || [10, 15, 20, 25, 50, 100];
                 options.cols = options.cols || [];
                 //options.defaultToolbar = ['filter'];
-                options.parseData = function(res){
+                options.parseData = function (res) {
                     for (var i in options.cols[0]) {
                         if (options.cols[0][i]['field']) {
                             var field = options.cols[0][i]['field'];
                             if (field !== 'operation') {
                                 for (var ii in res.data) {
-                                    if (typeof(res.data[ii][field]) == 'string') {
-                                        res.data[ii][field] = res.data[ii][field].replace(/<[^>]+>/g,"");
+                                    if (typeof (res.data[ii][field]) == 'string') {
+                                        res.data[ii][field] = res.data[ii][field].replace(/<[^>]+>/g, "");
                                     }
                                 }
                             }
@@ -297,6 +297,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         }
                     } else if (typeof v === "object") {
                         $.each(v, function (ii, vv) {
+
+                            if (vv.func !== undefined) {
+                                vv = vv.func(vv, init);
+                            }
+
                             vv.class = vv.class || '';
                             vv.icon = vv.icon || '';
                             vv.auth = vv.auth || '';
@@ -500,6 +505,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 formatOperat.class = formatOperat.class !== '' ? 'class="' + formatOperat.class + '" ' : '';
                 if (operat.method === 'open') {
                     formatOperat.method = formatOperat.method !== '' ? 'data-open="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
+                } else if (operat.method === 'href') {
+                    formatOperat.method = formatOperat.method !== '' ? 'layuimini-content-href="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 } else {
                     formatOperat.method = formatOperat.method !== '' ? 'data-request="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 }
@@ -614,6 +621,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
 
                     } else if (typeof item === 'object') {
                         $.each(item, function (i, operat) {
+
+                            if (operat.func !== undefined) {
+                                operat = operat.func(operat, data);
+                            }
+
                             operat.class = operat.class || '';
                             operat.icon = operat.icon || '';
                             operat.auth = operat.auth || '';
@@ -1444,7 +1456,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                             {
                                 height: $(this).height(),
                                 filebrowserImageUploadUrl: admin.url('/system/upload'),
-                                fileTools_requestHeaders : {
+                                fileTools_requestHeaders: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 }
                             });
@@ -1513,6 +1525,18 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 }
             },
         },
+        urlQueryParam: function (key) {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest[key];
+        }
     };
     return admin;
 });

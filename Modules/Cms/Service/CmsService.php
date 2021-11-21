@@ -8,12 +8,23 @@ use App\Service\MyService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleCategory;
+use Modules\Cms\Models\ArticleCategoryMeta;
 use Modules\Cms\Models\ArticleComment;
+use Modules\Cms\Models\ArticleMeta;
 use Modules\Cms\Models\ArticleTag;
 use Modules\Cms\Models\ArticleTagRel;
 
 class CmsService extends MyService
 {
+    /**
+     * 根据排序获取文章
+     */
+    public function articlesForSort($page = 1, $limit = 10, $orderBy = 'id', $sort = 'desc')
+    {
+        return Article::with('category:id,name')
+            ->orderBy($orderBy, $sort)
+            ->paginate($limit, '*', 'page', $page);
+    }
 
     /**
      * 分类树形结构数据
@@ -152,7 +163,7 @@ class CmsService extends MyService
      * @param $limit
      * @return LengthAwarePaginator
      */
-    public function commentForArticle($articleId, $rootId,$page = 1, $limit = 10): LengthAwarePaginator
+    public function commentForArticle($articleId, $rootId, $page = 1, $limit = 10): LengthAwarePaginator
     {
         return ArticleComment::with('user:id,name,img')
             ->where([
@@ -162,5 +173,35 @@ class CmsService extends MyService
             ])
             ->orderBy('id', $rootId == 0 ? 'desc' : 'asc')
             ->paginate($limit, '*', 'page', $page);
+    }
+
+    /**
+     * 获取分类拓展
+     * @param $id
+     * @param array $exclude
+     * @return mixed
+     */
+    public function categoryMeta($id, $exclude = [])
+    {
+        $meta = ArticleCategoryMeta::where('category_id', $id);
+
+        $meta = $exclude ? $meta->whereNotIn('meta_key', $exclude) : $meta;
+
+        return $meta->get();
+    }
+
+    /**
+     * 获取文章拓展
+     * @param $id
+     * @param array $exclude
+     * @return mixed
+     */
+    public function articleMeta($id, $exclude = [])
+    {
+        $meta = ArticleMeta::where('article_id', $id);
+
+        $meta = $exclude ? $meta->whereNotIn('meta_key', $exclude) : $meta;
+
+        return $meta->get();
     }
 }

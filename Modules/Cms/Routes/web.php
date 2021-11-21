@@ -22,6 +22,7 @@ Route::group([
         Route::get('/category/create', 'ArticleCategoryController@create')->name('article.category.create');
         Route::post('/category/create', 'ArticleCategoryController@store');
         Route::post('/category/destroy', 'ArticleCategoryController@destroy');
+        Route::get('/category/metaToArticle', 'ArticleCategoryController@metaToArticle')->name('article.category.metaToArticle');
 
 
         Route::get('/', 'ArticleController@index')->name('article.admin');

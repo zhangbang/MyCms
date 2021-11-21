@@ -63,7 +63,7 @@ class ArticleController extends MyController
             $this->updateMeta($article->id);
         }
 
-        return $this->result($result, ['id' => $article->id, 'title' => $article->title, 'url' => cms_single_path($article->id)]);
+        return $this->result($result, ['id' => $article->id, 'title' => $article->title, 'url' => single_path($article->id)]);
     }
 
     /**
@@ -75,9 +75,9 @@ class ArticleController extends MyController
         $categories = app('cms')->categoryTree();
 
         $article = Article::find($id);
-        $tags = app('cms')->article_tags_text($id);
+        $tags = article_tags_text($id);
 
-        $meta = ArticleMeta::where('article_id', $id)->get();
+        $meta = app('cms')->articleMeta($id);
 
         return $this->view('admin.article.edit', compact('categories', 'article', 'tags', 'meta'));
     }

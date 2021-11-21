@@ -56,6 +56,16 @@
                         </div>
                     </div>
 
+                    <div class="layui-form-item" id="extend-div">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+
+                            <input type="checkbox" name="apply_to_category" lay-skin="primary" value="1" title="应用到子分类">
+
+                            <input type="checkbox" name="apply_to_article" lay-skin="primary" value="1" title="应用到文章">
+                        </div>
+                    </div>
+
                     <div class="layui-form-item" id="diy-button">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
@@ -97,7 +107,7 @@
         $('#add-diy-button').click(
             function (){
                 var html = $('#diy-tpl').html();
-                $('#diy-button').before(html);
+                $('#extend-div').before(html);
             }
         );
     });

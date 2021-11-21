@@ -3,7 +3,6 @@
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Storage;
-use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleComment;
 use Modules\Shop\Models\PayLog;
 use Nwidart\Modules\Json;
@@ -469,6 +468,9 @@ if (!function_exists('page_description')) {
     }
 }
 
+/**
+ * 通用列表
+ */
 if (!function_exists('page_list')) {
     function page_list($type, $page = 1, $limit = 10, $tag = '', $params = [])
     {
@@ -477,9 +479,9 @@ if (!function_exists('page_list')) {
         if (function_exists($tag . "_" . $type)) {
 
             $params[$tag . "_id"] = $params[$tag . "_id"] ?? the_page_id();
-            $articles = call_user_func($tag . "_" . $type, $page, $limit, $params);
+            $values = call_user_func($tag . "_" . $type, $page, $limit, $params);
 
-            return pipeline_func($articles, $tag . "_" . $type);
+            return pipeline_func($values, $tag . "_" . $type);
         }
 
         return false;
@@ -514,9 +516,7 @@ if (!function_exists('new_articles')) {
 
     function new_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
     {
-        return Article::with('category:id,name')
-            ->orderBy('id', 'desc')
-            ->paginate($limit, '*', 'page', $page);
+        return app('cms')->articlesForSort($page, $limit);
     }
 }
 
@@ -527,9 +527,7 @@ if (!function_exists('hot_articles')) {
 
     function hot_articles($page = 1, $limit = 10, $params = []): LengthAwarePaginator
     {
-        return Article::with('category:id,name')
-            ->orderBy('view', 'desc')
-            ->paginate($limit, '*', 'page', $page);
+        return app('cms')->articlesForSort($page, $limit, 'view');
     }
 }
 
@@ -628,7 +626,7 @@ if (!function_exists('article_tags_text')) {
 
             return join(
                 ',',
-                array_column($tags->toArray(),'tag_name')
+                array_column($tags->toArray(), 'tag_name')
             );
         }
 
