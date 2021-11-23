@@ -289,6 +289,10 @@ if (!function_exists('get_client_ip')) {
             return explode(",", $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
         }
 
+        if (isset(request()->header()['x-forwarded-for'])) {
+            return explode(",", request()->header()['x-forwarded-for'][0])[0];
+        }
+
         return request()->getClientIp();
     }
 }
@@ -368,6 +372,12 @@ if (!function_exists('finish_pay_order')) {
     function finish_pay_order($tradeNo)
     {
         PayLog::where('trade_no', $tradeNo)->update(['status' => 1, 'pay_time' => time()]);
+
+        $payLog = app('store')->payLogForTradeNo($tradeNo);
+
+        if (function_exists("{$payLog->trade_type}_finish_order")) {
+            call_user_func("{$payLog->trade_type}_finish_order", $tradeNo);
+        }
     }
 }
 

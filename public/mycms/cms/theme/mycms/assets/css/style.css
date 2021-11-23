@@ -3914,8 +3914,10 @@ footer {
     font-weight: 500;
     line-height: 19px;
     letter-spacing: 0.001em;
-    color: var(--clr-body);
+    color: var(--clr-white);
     margin-bottom: 0;
+    background: var(--clr-def);
+    padding: 6px;
 }
 
 .course-info .course-meta ul li .course-meta-bio span {

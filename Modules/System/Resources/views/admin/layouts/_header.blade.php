@@ -15,7 +15,7 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/mycms/admin/css/public.css?v=1.0.0" media="all">
+    <link rel="stylesheet" href="/mycms/admin/css/public.css?v={{config('app.version')}}" media="all">
     <script>
         window.CONFIG = {
             ADMIN: "mycms",
@@ -25,8 +25,8 @@
             VERSION: "{{$version}}",
         };
     </script>
-    <script src="/mycms/plugs/layui-v2.5.6/layui.all.js?v=1.0.0" charset="utf-8"></script>
-    <script src="/mycms/plugs/require-2.3.6/require.js?v=1.0.0" charset="utf-8"></script>
-    <script src="/mycms/config-admin.js?v=1.0.0" charset="utf-8"></script>
+    <script src="/mycms/plugs/layui-v2.5.6/layui.all.js?v={{config('app.version')}}" charset="utf-8"></script>
+    <script src="/mycms/plugs/require-2.3.6/require.js?v={{config('app.version')}}" charset="utf-8"></script>
+    <script src="/mycms/config-admin.js?v={{config('app.version')}}" charset="utf-8"></script>
 
 </head>

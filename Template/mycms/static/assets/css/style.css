@@ -3912,6 +3912,8 @@ footer {
     letter-spacing: 0.001em;
     color: var(--clr-body);
     margin-bottom: 0;
+    background: var(--clr-def);
+    padding: 6px;
 }
 
 .course-info .course-meta ul li .course-meta-bio span {

@@ -14,7 +14,7 @@ class AdminComposer
         $view->with([
             'js_path' => $this->path(),
             'js_action' => $this->action(),
-            'version' => '1.0.0',
+            'version' => config('app.version'),
         ]);
     }
 

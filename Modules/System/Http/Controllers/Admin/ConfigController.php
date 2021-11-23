@@ -28,14 +28,10 @@ class ConfigController extends MyController
     /**
      * 保存系统配置
      */
-    public function store(ConfigRequest $request, AddonService $service): JsonResponse
+    public function store(ConfigRequest $request): JsonResponse
     {
         $data = $request->validated();
         $result = system_config_store($data, 'system');
-
-        if ($result !== false && $this->request('update_cache') == 1) {
-            $service->makeCache();
-        }
 
         return $this->result($result);
     }

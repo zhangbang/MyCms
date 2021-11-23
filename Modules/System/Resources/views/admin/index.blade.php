@@ -46,6 +46,9 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
+                            <a href="javascript:;" class="update-cache">更新缓存</a>
+                        </dd>
+                        <dd>
                             <a href="javascript:;" class="login-out">退出登录</a>
                         </dd>
                     </dl>

@@ -8,6 +8,8 @@ return [
 
     'system.config' => '系统配置',
     'system/config' => '设置',
+    'system.update-cache' => '系统缓存',
+    'system/update-cache' => '更新缓存',
 
     'system.admin' => '管理员管理',
     'system/admin' => '列表',

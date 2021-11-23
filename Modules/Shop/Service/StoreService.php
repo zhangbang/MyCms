@@ -8,6 +8,7 @@ use App\Service\MyService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Modules\Shop\Models\Goods;
 use Modules\Shop\Models\GoodsCategory;
+use Modules\Shop\Models\PayLog;
 
 class StoreService extends MyService
 {
@@ -62,6 +63,16 @@ class StoreService extends MyService
             ->orderBy($orderBy, 'desc')
             ->whereIn('category_id', $childIds)
             ->paginate($limit, '*', 'page', $page);
+    }
+
+    /**
+     * 根据交易号获取支付记录
+     * @param $tradeNo
+     * @return mixed
+     */
+    public function payLogForTradeNo($tradeNo)
+    {
+        return PayLog::where('trade_no', $tradeNo)->fisrt();
     }
 
 }

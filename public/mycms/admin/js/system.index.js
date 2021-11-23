@@ -25,6 +25,15 @@ define(["jquery", "easy-admin", "echarts", "echarts-theme", "miniAdmin", "miniTa
                     })
                 });
             });
+
+            $('.update-cache').on("click", function () {
+                ea.request.get({
+                    url: '/system/update-cache',
+                    prefix: true,
+                }, function (res) {
+                    ea.msg.success("更新成功")
+                });
+            });
         },
         dashboard: function () {
 

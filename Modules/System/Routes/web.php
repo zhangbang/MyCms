@@ -52,6 +52,9 @@ Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Control
         Route::any('addon/install', 'AddonController@install');
         Route::any('addon/uninstall', 'AddonController@uninstall');
         Route::any('addon/init', 'AddonController@init');
+
+        Route::get('update-cache', 'SystemController@updateCache');
+
     });
 
     Route::get('login', 'LoginController@showLoginForm')->name('system.login');

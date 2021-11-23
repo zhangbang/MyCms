@@ -5,6 +5,7 @@ namespace Modules\System\Http\Controllers\Admin;
 use App\Http\Controllers\MyController;
 use Illuminate\Http\Request;
 use Modules\System\Models\Config;
+use Modules\System\Service\AddonService;
 use Modules\System\Service\MenuService;
 
 class SystemController extends MyController
@@ -59,6 +60,17 @@ class SystemController extends MyController
         }
 
         return $this->jsonErr(['msg' => '上传失败']);
+    }
+
+    /**
+     * 更新缓存
+     */
+    public function updateCache(AddonService $service)
+    {
+        update_system_config_cache();
+        $service->makeCache();
+
+        return $this->result(true);
     }
 
 }
