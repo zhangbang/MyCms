@@ -43,6 +43,16 @@ trait ResponseHelpers
         return $result !== false ? $this->jsonSuc($data) : $this->jsonErr($data);
     }
 
+    public function success($data = []): JsonResponse
+    {
+        return $this->result(true, $data);
+    }
+
+    public function error($data = []): JsonResponse
+    {
+        return $this->result(false, $data);
+    }
+
     public function contentToArray(string $content)
     {
         return json_decode($content, true);

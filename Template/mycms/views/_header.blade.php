@@ -33,7 +33,7 @@
 
 <!-- Start header
 ============================================= -->
-<header class="header header-1 bg-2">
+<header class="header bg-2">
     <div class="main-navigation">
         <nav id="navbar_top" class="navbar navbar-expand-lg">
             <div class="container g-0">

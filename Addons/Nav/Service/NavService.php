@@ -9,27 +9,12 @@ use App\Service\MyService;
 
 class NavService extends MyService
 {
-    public function categoryTree($categories = [], $pid = 0, $prefix = '')
+    public function categoryTree(): array
     {
-        $categories = $categories ?: Nav::toTree();
-
-        if (isset($categories[$pid]) && is_array($categories[$pid])) {
-
-            collect($categories[$pid])->each(function ($item) use (&$result, $categories, $prefix) {
-                $result[] = ['id' => $item['id'], 'name' => $prefix . $item['name']];
-                $child = $this->categoryTree($categories, $item['id'], "{$prefix}__");
-                if (is_array($child)) {
-                    $result = array_merge($result, $child);
-                }
-            });
-
-            return $result;
-        }
-
-        return [];
+        return $this->treeForSelect(Nav::toTree());
     }
 
-    public function childTree($pid = 0)
+    public function childTree($pid = 0): array
     {
         return $this->tree(Nav::toTree(), $pid);
 

@@ -29,12 +29,18 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerConfig();
         $this->templateViews();
+        $this->loadThemeFunctions();
 
         if (env('IS_HTTPS')) {
             URL::forceScheme('https');
         }
     }
 
+    /**
+     * 加载模板
+     *
+     * @return void
+     */
     protected function templateViews()
     {
         $this->loadViewsFrom(
@@ -43,6 +49,11 @@ class AppServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * 加载管道操作配置
+     *
+     * @return void
+     */
     protected function registerConfig()
     {
 
@@ -52,6 +63,20 @@ class AppServiceProvider extends ServiceProvider
             );
         }
 
+    }
+
+    /**
+     * 加载模板自定义函数
+     *
+     * @return void
+     */
+    protected function loadThemeFunctions()
+    {
+        $theme = system_config('cms_theme') ?? 'default';
+        $functions = base_path('Template/' . $theme . '/helpers/functions.php');
+        if (file_exists($functions)) {
+            include_once $functions;
+        }
     }
 
 }

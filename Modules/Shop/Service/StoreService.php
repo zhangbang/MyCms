@@ -24,6 +24,16 @@ class StoreService extends MyService
     }
 
     /**
+     * 分类树形结构数据（用于下拉框）
+     * @return array
+     */
+    public function categoryTreeForSelect(): array
+    {
+        $data = GoodsCategory::toTree();
+        return $this->treeForSelect($data);
+    }
+
+    /**
      * 子分类ID
      * @return array|int[]
      */

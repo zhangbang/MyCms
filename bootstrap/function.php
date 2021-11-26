@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Storage;
+use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleComment;
 use Modules\Shop\Models\PayLog;
 use Nwidart\Modules\Json;
@@ -60,7 +61,13 @@ if (!function_exists('system_config_cache')) {
     {
         if (file_exists(base_path('bootstrap/cache/system_config.php'))) {
 
-            $systemConfig = config('system_config')[$group] ?? [];
+            if (config('system_config') == null) {
+                $config = include base_path('bootstrap/cache/system_config.php');
+            } else {
+                $config = config('system_config');
+            }
+
+            $systemConfig = $config[$group] ?? [];
 
             if (empty($systemConfig)) {
                 return is_string($cfgKey) ? '' : [];
@@ -499,6 +506,16 @@ if (!function_exists('page_list')) {
 }
 
 /**
+ * 文章详情
+ */
+if (!function_exists('article')) {
+    function article($id, $meta = false)
+    {
+        return app('cms')->article($id,$meta);
+    }
+}
+
+/**
  * 文章列表
  */
 if (!function_exists('articles')) {
@@ -795,5 +812,26 @@ if (!function_exists('system_themes')) {
                 return json_decode($info, true);
             }
         }, $directories);
+    }
+}
+
+/**
+ * API参数签名加密
+ */
+if (!function_exists('api_param_sign')) {
+    function api_param_sign($params): string
+    {
+        ksort($params);
+
+        $string = '';
+        foreach ($params as $key => $param) {
+            if ($key != env('API_SIGN_NAME')) {
+                $string .= "{$key}={$param}&";
+            }
+        }
+
+        $string = trim($string, "&") . env('API_KEY');
+
+        return md5($string);
     }
 }

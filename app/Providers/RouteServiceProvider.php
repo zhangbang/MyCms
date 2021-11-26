@@ -47,6 +47,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        $this->mapTemplateRoutes();
     }
 
     /**
@@ -59,5 +61,21 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    /**
+     * 加载模板自定义路由
+     *
+     * @return void
+     */
+    protected function mapTemplateRoutes()
+    {
+        $theme = system_config('cms_theme') ?? 'default';
+        $route = base_path('Template/' . $theme . '/routes/web.php');
+
+        if (file_exists($route)) {
+            Route::middleware('web')
+                ->group($route);
+        }
     }
 }

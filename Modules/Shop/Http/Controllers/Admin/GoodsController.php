@@ -39,7 +39,7 @@ class GoodsController extends MyController
      */
     public function create()
     {
-        $categories = app('store')->categoryTree();
+        $categories = app('store')->categoryTreeForSelect();
         return $this->view('admin.goods.create', compact('categories'));
     }
 
@@ -59,7 +59,7 @@ class GoodsController extends MyController
      */
     public function edit()
     {
-        $categories = app('store')->categoryTree();
+        $categories = app('store')->categoryTreeForSelect();
         $goods = Goods::find($this->request('id', 'intval'));
 
         return $this->view('admin.goods.edit', compact('categories', 'goods'));

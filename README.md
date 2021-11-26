@@ -20,7 +20,7 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 
 * [官方网站](https://www.mycms.net.cn/)
 
-* [文档地址](https://www.kancloud.cn/b386654667/mycms/content)
+* [文档地址](https://www.mycms.net.cn/wendang)
 
 * [源码下载](https://gitee.com/qq386654667/mycms)
   
@@ -52,6 +52,17 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
     * 商品详情页
     * 会员登录/注册
     * 会员中心
+* API接口
+    * 签名加密
+    * 系统时间接口
+    * 文章分类列表接口
+    * 文章分类详情接口
+    * 文章列表接口
+      * 整站最新、最热文章
+      * 分类最新、最热文章
+      * 标签关联文章列表
+      * 搜索文章列表
+    * 文章详情接口
     
 ## 系统特性
 * 支持Swoole加速

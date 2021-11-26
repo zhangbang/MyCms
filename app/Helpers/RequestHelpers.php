@@ -7,11 +7,11 @@ namespace App\Helpers;
 trait RequestHelpers
 {
 
-    public function request($key, $filter = '')
+    public function request($key, $filter = '', $default = '')
     {
         $value = request()->input($key);
 
-        return $this->filter($value, $filter);
+        return $this->filter($value, $filter) ?: $default;
     }
 
     protected function filter($value, $filter)

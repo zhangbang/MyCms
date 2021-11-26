@@ -6,6 +6,7 @@ namespace Modules\Cms\Service;
 
 use App\Service\MyService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleCategory;
 use Modules\Cms\Models\ArticleCategoryMeta;
@@ -28,12 +29,32 @@ class CmsService extends MyService
 
     /**
      * 分类树形结构数据
-     * @return array|mixed
+     * @return array
      */
-    public function categoryTree()
+    public function categoryTree(): array
     {
         $data = ArticleCategory::toTree();
         return $this->tree($data);
+    }
+
+    /**
+     * 分类详情
+     * @param $id
+     * @return mixed
+     */
+    public function categoryInfo($id)
+    {
+        return ArticleCategory::find($id);
+    }
+
+    /**
+     * 分类树形结构数据（用于下拉框）
+     * @return array
+     */
+    public function categoryTreeForSelect(): array
+    {
+        $data = ArticleCategory::toTree();
+        return $this->treeForSelect($data);
     }
 
     /**
@@ -47,6 +68,25 @@ class CmsService extends MyService
     }
 
     /**
+     * 根据ID获取文章详情
+     * @param $id
+     * @param false $meta
+     * @return mixed
+     */
+    public function article($id, $meta = false)
+    {
+        $article = Article::with("category:id,name")->find($id);
+
+        if ($meta) {
+
+            $article->meta = ArticleMeta::where('article_id', $id)->get();
+        }
+
+        return pipeline_func($article, "article");
+    }
+
+    /**
+     * 获取分类文章
      * @param $categoryId
      * @param $page
      * @param $limit
@@ -203,5 +243,17 @@ class CmsService extends MyService
         $meta = $exclude ? $meta->whereNotIn('meta_key', $exclude) : $meta;
 
         return $meta->get();
+    }
+
+    /**
+     * 文章增加浏览数
+     * @param $id
+     * @return void
+     */
+    public function articleAddView($id)
+    {
+        Article::where('id', $id)->update([
+            'view' => DB::raw('view + 1'),
+        ]);
     }
 }

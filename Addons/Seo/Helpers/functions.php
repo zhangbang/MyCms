@@ -3,9 +3,10 @@
  * SEO规则
  */
 if (!function_exists("seo_rule")) {
-    function seo_rule()
+    function seo_rule($key = '')
     {
-        return system_config([], 'seo');
+        $config = system_config([], 'seo');
+        return empty($key) ? $config : ($config[$key] ?? '');
     }
 }
 
@@ -153,8 +154,7 @@ if (!function_exists("the_store_seo_rule")) {
 if (!function_exists("the_home_title_for_rule")) {
     function the_home_title_for_rule()
     {
-        $config = seo_rule();
-        return the_home_seo_rule($config['seo_site_title']);
+        return the_home_seo_rule(seo_rule('seo_site_title'));
     }
 }
 
@@ -164,8 +164,7 @@ if (!function_exists("the_home_title_for_rule")) {
 if (!function_exists("the_home_keyword_for_rule")) {
     function the_home_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_home_seo_rule($config['seo_site_keyword']);
+        return the_home_seo_rule(seo_rule('seo_site_keyword'));
     }
 }
 
@@ -175,11 +174,9 @@ if (!function_exists("the_home_keyword_for_rule")) {
 if (!function_exists("the_home_description_for_rule")) {
     function the_home_description_for_rule()
     {
-        $config = seo_rule();
-        return the_home_seo_rule($config['seo_site_description']);
+        return the_home_seo_rule(seo_rule('seo_site_description'));
     }
 }
-
 
 
 /**
@@ -188,8 +185,7 @@ if (!function_exists("the_home_description_for_rule")) {
 if (!function_exists("the_category_title_for_rule")) {
     function the_category_title_for_rule()
     {
-        $config = seo_rule();
-        return the_category_seo_rule($config['seo_category_title']);
+        return the_category_seo_rule(seo_rule('seo_category_title'));
     }
 }
 
@@ -199,8 +195,7 @@ if (!function_exists("the_category_title_for_rule")) {
 if (!function_exists("the_category_keyword_for_rule")) {
     function the_category_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_category_seo_rule($config['seo_category_keyword']);
+        return the_category_seo_rule(seo_rule('seo_category_keyword'));
     }
 }
 
@@ -210,8 +205,7 @@ if (!function_exists("the_category_keyword_for_rule")) {
 if (!function_exists("the_category_description_for_rule")) {
     function the_category_description_for_rule()
     {
-        $config = seo_rule();
-        return the_category_seo_rule($config['seo_category_description']);
+        return the_category_seo_rule(seo_rule('seo_category_description'));
     }
 }
 
@@ -222,8 +216,7 @@ if (!function_exists("the_category_description_for_rule")) {
 if (!function_exists("the_single_title_for_rule")) {
     function the_single_title_for_rule()
     {
-        $config = seo_rule();
-        return the_single_seo_rule($config['seo_single_title']);
+        return the_single_seo_rule(seo_rule('seo_single_title'));
     }
 }
 
@@ -233,8 +226,7 @@ if (!function_exists("the_single_title_for_rule")) {
 if (!function_exists("the_single_keyword_for_rule")) {
     function the_single_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_single_seo_rule($config['seo_single_keyword']);
+        return the_single_seo_rule(seo_rule('seo_single_keyword'));
     }
 }
 
@@ -244,8 +236,7 @@ if (!function_exists("the_single_keyword_for_rule")) {
 if (!function_exists("the_single_description_for_rule")) {
     function the_single_description_for_rule()
     {
-        $config = seo_rule();
-        return the_single_seo_rule($config['seo_single_description']);
+        return the_single_seo_rule(seo_rule('seo_single_description'));
     }
 }
 
@@ -256,8 +247,7 @@ if (!function_exists("the_single_description_for_rule")) {
 if (!function_exists("the_tag_title_for_rule")) {
     function the_tag_title_for_rule()
     {
-        $config = seo_rule();
-        return the_tag_seo_rule($config['seo_tag_title']);
+        return the_tag_seo_rule(seo_rule('seo_tag_title'));
     }
 }
 
@@ -267,8 +257,7 @@ if (!function_exists("the_tag_title_for_rule")) {
 if (!function_exists("the_tag_keyword_for_rule")) {
     function the_tag_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_tag_seo_rule($config['seo_tag_keyword']);
+        return the_tag_seo_rule(seo_rule('seo_tag_keyword'));
     }
 }
 
@@ -278,11 +267,9 @@ if (!function_exists("the_tag_keyword_for_rule")) {
 if (!function_exists("the_tag_description_for_rule")) {
     function the_tag_description_for_rule()
     {
-        $config = seo_rule();
-        return the_tag_seo_rule($config['seo_tag_description']);
+        return the_tag_seo_rule(seo_rule('seo_tag_description'));
     }
 }
-
 
 
 /**
@@ -291,8 +278,7 @@ if (!function_exists("the_tag_description_for_rule")) {
 if (!function_exists("the_search_title_for_rule")) {
     function the_search_title_for_rule()
     {
-        $config = seo_rule();
-        return the_search_seo_rule($config['seo_search_title']);
+        return the_search_seo_rule(seo_rule('seo_search_title'));
     }
 }
 
@@ -302,8 +288,7 @@ if (!function_exists("the_search_title_for_rule")) {
 if (!function_exists("the_search_keyword_for_rule")) {
     function the_search_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_search_seo_rule($config['seo_search_keyword']);
+        return the_search_seo_rule(seo_rule('seo_search_keyword'));
     }
 }
 
@@ -313,11 +298,9 @@ if (!function_exists("the_search_keyword_for_rule")) {
 if (!function_exists("the_search_description_for_rule")) {
     function the_search_description_for_rule()
     {
-        $config = seo_rule();
-        return the_search_seo_rule($config['seo_search_description']);
+        return the_search_seo_rule(seo_rule('seo_search_description'));
     }
 }
-
 
 
 /**
@@ -326,8 +309,7 @@ if (!function_exists("the_search_description_for_rule")) {
 if (!function_exists("the_store_title_for_rule")) {
     function the_store_title_for_rule()
     {
-        $config = seo_rule();
-        return the_store_seo_rule($config['seo_store_title']);
+        return the_store_seo_rule(seo_rule('seo_store_title'));
     }
 }
 
@@ -337,8 +319,7 @@ if (!function_exists("the_store_title_for_rule")) {
 if (!function_exists("the_store_keyword_for_rule")) {
     function the_store_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_store_seo_rule($config['seo_store_keyword']);
+        return the_store_seo_rule(seo_rule('seo_store_keyword'));
     }
 }
 
@@ -348,8 +329,7 @@ if (!function_exists("the_store_keyword_for_rule")) {
 if (!function_exists("the_store_description_for_rule")) {
     function the_store_description_for_rule()
     {
-        $config = seo_rule();
-        return the_store_seo_rule($config['seo_store_description']);
+        return the_store_seo_rule(seo_rule('seo_store_description'));
     }
 }
 
@@ -360,8 +340,7 @@ if (!function_exists("the_store_description_for_rule")) {
 if (!function_exists("the_goods_title_for_rule")) {
     function the_goods_title_for_rule()
     {
-        $config = seo_rule();
-        return the_goods_seo_rule($config['seo_store_goods_title']);
+        return the_goods_seo_rule(seo_rule('seo_store_goods_title'));
     }
 }
 
@@ -371,8 +350,7 @@ if (!function_exists("the_goods_title_for_rule")) {
 if (!function_exists("the_goods_keyword_for_rule")) {
     function the_goods_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_goods_seo_rule($config['seo_store_goods_keyword']);
+        return the_goods_seo_rule(seo_rule('seo_store_goods_keyword'));
     }
 }
 
@@ -382,11 +360,9 @@ if (!function_exists("the_goods_keyword_for_rule")) {
 if (!function_exists("the_goods_description_for_rule")) {
     function the_goods_description_for_rule()
     {
-        $config = seo_rule();
-        return the_goods_seo_rule($config['seo_store_goods_description']);
+        return the_goods_seo_rule(seo_rule('seo_store_goods_description'));
     }
 }
-
 
 
 /**
@@ -395,8 +371,7 @@ if (!function_exists("the_goods_description_for_rule")) {
 if (!function_exists("the_store_category_title_for_rule")) {
     function the_store_category_title_for_rule()
     {
-        $config = seo_rule();
-        return the_store_category_seo_rule($config['seo_store_category_title']);
+        return the_store_category_seo_rule(seo_rule('seo_store_category_title'));
     }
 }
 
@@ -406,8 +381,7 @@ if (!function_exists("the_store_category_title_for_rule")) {
 if (!function_exists("the_store_category_keyword_for_rule")) {
     function the_store_category_keyword_for_rule()
     {
-        $config = seo_rule();
-        return the_store_category_seo_rule($config['seo_store_category_keyword']);
+        return the_store_category_seo_rule(seo_rule('seo_store_category_keyword'));
     }
 }
 
@@ -417,7 +391,6 @@ if (!function_exists("the_store_category_keyword_for_rule")) {
 if (!function_exists("the_store_category_description_for_rule")) {
     function the_store_category_description_for_rule()
     {
-        $config = seo_rule();
-        return the_store_category_seo_rule($config['seo_store_category_description']);
+        return the_store_category_seo_rule(seo_rule('seo_store_category_description'));
     }
 }

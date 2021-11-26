@@ -2,5 +2,6 @@
     "System": true,
     "User": true,
     "Cms": true,
-    "Shop": true
+    "Shop": true,
+    "Api": true
 }

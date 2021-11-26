@@ -41,7 +41,7 @@ class ArticleController extends MyController
      */
     public function create()
     {
-        $categories = app('cms')->categoryTree();
+        $categories = app('cms')->categoryTreeForSelect();
         return $this->view('admin.article.create', compact('categories'));
     }
 
@@ -72,7 +72,7 @@ class ArticleController extends MyController
     public function edit()
     {
         $id = $this->request('id', 'intval');
-        $categories = app('cms')->categoryTree();
+        $categories = app('cms')->categoryTreeForSelect();
 
         $article = Article::find($id);
         $tags = article_tags_text($id);
