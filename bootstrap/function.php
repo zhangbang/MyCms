@@ -40,7 +40,7 @@ if (!function_exists('system_config')) {
     {
         $config = system_config_cache($cfgKey, $group);
 
-        if ($config === false) {
+        if ($config === false && env('DB_DATABASE')) {
             $config = (new \Modules\System\Models\Config())->group($group)->getConfig(
                 is_string($cfgKey) ? [$cfgKey] : $cfgKey
             );
