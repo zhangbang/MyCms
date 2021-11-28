@@ -3,7 +3,6 @@
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Storage;
-use Modules\Cms\Models\Article;
 use Modules\Cms\Models\ArticleComment;
 use Modules\Shop\Models\PayLog;
 use Nwidart\Modules\Json;
@@ -46,7 +45,7 @@ if (!function_exists('system_config')) {
                 $config = (new \Modules\System\Models\Config())->group($group)->getConfig(
                     is_string($cfgKey) ? [$cfgKey] : $cfgKey
                 );
-            } catch (Exception $e){
+            } catch (Exception $e) {
 
             }
         }
@@ -251,16 +250,24 @@ if (!function_exists("is_mobile")) {
             return true;
         }
 
+        $client = [
+            'mobile', 'nokia', 'sony', 'ericsson', 'mot', 'samsung',
+            'htc', 'sgh', 'lg', 'sharp', 'sie-', 'philips', 'panasonic',
+            'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu',
+            'android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm',
+            'operamini', 'operamobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap'
+        ];
+
         if (isset ($_SERVER['HTTP_USER_AGENT'])) {
-            $client = [
-                'mobile', 'nokia', 'sony', 'ericsson', 'mot', 'samsung',
-                'htc', 'sgh', 'lg', 'sharp', 'sie-', 'philips', 'panasonic',
-                'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu',
-                'android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm',
-                'operamini', 'operamobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap'
-            ];
 
             if (preg_match("/(" . implode('|', $client) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+                return true;
+            }
+        }
+
+        if (isset(request()->header()['user-agent'])) {
+
+            if (preg_match("/(" . implode('|', $client) . ")/i", strtolower(request()->header()['user-agent'][0]))) {
                 return true;
             }
         }
@@ -516,7 +523,7 @@ if (!function_exists('page_list')) {
 if (!function_exists('article')) {
     function article($id, $meta = false)
     {
-        return app('cms')->article($id,$meta);
+        return app('cms')->article($id, $meta);
     }
 }
 
@@ -734,7 +741,29 @@ if (!function_exists('new_goods')) {
 
     function new_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
     {
-        return app('store')->goods($page, $limit);
+        return app('store')->goodsList($page, $limit);
+    }
+}
+
+/**
+ * 热门商品列表
+ */
+if (!function_exists('hot_goods')) {
+
+    function hot_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('store')->goodsList($page, $limit, 'view');
+    }
+}
+
+/**
+ * 搜索商品
+ */
+if (!function_exists('search_goods')) {
+
+    function search_goods($page = 1, $limit = 10, $params = [])
+    {
+        return app('store')->search($params['search'] ?? '', $page, $limit);
     }
 }
 
@@ -746,6 +775,17 @@ if (!function_exists('store_category_goods')) {
     function store_category_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
     {
         return app('store')->goodsForCategory($params['store_category_id'], $page, $limit);
+    }
+}
+
+/**
+ * 分类最新商品列表
+ */
+if (!function_exists('store_category_hot_goods')) {
+
+    function store_category_hot_goods($page = 1, $limit = 10, $params = []): LengthAwarePaginator
+    {
+        return app('store')->goodsForCategory($params['store_category_id'], $page, $limit,'view');
     }
 }
 
@@ -838,5 +878,37 @@ if (!function_exists('api_param_sign')) {
         $string = trim($string, "&") . env('API_KEY');
 
         return md5($string);
+    }
+}
+
+/**
+ * 下载资源 CURL
+ */
+if (!function_exists('curl_download_get')) {
+    function curl_download_get($url)
+    {
+        $header = [
+            'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
+        ];
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+
+        $data = curl_exec($curl);
+        $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        if ($code != 200) {
+            return false;
+        } else {
+            curl_close($curl);
+            return $data;
+        }
     }
 }

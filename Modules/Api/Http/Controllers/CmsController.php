@@ -57,6 +57,7 @@ class CmsController extends ApiController
         if ($articles) {
 
             $result = $this->pageFilterField($articles);
+            $result['data'] = [];
 
             foreach ($articles as $item) {
 

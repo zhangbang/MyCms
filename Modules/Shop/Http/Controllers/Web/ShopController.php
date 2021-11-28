@@ -13,7 +13,7 @@ class ShopController extends MyController
 
     public function goods($id)
     {
-        $goods = Goods::find($id);
+        $goods = app('store')->goods($id);
 
         if (empty($goods)) {
             abort(404);

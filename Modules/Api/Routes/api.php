@@ -21,6 +21,12 @@ Route::prefix('v1')->name('api.v1.')
 
             Route::post('/articles', 'CmsController@articles');
             Route::post('/article/info', 'CmsController@articleInfo');
+
+            Route::post('/store/categories', 'StoreController@categories');
+            Route::post('/store/category/info', 'StoreController@categoryInfo');
+
+            Route::post('/store/goods/list', 'StoreController@goodsList');
+            Route::post('/store/goods/info', 'StoreController@goodsInfo');
         });
 
         Route::post('/timestamp', 'SystemController@timestamp');
