@@ -19,9 +19,9 @@ class UserController extends ApiController
 
         $user = app('user')->user($username);
 
-        if ($user && Hash::check($password, $user->password)) {
+        if ($user && $user->status == 1 && Hash::check($password, $user->password)) {
             return $this->success([
-                'result' => $this->objectFilterField($user, ['password', 'remember_token'], true)
+                'result' => $this->objectFilterField($user, ['password', 'status', 'remember_token'], true)
             ]);
         }
 
