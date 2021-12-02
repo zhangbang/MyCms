@@ -104,8 +104,10 @@ class CmsController extends ApiController
     {
         $id = $this->request('id', 'intval');
         $root = $this->request('root', 'intval', 0);
+        $page = $this->request('page', 'intval', 1);
+        $limit = $this->request('limit', 'intval', 10);
 
-        $comments = $this->collectFilterField(article_comments($id, $root), [
+        $comments = $this->collectFilterField(article_comments($id, $root, $page, $limit), [
             'status', 'updated_at'
         ], true);
 
