@@ -83,6 +83,13 @@ class SiteMapController extends MyController
 
         }
 
+        $array = pipeline_func([],"site_map");
+
+        foreach ($array as $item) {
+
+            $xml .= "<url><loc>{$item['url']}</loc><lastmod>{$item['date']}</lastmod><priority>0.80</priority></url>";
+        }
+
         $xml .= '</urlset>';
 
         $result = Storage::disk('root')->put('public/sitemap/sitemap.xml',$xml);

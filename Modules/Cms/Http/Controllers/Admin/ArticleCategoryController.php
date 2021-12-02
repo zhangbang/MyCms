@@ -60,7 +60,7 @@ class ArticleCategoryController extends MyController
         $categories = app('cms')->categoryTreeForSelect();
         $category = ArticleCategory::find($id);
 
-        $meta = app('cms')->categoryMeta($id, ['apply_to_category', 'apply_to_article']);
+        $meta = app('cms')->categoryMeta($id, ['apply_to_category', 'apply_to_article', 'title']);
 
         return $this->view('admin.category.edit', compact('categories', 'category', 'meta'));
     }

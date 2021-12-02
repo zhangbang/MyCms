@@ -17,8 +17,8 @@ define(["jquery", "easy-admin", "miniTab"], function ($, ea, miniTab) {
                 search:false,
                 toolbar:['refresh'],
                 cols: [[
-                    {field: 'ident', minWidth: 80, title: '标识'},
                     {field: 'name', minWidth: 80, title: '名称'},
+                    {field: 'ident', minWidth: 80, title: '标识'},
                     {field: 'version', minWidth: 80, title: '版本'},
                     {field: 'author', minWidth: 80, title: '作者'},
                     {field: 'description', minWidth: 80, title: '描述'},

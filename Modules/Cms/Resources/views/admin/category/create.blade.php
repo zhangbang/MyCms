@@ -24,12 +24,23 @@
                         </div>
                     </div>
 
+
                     <div class="layui-form-item">
                         <label class="layui-form-label required">名称</label>
                         <div class="layui-input-block">
                             <input type="text" name="name" class="layui-input" lay-verify="required" lay-reqtext="请输入名称"
                                    placeholder="请输入名称" value="">
                             <tip>填写名称。</tip>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="attr[ident][]" value="title">
+                            <input type="text" name="attr[value][]" class="layui-input"
+                                   placeholder="请输入标题" value="">
+                            <tip>填写短题。</tip>
                         </div>
                     </div>
 

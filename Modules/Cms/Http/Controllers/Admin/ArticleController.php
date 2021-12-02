@@ -77,7 +77,7 @@ class ArticleController extends MyController
         $article = Article::find($id);
         $tags = article_tags_text($id);
 
-        $meta = app('cms')->articleMeta($id);
+        $meta = app('cms')->articleMeta($id, ['short_title']);
 
         return $this->view('admin.article.edit', compact('categories', 'article', 'tags', 'meta'));
     }

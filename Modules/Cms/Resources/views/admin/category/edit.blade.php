@@ -34,6 +34,16 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="attr[ident][]" value="title">
+                            <input type="text" name="attr[value][]" class="layui-input"
+                                   placeholder="请输入标题" value="{{$category->title}}">
+                            <tip>填写短题。</tip>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <label class="layui-form-label">描述</label>
                         <div class="layui-input-block">
                             <textarea name="description" class="layui-textarea"

@@ -93,13 +93,6 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">更新缓存</label>
-                            <div class="layui-input-block">
-                                <input type="checkbox" name="update_cache" lay-skin="primary" value="1" title="更新缓存">
-                            </div>
-                        </div>
-
 
                         <div class="hr-line"></div>
                         <div class="layui-form-item text-center">

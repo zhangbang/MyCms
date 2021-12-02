@@ -32,6 +32,16 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">短标题</label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="attr[ident][]" value="short_title">
+                            <input type="text" name="attr[value][]" class="layui-input"
+                                   placeholder="请输入短标题" value="{{$article->short_title}}">
+                            <tip>填写短标题。</tip>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <label class="layui-form-label">作者</label>
                         <div class="layui-input-block">
                             <input type="text" name="author" class="layui-input" placeholder="请输入作者"

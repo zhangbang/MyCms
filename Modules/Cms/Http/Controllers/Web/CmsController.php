@@ -84,7 +84,7 @@ class CmsController extends MyController
             $data = $request->validated();
             $content = strip_tags(paramFilter($data['content']));
 
-            $article = Article::find($data['single_id']);
+            $article = article($data['single_id']);
 
             if (!$article) {
                 return $this->result(false, ['msg' => '非法参数.']);

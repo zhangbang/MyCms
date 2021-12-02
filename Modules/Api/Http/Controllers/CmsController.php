@@ -5,8 +5,8 @@ namespace Modules\Api\Http\Controllers;
 
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use Modules\Cms\Models\Article;
+use Modules\Api\Http\Requests\ArticleCommentRequest;
+use Modules\Cms\Models\ArticleComment;
 
 class CmsController extends ApiController
 {
@@ -49,7 +49,7 @@ class CmsController extends ApiController
         $page = $this->request('page', 'intval', 1);
         $limit = $this->request('limit', 'intval', 10);
         $tag = $this->request('tag', '', 'new');
-        $params = request()->input('params',  '[]');
+        $params = request()->input('params', '[]');
 
         $result = [];
         $articles = articles($page, $limit, $tag, json_decode($params, true)) ?: [];
@@ -94,6 +94,75 @@ class CmsController extends ApiController
         app('cms')->articleAddView($id);
 
         return $this->success(['result' => $article]);
+    }
+
+    /**
+     * 文章评论
+     * @return JsonResponse
+     */
+    public function comments(): JsonResponse
+    {
+        $id = $this->request('id', 'intval');
+        $root = $this->request('root', 'intval', 0);
+
+        $comments = $this->collectFilterField(article_comments($id, $root), [
+            'status', 'updated_at'
+        ], true);
+
+        return $this->success(['result' => $comments]);
+
+    }
+
+    /**
+     * 发布文章评论
+     * @return JsonResponse
+     */
+    public function submitComment(ArticleCommentRequest $request)
+    {
+        $config = system_config([], 'cms');
+
+        if (isset($config['is_allow_comment']) && $config['is_allow_comment'] == 1) {
+
+            $data = $request->validated();
+            $content = strip_tags(paramFilter($data['content']));
+
+            if ($article = article($data['single_id'])) {
+
+                $rid = 0;
+
+                if ($data['parent_id'] > 0) {
+
+                    $obj = comment($data['parent_id'], $data['single_id']);
+
+                    if (!$obj) {
+
+                        return $this->error(['msg' => '非法参数.']);
+                    }
+
+                    $rid = $obj->parent_id == 0 ? $obj->id : $obj->root_id;
+                }
+
+                $comment = [
+                    'single_id' => $data['single_id'],
+                    'user_id' => $data['user_id'],
+                    'root_id' => $rid,
+                    'parent_id' => $data['parent_id'],
+                    'status' => isset($config['is_auto_status']) && $config['is_auto_status'] == 1 ? 1 : 0,
+                    'content' => $content,
+                ];
+
+                $object = new ArticleComment();
+                $result = $object->store($comment);
+
+                if ($result) {
+                    return $this->success(['msg' => '评论成功', 'id' => $object->id]);
+                }
+            }
+
+        }
+
+        return $this->error(['msg' => "评论失败"]);
+
     }
 
 }
