@@ -172,7 +172,7 @@ class CmsController extends ApiController
                 $result = $object->store($comment);
 
                 if ($result) {
-                    return $this->success(['msg' => '评论成功', 'id' => $object->id]);
+                    return $this->success(['msg' => '评论成功', 'result' => $object->id]);
                 }
             }
 
