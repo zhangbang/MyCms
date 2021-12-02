@@ -107,19 +107,34 @@ class CmsController extends ApiController
         $page = $this->request('page', 'intval', 1);
         $limit = $this->request('limit', 'intval', 10);
 
-        $comments = $this->collectFilterField(article_comments($id, $root, $page, $limit), [
-            'status', 'updated_at'
-        ], true);
+        $result = [];
 
-        return $this->success(['result' => $comments]);
+        if ($comments = article_comments($id, $root, $page, $limit)) {
+
+            $result = $this->pageFilterField($comments);
+            $result['data'] = [];
+
+            foreach ($comments as $comment) {
+
+                $value = $this->objectFilterField($comment, [
+                    'status', 'updated_at'
+                ], true);
+
+                $result['data'][] = $value;
+            }
+
+        }
+
+        return $this->success(['result' => $result]);
 
     }
 
     /**
      * 发布文章评论
+     * @param ArticleCommentRequest $request
      * @return JsonResponse
      */
-    public function submitComment(ArticleCommentRequest $request)
+    public function submitComment(ArticleCommentRequest $request): JsonResponse
     {
         $config = system_config([], 'cms');
 
