@@ -479,6 +479,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 formatToolbar.class = formatToolbar.class !== '' ? 'class="' + formatToolbar.class + '" ' : '';
                 if (toolbar.method === 'open') {
                     formatToolbar.method = formatToolbar.method !== '' ? 'data-open="' + formatToolbar.url + '" data-title="' + formatToolbar.title + '" ' : '';
+                } else if (toolbar.method === 'href') {
+                    formatToolbar.method = 'layuimini-content-href="' + formatToolbar.url + '" data-title="' + formatToolbar.title + '" ';
                 } else {
                     formatToolbar.method = formatToolbar.method !== '' ? 'data-request="' + formatToolbar.url + '" data-title="' + formatToolbar.title + '" ' : '';
                 }
