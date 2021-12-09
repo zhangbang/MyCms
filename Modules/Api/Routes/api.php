@@ -37,6 +37,7 @@ Route::prefix('v1')->name('api.v1.')
         });
 
         Route::post('/timestamp', 'SystemController@timestamp');
+        Route::post('/region', 'SystemController@region');
 
     });
 

@@ -258,16 +258,10 @@ if (!function_exists("is_mobile")) {
             'operamini', 'operamobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap'
         ];
 
-        if (isset ($_SERVER['HTTP_USER_AGENT'])) {
+        if ($userAgent = request_user_agent()) {
 
-            if (preg_match("/(" . implode('|', $client) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
-                return true;
-            }
-        }
+            if (preg_match("/(" . implode('|', $client) . ")/i", $userAgent)) {
 
-        if (isset(request()->header()['user-agent'])) {
-
-            if (preg_match("/(" . implode('|', $client) . ")/i", strtolower(request()->header()['user-agent'][0]))) {
                 return true;
             }
         }
@@ -289,7 +283,7 @@ if (!function_exists('paramFilter')) {
     function paramFilter($value)
     {
         if (preg_match("/['\\\"]+/", $value)) {
-            return null;
+            return false;
         }
         $value = str_replace("&#x", "& # x", $value);    //过滤一些不安全字符
         $value = preg_replace("/eval/i", "eva l", $value);    //过滤不安全函数
@@ -910,5 +904,95 @@ if (!function_exists('curl_download_get')) {
             curl_close($curl);
             return $data;
         }
+    }
+}
+
+/**
+ * 获取 User-Agent
+ */
+if (!function_exists('request_user_agent')) {
+    function request_user_agent($toLower = true)
+    {
+        if (isset ($_SERVER['HTTP_USER_AGENT'])) {
+
+            return $toLower ? strtolower($_SERVER['HTTP_USER_AGENT']) : $_SERVER['HTTP_USER_AGENT'];
+        }
+
+        if (isset(request()->header()['user-agent'])) {
+
+            return $toLower ? strtolower(request()->header()['user-agent'][0]) : request()->header()['user-agent'][0];
+        }
+
+        return false;
+    }
+}
+
+/**
+ * 是否为PC客户端
+ */
+if (!function_exists('is_pc')) {
+    function is_pc(): bool
+    {
+        return !is_mobile();
+    }
+}
+
+/**
+ * 是否为安卓客户端
+ */
+if (!function_exists('is_android')) {
+    function is_android(): bool
+    {
+        return strpos(request_user_agent(), 'android');
+    }
+}
+
+/**
+ * 是否为苹果客户端
+ */
+if (!function_exists('is_ios')) {
+    function is_ios(): bool
+    {
+        return (strpos(request_user_agent(), 'iphone') || strpos(request_user_agent(), 'ipad'));
+    }
+}
+
+/**
+ * 是否为微信打开
+ */
+if (!function_exists('is_wechat')) {
+    function is_wechat(): bool
+    {
+        return strpos(request_user_agent(), 'micromessenger');
+    }
+}
+
+/**
+ * 是否为支付宝打开
+ */
+if (!function_exists('is_alipay')) {
+    function is_alipay(): bool
+    {
+        return strpos(request_user_agent(), 'alipayclient');
+    }
+}
+
+/**
+ * 是否为QQ打开
+ */
+if (!function_exists('is_qq')) {
+    function is_qq(): bool
+    {
+        return strpos(request_user_agent(), 'qq') && !is_wechat();
+    }
+}
+
+/**
+ * 是否为云闪付打开
+ */
+if (!function_exists('is_unionpay')) {
+    function is_unionpay(): bool
+    {
+        return strpos(request_user_agent(), 'unionpay');
     }
 }

@@ -43,6 +43,7 @@ return [
     'system/addon/install' => '插件安装',
     'system/addon/uninstall' => '插件卸载',
     'system/addon/init' => '插件启用',
+    'system/addon/modify' => '菜单显示',
 
     'addon' => '插件模块',
 

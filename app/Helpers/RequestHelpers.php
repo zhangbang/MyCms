@@ -7,13 +7,25 @@ namespace App\Helpers;
 trait RequestHelpers
 {
 
+    /**
+     * 处理请求参数
+     * @param $key
+     * @param $filter
+     * @param $default
+     * @return array|mixed|string|string[]|null
+     */
     public function request($key, $filter = '', $default = '')
     {
-        $value = request()->input($key);
-
-        return $this->filter($value, $filter) ?: $default;
+        $value = $this->filter(request()->input($key), $filter);
+        return $value === false ? $default : $value;
     }
 
+    /**
+     * 过滤参数值
+     * @param $value
+     * @param $filter
+     * @return array|false|string|string[]|null
+     */
     protected function filter($value, $filter)
     {
         if (!is_array($value)) {

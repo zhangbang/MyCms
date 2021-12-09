@@ -61,19 +61,21 @@ class AddonService
      */
     public function all(): array
     {
-        $installed = [];
+        $addons = [];
 
-        model::all()->each(function ($item) use (&$installed) {
-            $installed[$item['ident']] = $item;
+        model::all()->each(function ($item) use (&$addons) {
+            $addons[$item['ident']] = $item;
         });
 
-        return array_map(function ($item) use ($installed) {
+        return array_map(function ($item) use ($addons) {
 
             $item = $item->toArray();
-            $item['is_init'] = $installed[$item['ident']]['is_init'] ?? 0;
+            $item['is_init'] = $addons[$item['ident']]['is_init'] ?? 0;
+            $item['is_menu'] = $addons[$item['ident']]['is_menu'] ?? 0;
+            $item['id'] = $addons[$item['ident']]['id'] ?? 0;
 
-            $item['operation'] = in_array($item['ident'], array_keys($installed)) ? $this->getInstalledHtml($item) : $this->getInstallHtml($item['ident']);
-            $item['installed'] = in_array($item['ident'], array_keys($installed)) ?? false;
+            $item['operation'] = in_array($item['ident'], array_keys($addons)) ? $this->getInstalledHtml($item) : $this->getInstallHtml($item['ident']);
+            $item['installed'] = in_array($item['ident'], array_keys($addons)) ?? false;
 
             return $item;
 
@@ -209,4 +211,11 @@ class AddonService
 
     }
 
+    /**
+     * 获取单个插件的信息
+     */
+    public function getAddonInfo($ident): Addon
+    {
+        return new Addon($this->app, $ident);
+    }
 }

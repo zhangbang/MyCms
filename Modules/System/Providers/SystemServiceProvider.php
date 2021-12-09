@@ -3,6 +3,7 @@
 namespace Modules\System\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\System\Service\SystemService;
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,10 @@ class SystemServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind('system', function ($app) {
+            return new SystemService();
+        });
     }
 
     /**
@@ -49,6 +54,7 @@ class SystemServiceProvider extends ServiceProvider
         $this->publishes([
             module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
         ], 'config');
+
         $this->mergeConfigFrom(
             module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );

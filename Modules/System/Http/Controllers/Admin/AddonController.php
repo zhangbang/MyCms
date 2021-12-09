@@ -72,4 +72,32 @@ class AddonController extends MyController
         return $this->result(true);
     }
 
+    /**
+     * 显示在菜单
+     */
+    public function modify()
+    {
+        if ($id = $this->request('id', 'intval')) {
+
+            $addon = Addon::find($id);
+
+            $addon->{$this->request('field')} = $this->request('value');
+            $result = $addon->save();
+
+            if ($this->request('field') == 'is_menu') {
+
+                $addonInfo = $this->addonService->getAddonInfo($addon->ident);
+
+                $this->request('value') == 1 ?
+                    app('system')->addonToMenu($addon->name, $addonInfo->getHome()) :
+                    app('system')->addonRemoveForMenu($addonInfo->getHome());
+
+            }
+
+            return $this->result($result);
+        }
+
+        return $this->result(false);
+    }
+
 }

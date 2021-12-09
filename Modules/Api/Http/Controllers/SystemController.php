@@ -18,4 +18,16 @@ class SystemController extends ApiController
         return $this->success(['result' => ['timestamp' => time()]]);
     }
 
+    /**
+     * 返回地区
+     * @return JsonResponse
+     */
+    public function region(): JsonResponse
+    {
+        $pid = $this->request('pid', 'intval', 0);
+        $regions = app('system')->regions($pid);
+
+        return $this->success(['result' => $regions]);
+    }
+
 }

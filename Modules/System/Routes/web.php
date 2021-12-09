@@ -52,6 +52,7 @@ Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Control
         Route::any('addon/install', 'AddonController@install');
         Route::any('addon/uninstall', 'AddonController@uninstall');
         Route::any('addon/init', 'AddonController@init');
+        Route::post('addon/modify', 'AddonController@modify');
 
         Route::get('update-cache', 'SystemController@updateCache');
 
