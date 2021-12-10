@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\System\Database\Seeders\RegionSeeder;
 use Modules\System\Database\Seeders\SystemAdminSeeder;
 use Modules\System\Database\Seeders\SystemConfigSeeder;
 use Modules\System\Database\Seeders\SystemMenuSeeder;
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SystemConfigSeeder::class);
         $this->call(SystemMenuSeeder::class);
         $this->call(SystemRoleSeeder::class);
+        $this->call(RegionSeeder::class);
     }
 }
