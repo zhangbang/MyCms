@@ -54,7 +54,7 @@ class ArticleController extends MyController
         $result = $article->store($data);
 
         if ($result !== false && $tags = $this->request('tags')) {
-            $tagIds = $tag->insert(explode(",", $tags));
+            $tagIds = $tag->insertTags(explode(",", $tags));
             $tagRel->insertRel($article->id, $tagIds);
         }
 
@@ -97,7 +97,7 @@ class ArticleController extends MyController
             $result = $article->up($data);
 
             if ($result !== false && $tags = $this->request('tags')) {
-                $tagIds = $tag->insert(explode(",", $tags));
+                $tagIds = $tag->insertTags(explode(",", $tags));
                 $tagRel->insertRel($id, $tagIds);
             }
 
@@ -135,7 +135,7 @@ class ArticleController extends MyController
     {
         if ($id = $this->request('id', 'intval')) {
             $tags = $this->request('tags');
-            $tagIds = $tag->insert(explode(",", $tags));
+            $tagIds = $tag->insertTags(explode(",", $tags));
             $tagRel->insertRel($id, $tagIds);
 
             return $this->result($tagIds ?? false);

@@ -11,7 +11,7 @@ class ArticleTag extends MyModel
 
     protected $table = 'my_article_tag';
 
-    public function insert($data): array
+    public function insertTags($data): array
     {
 
         return array_map(function ($item) {
