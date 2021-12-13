@@ -27,6 +27,7 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 
 ## 优秀案例
 
+* [一码活码](https://yima.mycms.net.cn/)
 * [在线计算网](https://www.zaixianjisuan.com/)
 * [程序员导航](https://nav.mycms.net.cn/)
 * [古诗词网](https://www.gushici.top/)
@@ -188,6 +189,7 @@ server {
 |支付宝支付|个人版（当面付）|插件|完成|授权|
 |采集爬虫|采集爬虫|插件|完成|授权|
 |付费专栏|付费专栏|插件|完成|授权|
+|活码+|活码插件|插件|完成|授权|
 
 ## 快速安装
 1. 下载源码 / 上传源码到服务器
