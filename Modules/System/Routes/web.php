@@ -47,6 +47,8 @@ Route::group(['prefix' => 'system', 'namespace' => '\Modules\System\Http\Control
         Route::get('menu/edit', 'MenuController@edit')->name('system.menu.edit');
         Route::post('menu/edit', 'MenuController@update');
         Route::post('menu/destroy', 'MenuController@destroy');
+        Route::get('menu/config', 'MenuController@config')->name('system.menu.config');
+        Route::post('menu/config', 'MenuController@storeCfg');
 
         Route::get('addon', 'AddonController@index')->name('system.addon');
         Route::any('addon/install', 'AddonController@install');

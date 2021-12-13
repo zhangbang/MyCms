@@ -23,6 +23,8 @@
             ACTION: "@if(isset($diy_action)){{$diy_action}}@else{{$js_action}}@endif",
             IS_SUPER_ADMIN: "1",
             VERSION: "{{$version}}",
+            MENU_MULTI: {{system_config('menu_show_type') ?: 0}},
+            MENU_OPEN: {{system_config('menu_default_open') ?: 0}},
         };
     </script>
     <script src="/mycms/plugs/layui-v2.5.6/layui.all.js?v={{config('app.version')}}" charset="utf-8"></script>

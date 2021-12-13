@@ -197,16 +197,16 @@
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>v1.3.0</td>
+                                <td>{{config('app.version')}}</td>
                             </tr>
                             <tr>
                                 <td>主要特色</td>
                                 <td>模块化 / 响应式 / 易拓展</td>
                             </tr>
                             <tr>
-                                <td>演示地址</td>
+                                <td>项目官网</td>
                                 <td>
-                                    <a href="https://demo.mycms.net.cn/system/index" target="_blank">点击查看</a><br>
+                                    <a href="https://www.mycms.net.cn" target="_blank">点击查看</a><br>
                                 </td>
                             </tr>
                             <tr>

@@ -22,7 +22,7 @@
             <!-- 导航-->
             <div class="navbar">
                 <a class="navbar-item active" href="/">首页</a>
-                <a class="navbar-item" href="https://www.kancloud.cn/b386654667/mycms" target="_blank">文档</a>
+                <a class="navbar-item" href="https://www.mycms.net.cn/shouce" target="_blank">文档</a>
                 <a class="navbar-item" href="/system/login" target="_blank">演示</a>
                 <a class="navbar-item" href="https://qm.qq.com/cgi-bin/qm/qr?k=y3Q3pCWJdIRtCzdLMGdqMv3Jx04bib8D&jump_from=webapi" target="_blank">QQ群</a>
             </div>
@@ -35,7 +35,7 @@
                 <img src="/mycms/common/images/logo-2.png" height="300px">
             </p>
             <p class="operation">
-                <a class="start" target="_blank" href="https://www.kancloud.cn/b386654667/mycms"> 起步 <i class="icon-play"></i></a>
+                <a class="start" target="_blank" href="https://www.mycms.net.cn/shouce"> 起步 <i class="icon-play"></i></a>
                 <a class="gitee button-grya" target="_blank" href="https://gitee.com/qq386654667/mycms"><i class="icon-gitee"></i>Gitee</a>
             </p>
         </div>
@@ -85,7 +85,7 @@
     <footer class="site-footer">
         <div class="container">
             <p class="protocol">遵循 Apache-2.0 开源协议 </p>
-            <p class="beian-number">Copyright © MyCms(mycms.net.cn)版权所有，并保留所有权利 | <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备20010675号</a></p>
+            <p class="beian-number">Copyright © <a href="https://www.mycms.net.cn/">MyCms</a> 版权所有，并保留所有权利</p>
         </div>
     </footer>
 </div>

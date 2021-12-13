@@ -34,13 +34,13 @@ class MenuController extends MyController
     public function create(MenuService $menuService)
     {
         $menus = $menuService->menuTree();
-        return $this->view('admin.menu.create',compact('menus'));
+        return $this->view('admin.menu.create', compact('menus'));
     }
 
     /**
      * 保存菜单
      */
-    public function store(MenuStoreRequest $request,Menu $menu)
+    public function store(MenuStoreRequest $request, Menu $menu)
     {
         $data = $request->validated();
         $result = $menu->store($data);
@@ -53,12 +53,12 @@ class MenuController extends MyController
      */
     public function edit(MenuService $menuService)
     {
-        $id = $this->request('id','intval');
+        $id = $this->request('id', 'intval');
         $menu = Menu::find($id);
 
         $menus = $menuService->menuTree();
 
-        return $this->view('admin.menu.edit', compact('menu','menus'));
+        return $this->view('admin.menu.edit', compact('menu', 'menus'));
     }
 
     /**
@@ -77,8 +77,28 @@ class MenuController extends MyController
      */
     public function destroy()
     {
-        $result = Menu::destroy($this->request('id','intval'));
+        $result = Menu::destroy($this->request('id', 'intval'));
         return $this->result($result);
     }
 
+    /**
+     * 菜单配置
+     */
+    public function config()
+    {
+        $config = system_config();
+        return $this->view('admin.menu.config', compact('config'));
+    }
+
+    public function storeCfg()
+    {
+        $data = [
+            'menu_show_type' => $this->request('menu_show_type', 'intval'),
+            'menu_default_open' => $this->request('menu_default_open', 'intval'),
+        ];
+
+        $result = system_config_store($data, 'system');
+
+        return $this->result($result);
+    }
 }

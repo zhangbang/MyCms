@@ -1,7 +1,7 @@
 @include("system::admin.layouts._header")
 
-<link rel="stylesheet" href="/mycms/plugs/lay-module/layuimini/layuimini.css?v={{time()}}" media="all">
-<link rel="stylesheet" href="/mycms/plugs/lay-module/layuimini/themes/default.css?v={{time()}}" media="all">
+<link rel="stylesheet" href="/mycms/plugs/lay-module/layuimini/layuimini.css?v={{config('app.version')}}" media="all">
+<link rel="stylesheet" href="/mycms/plugs/lay-module/layuimini/themes/default.css?v={{config('app.version')}}" media="all">
 <style id="layuimini-bg-color">
 </style>
 <body class="layui-layout-body layuimini-all">

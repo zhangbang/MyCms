@@ -31,6 +31,7 @@ return [
     'system/menu/create' => '新增',
     'system/menu/edit' => '修改',
     'system/menu/destroy' => '删除',
+    'system/menu/config' => '配置',
 
     'system.upload' => '上传接口',
     'system/upload' => '图片上传',

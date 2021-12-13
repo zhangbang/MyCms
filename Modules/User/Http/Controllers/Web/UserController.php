@@ -87,7 +87,7 @@ class UserController extends MyController
 
         if ($mobile = $this->request('mobile', 'mobile')) {
 
-            $number = rand(1111, 9999);
+            $number = mt_rand(1111, 9999);
             $result = ali_sms($mobile, 0, ['code' => $number]);
 
             if ($result) {

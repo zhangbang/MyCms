@@ -12,6 +12,7 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa"], function ($, ea) {
         delete_url: '/system/menu/destroy',
         edit_url: '/system/menu/edit',
         modify_url: '/system/menu/modify',
+        config_url: '/system/menu/config',
     };
 
     return {
@@ -171,5 +172,8 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa"], function ($, ea) {
                 });
             });
         },
+        config: function () {
+            ea.listen();
+        }
     };
 });

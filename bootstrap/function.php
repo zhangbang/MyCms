@@ -135,7 +135,7 @@ if (!function_exists('system_config_store')) {
         );
 
         foreach ($newConfigs as $cfg) {
-            if ($data[$cfg]) {
+            if ($data[$cfg] !== null) {
                 (new Modules\System\Models\Config())->store([
                     'cfg_key' => $cfg,
                     'cfg_val' => $data[$cfg],
@@ -358,7 +358,7 @@ if (!function_exists('create_pay_log')) {
     function create_pay_log($userId, $total, $goodsId, $goodsName, $tradeType, $payType = 'dmf')
     {
         do {
-            $tradeNo = date("YmdHi") . rand(1111, 9999) . date("s");
+            $tradeNo = date("YmdHi") . mt_rand(1111, 9999) . date("s");
             $log = PayLog::where('trade_no', $tradeNo)->first();
         } while ($log);
 

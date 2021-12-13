@@ -47,4 +47,15 @@ class ConfigRequest extends MyRequest
         ];
     }
 
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function validated(): array
+    {
+        $data = $this->validator->validated();
+        $data['site_url'] = trim($data['site_url'], '/');
+
+        return $data;
+    }
+
 }
