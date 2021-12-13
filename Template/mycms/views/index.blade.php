@@ -19,8 +19,8 @@
                                 MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，适用于个人网站及企业网站开发使用，软件著作权编号：2021SR1543432。MyCms基于Apache2.0开源协议发布，免费且不限制商业使用，欢迎持续关注我们。
                             </p>
                             <div class="hero-btn">
-                                <a href="https://www.kancloud.cn/b386654667/mycms" target="_blank" rel="nofollow" class="btn-4">使用文档</a>
-                                <a href="https://gitee.com/qq386654667/mycms" target="_blank" rel="nofollow" class="btn-5">获取代码</a>
+                                <a href="https://www.mycms.net.cn/shouce" target="_blank" class="btn-4">使用文档</a>
+                                <a href="https://www.mycms.net.cn/fastCode/project/61b7606edf410" target="_blank" rel="nofollow" class="btn-5">获取代码(zip压缩包)</a>
                             </div>
                         </div>
                     </div>
@@ -372,7 +372,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="1200" data-speed="3000">2000</p>
+                        <p class="timer" data-count="+" data-to="3000" data-speed="3000">3000</p>
                         <span class="medium">Gitee Ip</span>
                     </div>
                 </div>
@@ -383,7 +383,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="200" data-speed="3000">100</p>
+                        <p class="timer" data-count="+" data-to="500" data-speed="3000">500</p>
                         <span class="medium">Download zip</span>
                     </div>
                 </div>
@@ -394,7 +394,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="30" data-speed="3000">50</p>
+                        <p class="timer" data-count="+" data-to="70" data-speed="3000">70</p>
                         <span class="medium">Starred</span>
                     </div>
                 </div>
@@ -405,7 +405,7 @@
                             </i>
                         </span>
                     <div class="fun-desc">
-                        <p class="timer" data-count="+" data-to="200" data-speed="3000">270</p>
+                        <p class="timer" data-count="+" data-to="360" data-speed="3000">360</p>
                         <span class="medium">Pull</span>
                     </div>
                 </div>

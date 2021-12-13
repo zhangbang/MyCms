@@ -27,6 +27,16 @@
     @if(($headerJs = system_config('site_header_js')) !== null)
         {!! $headerJs !!}
     @endif
+
+    @if(is_home())
+        <style>
+            .navbar-brand h1{
+                text-indent: -9999px;
+                height: 0;
+                margin: 0;
+            }
+        </style>
+    @endif
 </head>
 
 <body id="bdy" class="no-scroll-y">
@@ -38,6 +48,9 @@
         <nav id="navbar_top" class="navbar navbar-expand-lg">
             <div class="container g-0">
                 <a class="navbar-brand" href="{{home_path()}}">
+                    @if(is_home())
+                    <h1>{{system_config('site_name')}}</h1>
+                    @endif
                     <img src="{{system_config('site_logo')}}" style="height: 46px" class="logo-display">
                     <img src="{{system_config('site_logo')}}" style="height: 46px" class="logo-scrolled">
                 </a>
