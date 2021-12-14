@@ -27,11 +27,10 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 
 ## 优秀案例
 
-* [一码活码](https://yima.mycms.net.cn/)
 * [在线计算网](https://www.zaixianjisuan.com/)
 * [程序员导航](https://nav.mycms.net.cn/)
 * [古诗词网](https://www.gushici.top/)
-
+* [活码工具](https://demo.mycms.net.cn/system/login) (演示后台->系统插件->快码)
 ## 系统功能
 * 后台基础功能
     * 权限管理
@@ -82,6 +81,11 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 * 更优雅、符合SEO优化的分页
 * 基础缓存功能及数据库索引建立
 * 简单易用的模板函数、制作模板更方便
+
+## 快速安装
+1. 下载源码 / 上传源码到服务器
+2. 将网站运行目录设置为 `/public`
+3. 访问 `http://xxx.xxx/install` 根据安装向导进行在线配置
 
 ## 性能提升
 * 使用opcache加速性能
@@ -190,11 +194,6 @@ server {
 |采集爬虫|采集爬虫|插件|完成|授权|
 |付费专栏|付费专栏|插件|完成|授权|
 |活码+|活码插件|插件|完成|授权|
-
-## 快速安装
-1. 下载源码 / 上传源码到服务器
-2. 将网站运行目录设置为 `/public`
-3. 访问 `http://xxx.xxx/install` 根据安装向导进行在线配置
 
 ## 后台界面
 ![login-demo](https://static.mycms.net.cn/public/demo/login-demo.png)
