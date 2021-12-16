@@ -15,9 +15,12 @@ class UserUpdateRequest extends MyRequest
 
     public function rules(): array
     {
+        $id = request()->input('id');
+
         return [
             'id' => ['required'],
-            'mobile' => ['required', 'unique:my_user', 'size:11'],
+            'nickname' => ['max:50'],
+            'mobile' => ['required', 'unique:my_user,mobile,' . $id . ',id', 'size:11'],
         ];
     }
 
@@ -28,6 +31,7 @@ class UserUpdateRequest extends MyRequest
             'mobile.required' => '手机号码不能为空',
             'mobile.unique' => '手机号码已存在',
             'mobile.size' => '手机号码格式错误',
+            'nickname.max' => '用户昵称过长',
         ];
     }
 }

@@ -12,6 +12,14 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">用户昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="nickname" class="layui-input" value="">
+                <tip>填写用户昵称。</tip>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label required">手机号码</label>
             <div class="layui-input-block">
                 <input type="text" name="mobile" class="layui-input" lay-verify="required" lay-reqtext="请输入手机号码" placeholder="请输入手机号码" value="">

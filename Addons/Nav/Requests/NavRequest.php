@@ -22,6 +22,9 @@ class NavRequest extends MyRequest
             'target' => ['required','max:255'],
             'sort' => ['integer'],
             'ico' => ['max:255'],
+            'style_css' => ['max:255'],
+            'style_class' => ['max:255'],
+            'style_id' => ['max:255'],
         ];
     }
 
@@ -32,11 +35,14 @@ class NavRequest extends MyRequest
             'name.required' => '请输入名称',
             'name.max' => '名称长度错误',
             'url.required' => '请输入URL',
-            'ico.max' => 'URL长度错误',
             'url.max' => 'URL长度错误',
             'target.required' => '请选择打开方式',
             'target.max' => '打开方式长度错误',
             'sort.integer' => '请输入排序',
+            'ico.max' => '图标长度错误',
+            'style_css.max' => '内嵌样式过长',
+            'style_class.max' => '样式类名过长',
+            'style_id.max' => '样式ID过长',
         ];
     }
 }

@@ -12,7 +12,7 @@
                     <br/>
                 @endif
 
-                © Copyright MyCms 2021. All Right Reserved.@if(($icp = system_config('site_icp')) !== null)<a
+                © Copyright <a href="https://www.mycms.net.cn/">MyCms</a> 2021. All Right Reserved.@if(($icp = system_config('site_icp')) !== null)<a
                     target="_blank" href="https://beian.miit.gov.cn">{{$icp}}</a>@endif</p>
         </div>
     </div>

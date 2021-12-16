@@ -20,7 +20,7 @@ class CreateNavTable extends Migration
             $table->string('pid');
             $table->string('ico')->nullable();
             $table->string('target');
-            $table->integer('sort')->default(0);
+            $table->integer('sort')->default('0');
             $table->timestamps();
 
             $table->engine = 'InnoDB';

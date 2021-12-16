@@ -18,7 +18,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">名称</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" lay-reqtext="请输入名称" placeholder="请输入名称" value="">
+                <input type="text" name="name" class="layui-input" lay-verify="required" lay-reqtext="请输入名称"
+                       placeholder="请输入名称" value="">
                 <tip>填写名称。</tip>
             </div>
         </div>
@@ -26,7 +27,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">URL</label>
             <div class="layui-input-block">
-                <input type="text" name="url" class="layui-input" lay-verify="required" lay-reqtext="请输入URL" placeholder="请输入URL" value="">
+                <input type="text" name="url" class="layui-input" lay-verify="required" lay-reqtext="请输入URL"
+                       placeholder="请输入URL" value="">
                 <tip>填写URL。</tip>
             </div>
         </div>
@@ -44,7 +46,8 @@
             <div class="layui-input-block layuimini-upload">
                 <input name="ico" class="layui-input layui-col-xs6" placeholder="请上传图标" value="">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="ico" data-upload-number="one" data-upload-exts="ico|png|jpg|jpeg"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn" data-upload="ico" data-upload-number="one"
+                             data-upload-exts="ico|png|jpg|jpeg"><i class="fa fa-upload"></i> 上传</a></span>
                 </div>
             </div>
         </div>
@@ -56,6 +59,30 @@
                 <tip>填写排序。</tip>
             </div>
         </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">内嵌样式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_css" class="layui-input" value="">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">样式类名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_class" class="layui-input" value="">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">样式ID</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_id" class="layui-input" value="">
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">

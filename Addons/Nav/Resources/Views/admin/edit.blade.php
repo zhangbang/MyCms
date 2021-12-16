@@ -57,6 +57,27 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">内嵌样式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_css" class="layui-input" value="{{$nav->style_css}}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">样式类名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_class" class="layui-input" value="{{$nav->style_class}}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">样式ID</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="style_id" class="layui-input" value="{{$nav->style_id}}">
+                </div>
+            </div>
+        </div>
+
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
             <input type="hidden" name="id" value="{{$nav->id}}">

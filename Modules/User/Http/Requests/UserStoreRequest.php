@@ -17,6 +17,7 @@ class UserStoreRequest extends MyRequest
     {
         return [
             'name' => ['required', 'unique:my_user', 'max:50'],
+            'nickname' => ['max:50'],
             'mobile' => ['required', 'unique:my_user', 'size:11'],
             'password' => ['required', 'max:16', 'min:6'],
         ];
@@ -28,6 +29,8 @@ class UserStoreRequest extends MyRequest
             'name.required' => '用户名不能为空',
             'name.unique' => '用户名已存在',
             'name.max' => '用户名长度错误',
+
+            'nickname.max' => '用户昵称过长',
 
             'mobile.required' => '手机号码不能为空',
             'mobile.unique' => '手机号码已存在',

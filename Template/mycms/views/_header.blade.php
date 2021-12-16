@@ -61,12 +61,12 @@
                     <ul class="navbar-nav ms-auto">
                         @foreach(navs() as $key => $nav)
                             <li class="nav-item @if(isset($nav['child'])) dropdown @endif">
-                                <a class="nav-link" href="{{$nav->url}}" target="{{$nav->target}}"> {{$nav->name}} </a>
+                                <a class="nav-link {{$nav->style_class}}" style="{{$nav->style_css}}" id="{{$nav->style_id}}" href="{{$nav->url}}" target="{{$nav->target}}"> {{$nav->name}} </a>
                                 @if(isset($nav['child']) && $nav['child'])
                                 <ul class="dropdown-menu fade-up">
                                     @foreach($nav['child'] as $child)
                                     <li>
-                                        <a class="dropdown-item" target="{{$child->target}}" href="{{$child->url}}">
+                                        <a class="dropdown-item {{$child->style_class}}" style="{{$child->style_css}}" id="{{$child->style_id}}" target="{{$child->target}}" href="{{$child->url}}">
                                             {{$child->name}}
                                         </a>
                                     </li>
