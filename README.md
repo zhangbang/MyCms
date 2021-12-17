@@ -21,8 +21,8 @@ MyCms是一款基于Laravel开发的开源免费的自媒体博客CMS系统，�
 * [官方网站](https://www.mycms.net.cn/)
 * [使用手册](https://www.mycms.net.cn/shouce)
 * [API文档](https://www.mycms.net.cn/api-doc)
-* [活码二维码](https://www.mycms.net.cn/huoma)
 * [源码下载](https://gitee.com/qq386654667/mycms)
+* [活码二维码](https://www.mycms.net.cn/huoma)
 * [演示前台](https://www.mycms.net.cn/) / [演示后台](https://demo.mycms.net.cn/system/login)
 * 演示后台：admin / admin
 
