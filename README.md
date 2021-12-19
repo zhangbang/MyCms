@@ -1,5 +1,5 @@
 
-![MyCms-logo](https://gitee.com/qq386654667/mycms/raw/master/public/mycms/common/images/logo-2.png)
+![MyCms-logo](https://static.mycms.net.cn/public/logo-2.png)
 
 
 [![Php Version](https://img.shields.io/badge/php-%3E=7.3.0-brightgreen.svg?maxAge=2592000&color=yellow)](https://github.com/php/php-src)
